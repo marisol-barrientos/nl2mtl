@@ -1,0 +1,10 @@
+If an occlusion is detected, and auto_control_mode is running, auto_control will be terminated.
+If Air_Ok_signal remains low, auto_control_mode is terminated in 3 seconds.
+If arterial_line and pulse_wave and cuff are all available, next arterial_line is selected.
+If pulse_wave and cuff are available and arterial_line is not available, next pulse_wave is selected.
+If arterial_line is lost, then pulse_wave is selected.
+If pulse_wave is lost, then cuff is selected.
+When auto_control_mode is entered, eventually the cuff will be inflated.
+If manual_mode is running and start_auto_control_button is pressed, next auto_control_mode is running.
+If start_auto_control_button is pressed and cuff is not available, an alarm is issued and override_selection is provided.
+If alarm_reset_button is pressed, the alarm is disabled.

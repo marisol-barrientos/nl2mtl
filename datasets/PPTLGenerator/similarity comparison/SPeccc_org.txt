@@ -1,0 +1,39 @@
+[]((((power_lstat))) -> (<>((operational_cara))))
+
+[]((((((detect_occlusion))) && (((run_auto_control_mode))))) -> (<>((terminate_auto_control))))
+[]((((!air_ok_signal))) -> (((terminate_auto_control_mode))))
+
+[]((((((corroborate_arterial_line&&corroborate_pulse_wave))) && (((cuff))))) -> (((select_arterial_line))))
+[]((((((((corroborate_pulse_wave))) && (((cuff))))) && (((!corroborate_arterial_line))))) -> (((select_pulse_wave)))
+[]((((((((!corroborate_arterial_line))) && (((!corroborate_pulse_wave))))) && (((cuff))))) -> (((select_cuff))))
+[]((((((((plug_pump))) && (((ready_infusate))))) && (((clear_occlusion_line))))) -> (((!terminate_auto_control_mode))))
+[]((((((((plug_pump))) && (((ready_infusate))))) && (((clear_occlusion))))) -> (((start_auto_control_button))))
+
+[]((((enter_auto_control_mode))) -> (<>((inflate_cuff))))
+[]((((((press_start_auto_control_button))) && (((!cuff))))) -> (((((issue_alarm))) && (((provide_override_selection))))))
+[]((((press_alarm_reset_button))) -> (((!alarm))))
+[]((((provide_override_selection))) -> ([]((((press_override_yes))) -> (((((!corroborate_arterial_line))) && (((select_arterial_line))))))))
+[]((((provide_override_selection))) -> ([]((((((((press_override_yes))) && (((corroborate_arterial_line))))) && (((!corroborate_pulse_wave))))) -> (((select_pulse_wave))))))
+[]((((provide_override_selection))) -> ([]((((press_override_no))) -> (((start_manual_mode))))))
+[]((((((!cuff))) && (((!arterial_line&&!pulse_wave))))) -> (((start_manual_mode))))
+
+
+
+[]((((((run_manual_mode))) && (((press_start_auto_control_button))))) -> (((trigger_corroboration))))
+[]((XXX((!blood_pressure))) -> (((trigger_manual_mode))))
+[]((((((pulse_wave||arterial_line))) && (((select_cuff))))) -> (((trigger_corroboration))))
+[]((((((select_pulse_wave))) && (((arterial_line))))) -> (((trigger_corroboration))))
+[]((((run_auto_control_mode))) -> (((terminate_auto_control_button))))
+[]((((((run_auto_control_mode))) && (((lose_arterial_line||lose_pulse_wave||lose_cuff))))) -> (X((sound_alarm))))
+[]((((((((!pulse_wave||!arterial_line))) && (((select_cuff))))) && (((!blood_pressure))))) -> (((start_manual_mode))))
+[]((((select_termiante_auto_control_button))) -> (((confirmation_button))))
+[]((((((confirmation_button))) && (((press_confirmation_yes))))) -> (((start_manual_mode))))
+[]((((((confirmation_button))) && (((press_confirmation_no))))) -> (((run_auto_control_mode))))
+[]((((((confirmation_button))) && (((press_confirmation_yes))))) -> (((!confirmation_yes))))
+[]((((((confirmation_button))) && (((press_confirmation_no))))) -> (((!confirmation_no))))
+[]((((press_termianting_auto_control_button))) -> (((!termianting_auto_control_button))))
+[]((((start_auto_control_button))) -> ([](!(((press_start_auto_control_button))) -> ((((start_auto_control_button))) W (((press_start_auto_control_button)))))))
+[]((((((run_auto_control_mode))) && (((!impedance_reading))))) -> (((terminate_auto_control_model))))
+
+INPUT power_lstat,detect_occlusion,cuff,clear_occlusion_line,ready_infusate,plug_pump,clear_occlusion,enter_auto_control_mode,press_alarm_reset_button,arterial_line,pulse_wave,run_manual_mode,blood_pressure,lose_arterial_line,lose_pulse_wave,lose_cuff,select_termiante_auto_control_button,press_confirmation_yes,press_confirmation_no,press_termianting_auto_control_button,impedance_reading
+OUTPUT operational_cara,terminate_auto_control,terminate_auto_control_mode,select_arterial_line,select_pulse_wave,select_cuff,start_auto_control_button,inflate_cuff,provide_override_selection,issue_alarm,alarm,corroborate_arterial_line,press_override_yes,corroborate_pulse_wave,start_manual_mode,press_override_no,trigger_corroboration,trigger_manual_mode,terminate_auto_control_button,sound_alarm,confirmation_button,run_auto_control_mode,confirmation_yes,confirmation_no,termianting_auto_control_button,press_start_auto_control_button,terminate_auto_control_model,air_ok_signal

@@ -1,0 +1,12 @@
+When introduction_screen is available, eventually selection_procedure is enabled.
+If anything is selected, after selection_procedure terminates, next ordering_procedure is enabled.
+If anything is not selected, after selection_procedure terminates, next introduction_screen is enabled.
+If something is ordered, after ordering_procedure terminates, next order_processing_procedure is enabled.
+if something is not ordered, after ordering_procedure terminates, next Introduction_screen is enabled.
+Introduction_screen is enabled, after order_processing_procedure is terminated.
+##1.1
+Specifical_offer or group_selection or back_button can be selected in selection_procedure.
+If back_button is selected, selection_procedure terminates.
+##1.1.2
+If Specifical_offer is selected, system_information is displayed after special_offer_procedure terminates.
+If Specifical_offer is selected, special_display_information is displayed.

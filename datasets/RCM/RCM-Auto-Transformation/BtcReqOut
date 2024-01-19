@@ -1,0 +1,2784 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+File Measures: 
+	Number of req in file = 33
+	Number of prim req in file = 33
+
+<SucceededRequirement>
+        <Requirement>
+		ID: [req_7:]
+		<PrimitiveReq>
+			<PR>
+				Id: [1]
+				text: the fuel display blinks for at most 10 if the fuel level is low.
+				<Formal-Representation>
+					MTL-AbbrevatedFormula: G( [P] ==> [G{t<=10}(Q)] )
+					MTL-Formula: G( [the fuel level = low] ==> [G{t<=10}(the fuel display.crrStatus = blinks)] )
+					CTL-AbbrevatedFormula: AG( [(P)] ==> [(Q)] )
+					CTL-Formula: AG( [(the fuel level = low)] ==> [(the fuel display = blinks)] )
+				</Formal-Representation>
+				<RCMDetails>
+					
+					<Condition>
+						Keyword: if
+						Text = if the fuel level is low
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: the fuel level
+							</ArgDetails>
+							Arg[1]
+							<ArgDetails>
+								Text: low
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:is
+						</Operator>
+						Has valid-time:  false
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0]
+							RHS: Arg[1]
+							TechnicalOperator: =
+							PredicateFormal: the fuel level = low
+						</FormalSemantic>
+					</Condition>
+					<Action>
+						Text = the fuel display blinks
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: the fuel display
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:blinks
+						</Operator>
+						Has valid-time:  true
+						<ValidTime>
+							TimeType: Scope
+							Value: 10
+							Unit: seconds
+							QPRelation: at  most
+							<FormalSemantic>
+							TechnicalOperator: <=
+							Value: 10
+							</FormalSemantic>
+						</ValidTime>
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0].crrStatus
+							RHS: blinks
+							TechnicalOperator: =
+							PredicateFormal: the fuel display.crrStatus = blinks
+						</FormalSemantic>
+						is repeated = false
+					</Action>
+					<RequirementScope>
+					</RequirementScope>
+				</RCMDetails>
+			</PR>
+		</PrimitiveReq>
+	</Requirement>
+	<Requirement>
+		ID: [req_2:]
+		text: the parking sensor beeps while an obstacle is detected.
+
+		<PrimitiveReq>
+			<PR>
+				Id: [1]
+				text: the parking sensor beeps while an obstacle is detected.
+				<Formal-Representation>
+					MTL-AbbrevatedFormula: G( [G( ((S) ∧ ¬ (¬R) ∧ F(¬R)) ==> (F(Q || (¬R) ) U (¬R)) )] )
+					MTL-Formula: G( [G( ((an obstacle.crrStatus = detected) ∧ ¬ (¬an obstacle.crrStatus = detected) ∧ F(¬an obstacle.crrStatus = detected)) ==> (F(the parking sensor.crrStatus = beeps || (¬an obstacle.crrStatus = detected) ) U (¬an obstacle.crrStatus = detected)) )] )
+					CTL-AbbrevatedFormula: AG( [AG((((R)) ∧ ¬((¬Q))) ==> A[(AF((P) v ((¬Q)))) W ((¬Q))])] )
+					CTL-Formula: AG( [AG((((an obstacle.crrStatus = detect)) ∧ ¬((¬an obstacle.crrStatus = detect))) ==> A[(AF((the parking sensor.crrStatus = beep) v ((¬an obstacle.crrStatus = detect)))) W ((¬an obstacle.crrStatus = detect))])] )
+				</Formal-Representation>
+				<RCMDetails>
+					
+					<Action>
+						Text = the parking sensor beeps
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: the parking sensor
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:beeps
+						</Operator>
+						Has valid-time:  false
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0].crrStatus
+							RHS: beeps
+							TechnicalOperator: =
+							PredicateFormal: the parking sensor.crrStatus = beeps
+						</FormalSemantic>
+						is repeated = false
+					</Action>
+					<RequirementScope>
+						<ActionScope>
+							<LogicalRelation>
+								relation: AND
+							</LogicalRelation>
+								<ConditionalScope>
+									scope phase: StartUpPhase
+									<Condition>
+										Keyword: after
+										Text = after an obstacle is detected
+										<Operands>
+											Arg[0]
+											<ArgDetails>
+												Text: an obstacle
+											</ArgDetails>
+										</Operands>
+										<Operator>
+											relation:is detected
+										</Operator>
+										Has valid-time:  false
+										Is negatted: false
+										<FormalSemantic>
+											LHS: Arg[0].crrStatus
+											RHS: detected
+											TechnicalOperator: =
+											PredicateFormal: an obstacle.crrStatus = detected
+										</FormalSemantic>
+									</Condition>
+								</ConditionalScope>
+								<ConditionalScope>
+									scope phase: EndUpPhase
+									<Condition>
+										Keyword: until
+										Text = until an obstacle is detected
+										<Operands>
+											Arg[0]
+											<ArgDetails>
+												Text: an obstacle
+											</ArgDetails>
+										</Operands>
+										<Operator>
+											relation:is detected
+										</Operator>
+										Has valid-time:  false
+										Is negatted: true
+										<FormalSemantic>
+											LHS: Arg[0].crrStatus
+											RHS: detected
+											TechnicalOperator: =
+											PredicateFormal: an obstacle.crrStatus = detected
+										</FormalSemantic>
+									</Condition>
+								</ConditionalScope>
+						</ActionScope>
+					</RequirementScope>
+				</RCMDetails>
+			</PR>
+		</PrimitiveReq>
+	</Requirement>
+
+	<Requirement>
+		ID: [req_6:]
+		text: the parking sensor beeps for at most 10 seconds while an obstacle is detected.
+
+		<PrimitiveReq>
+			<PR>
+				Id: [1]
+				text: the parking sensor beeps for at most 10 seconds while an obstacle is detected.
+				<Formal-Representation>
+					MTL-AbbrevatedFormula: G( [G( ((S) ∧ ¬ (¬R) ∧ F(¬R)) ==> (F(G{t<=10}(Q) || (¬R) ) U (¬R)) )] )
+					MTL-Formula: G( [G( ((an obstacle.crrStatus = detected) ∧ ¬ (¬an obstacle.crrStatus = detected) ∧ F(¬an obstacle.crrStatus = detected)) ==> (F(G{t<=10}(the parking sensor.crrStatus = beeps) || (¬an obstacle.crrStatus = detected) ) U (¬an obstacle.crrStatus = detected)) )] )
+					CTL-AbbrevatedFormula: AG( [AG((((R)) ∧ ¬((¬Q))) ==> A[(AF((P) v ((¬Q)))) W ((¬Q))])] )
+					CTL-Formula: AG( [AG((((an obstacle.crrStatus = detect)) ∧ ¬((¬an obstacle.crrStatus = detect))) ==> A[(AF((the parking sensor.crrStatus = beep) v ((¬an obstacle.crrStatus = detect)))) W ((¬an obstacle.crrStatus = detect))])] )
+				</Formal-Representation>
+				<RCMDetails>
+					
+					<Action>
+						Text = the parking sensor beeps
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: the parking sensor
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:beeps
+						</Operator>
+						Has valid-time:  true
+						<ValidTime>
+							TimeType: Scope
+							Value: 10
+							Unit: seconds
+							QPRelation: at  most
+						<FormalSemantic>
+							TechnicalOperator: <=
+							Value: 10
+							</FormalSemantic>
+						</ValidTime>
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0].crrStatus
+							RHS: beeps
+							TechnicalOperator: =
+							PredicateFormal: the parking sensor.crrStatus = beeps
+						</FormalSemantic>
+						is repeated = false
+					</Action>
+					<RequirementScope>
+						<ActionScope>
+							<LogicalRelation>
+								relation: AND
+							</LogicalRelation>
+								<ConditionalScope>
+									scope phase: StartUpPhase
+									<Condition>
+										Keyword: after
+										Text = sfter an obstacle is detected
+										<Operands>
+											Arg[0]
+											<ArgDetails>
+												Text: an obstacle
+											</ArgDetails>
+										</Operands>
+										<Operator>
+											relation:is detected
+										</Operator>
+										Has valid-time:  false
+										Is negatted: false
+										<FormalSemantic>
+											LHS: Arg[0].crrStatus
+											RHS: detected
+											TechnicalOperator: =
+											PredicateFormal: an obstacle.crrStatus = detected
+										</FormalSemantic>
+									</Condition>
+								</ConditionalScope>
+								<ConditionalScope>
+									scope phase: EndUpPhase
+									<Condition>
+										Keyword: until
+										Text = until an obstacle is detected
+										<Operands>
+											Arg[0]
+											<ArgDetails>
+												Text: an obstacle
+											</ArgDetails>
+										</Operands>
+										<Operator>
+											relation:is detected
+										</Operator>
+										Has valid-time:  false
+										Is negatted: true
+										<FormalSemantic>
+											LHS: Arg[0].crrStatus
+											RHS: detected
+											TechnicalOperator: =
+											PredicateFormal: an obstacle.crrStatus = detected
+										</FormalSemantic>
+									</Condition>
+								</ConditionalScope>
+						</ActionScope>
+					</RequirementScope>
+				</RCMDetails>
+			</PR>
+		</PrimitiveReq>
+	</Requirement>
+
+	<Requirement>
+		ID: [req_4:]
+		text: the fuel display blinks if the fuel level is low.
+
+		<PrimitiveReq>
+			<PR>
+				Id: [1]
+				text: the fuel display blinks if the fuel level is low.
+				<Formal-Representation>
+					MTL-AbbrevatedFormula: G( [P] ==> [Q] )
+					MTL-Formula: G( [the fuel level = low] ==> [the fuel display.crrStatus = blinks] )
+					CTL-AbbrevatedFormula: AG( [(P)] ==> [(Q)] )
+					CTL-Formula: AG( [(the fuel level = low)] ==> [(the fuel display.crrStatus = blink)] )
+				</Formal-Representation>
+				<RCMDetails>
+					
+					<Condition>
+						Keyword: if
+						Text = if the fuel level is low
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: the fuel level
+							</ArgDetails>
+							Arg[1]
+							<ArgDetails>
+								Text: low
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:is
+						</Operator>
+						Has valid-time:  false
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0]
+							RHS: Arg[1]
+							TechnicalOperator: =
+							PredicateFormal: the fuel level = low
+						</FormalSemantic>
+					</Condition>
+					<Action>
+						Text = the fuel display blinks
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: the fuel display
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:blinks
+						</Operator>
+						Has valid-time:  false
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0].crrStatus
+							RHS: blinks
+							TechnicalOperator: =
+							PredicateFormal: the fuel display.crrStatus = blinks
+						</FormalSemantic>
+						is repeated = false
+					</Action>
+					<RequirementScope>
+					</RequirementScope>
+				</RCMDetails>
+			</PR>
+		</PrimitiveReq>
+	</Requirement>
+
+	<Requirement>
+		ID: [req_8:]
+		text: if a crash is detected, an emergency signal is sent within 10 second.
+
+		<PrimitiveReq>
+			<PR>
+				Id: [1]
+				text: if a crash is detected, an emergency signal is sent within 10 second.
+				<Formal-Representation>
+					MTL-AbbrevatedFormula: G( [P] ==> [(F{t<=10}Q)] )
+					MTL-Formula: G( [a crash.crrStatus = detected] ==>[(F{t<=10} an emergency signal.crrStatus = sent)] )
+					CTL-AbbrevatedFormula: AG( [(P)] ==> [(Q)] )
+					CTL-Formula: AG( [(a crash.crrStatus = detect)] ==> [(an emergency signal.crrStatus = send)] )
+				</Formal-Representation>
+				<RCMDetails>
+					
+					<Condition>
+						Keyword: if
+						Text = if a crash is detected
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: a crash
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:is detected
+						</Operator>
+						Has valid-time:  false
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0].crrStatus
+							RHS: detected
+							TechnicalOperator: =
+							PredicateFormal: a crash.crrStatus = detected
+						</FormalSemantic>
+					</Condition>
+					<Action>
+						Text = an emergency signal is sent
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: an emergency signal
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:is sent
+						</Operator>
+						Has valid-time:  false
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0].crrStatus
+							RHS: send
+							TechnicalOperator: =
+							PredicateFormal: an emergency signal.crrStatus = sent
+						</FormalSemantic>
+						is repeated = false
+						<PreElapsedTime>
+							TimeType: PreElapsed
+							Value: 10
+							Unit: second
+							QPRelation: null
+							<FormalSemantic>
+							TechnicalOperator: <=
+							Value: 10
+							</FormalSemantic>
+						</PreElapsedTime>
+					</Action>
+					<RequirementScope>
+					</RequirementScope>
+				</RCMDetails>
+			</PR>
+		</PrimitiveReq>
+	</Requirement>
+
+	<Requirement>
+		ID: [req_16:]
+		text: if it rains, the wipers are RCMVAL_on after 30 seconds.
+
+		<PrimitiveReq>
+			<PR>
+				Id: [1]
+				text: if it rains, the wipers are RCMVAL_on after 30 seconds.
+				<Formal-Representation>
+					MTL-AbbrevatedFormula: G( [P] ==> [(F{t=30}Q)] )
+					MTL-Formula: G( [it.crrStatus= rain] ==> [(F{t=30} the wipers = RCMVAL_on)] )
+					CTL-AbbrevatedFormula: AG( [(P)] ==> [(Q)] )
+					CTL-Formula: AG( [(it.crrStatus = rain)] ==> [(the wipers = RCMVAL_on)] )
+				</Formal-Representation>
+				<RCMDetails>
+					
+					<Condition>
+						Keyword: if
+						Text = if it rains
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: it
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:rains
+						</Operator>
+						Has valid-time:  false
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0].crrStatus
+							RHS: rains
+							TechnicalOperator: =
+							PredicateFormal: it.crrStatus = rains
+						</FormalSemantic>
+					</Condition>
+					<Action>
+						Text = the wipers are RCMVAL_on
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: the wipers
+							</ArgDetails>
+							Arg[1]
+							<ArgDetails>
+								Text: RCMVAL_on
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:are
+						</Operator>
+						Has valid-time:  false
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0]
+							RHS: Arg[1]
+							TechnicalOperator: =
+							PredicateFormal: the wipers = RCMVAL_on
+						</FormalSemantic>
+						is repeated = false
+						<PreElapsedTime>
+							TimeType: PreElapsed
+							Value: 30
+							Unit: seconds
+							QPRelation: null
+							<FormalSemantic>
+							TechnicalOperator: =
+							Value: 30
+							</FormalSemantic>
+						</PreElapsedTime>
+					</Action>
+					<RequirementScope>
+					</RequirementScope>
+				</RCMDetails>
+			</PR>
+		</PrimitiveReq>
+	</Requirement>
+
+	<Requirement>
+		ID: [req_26:]
+		text: the display elements glow.
+
+		<PrimitiveReq>
+			<PR>
+				Id: [1]
+				text: the display elements glow.
+				<Formal-Representation>
+					MTL-AbbrevatedFormula: G(P)
+					MTL-Formula: G( the display elements. crrStatus = glow )
+					CTL-AbbrevatedFormula: AG(P)
+					CTL-Formula: AG( the display elements. crrStatus = glow )
+				</Formal-Representation>
+				<RCMDetails>
+					<Action>
+						Text = the display elements glow
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: the display elements 
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:glow
+						</Operator>
+						Has valid-time:  false
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0]. crrStatus
+							RHS: glow
+							TechnicalOperator: =
+							PredicateFormal: the display elements. crrStatus = glow
+						</FormalSemantic>
+						is repeated = false
+					</Action>
+				</RCMDetails>
+			</PR>
+		</PrimitiveReq>
+	</Requirement>
+
+	<Requirement>
+		ID: [req_14:]
+		text: if it rains, the wipers are RCMVAL_on for 30 seconds.
+
+		<PrimitiveReq>
+			<PR>
+				Id: [1]
+				text: if it rains, the wipers are RCMVAL_on for 30 seconds.
+				<Formal-Representation>
+					MTL-AbbrevatedFormula: G( [P] ==> [G{t=30}(Q)] )
+					MTL-Formula: G( [it.crrStatus = rain] ==> [G{t=30}(the wipers = RCMVAL_on)] )
+					CTL-AbbrevatedFormula: AG( [(P)] ==> [(Q)] )
+					CTL-Formula: AG( [(it.crrStatus = rain)] ==> [(the wipers = RCMVAL_on)] )
+				</Formal-Representation>
+				<RCMDetails>
+					
+					<Condition>
+						Keyword: if
+						Text = if it rains
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: it
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:rains
+						</Operator>
+						Has valid-time:  false
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0].crrStatus
+							RHS: rains
+							TechnicalOperator: =
+							PredicateFormal: it.crrStatus = rains
+						</FormalSemantic>
+					</Condition>
+					<Action>
+						Text = the wipers are RCMVAL_on
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: the wipers
+							</ArgDetails>
+							Arg[1]
+							<ArgDetails>
+								Text: RCMVAL_on
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:are
+						</Operator>
+						Has valid-time:  true
+						<ValidTime>
+							TimeType: Scope
+							Value: 30
+							Unit: seconds
+							QPRelation: null
+						<FormalSemantic>
+							TechnicalOperator: =
+							Value: 30
+							</FormalSemantic>
+						</ValidTime>
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0]
+							RHS: Arg[1]
+							TechnicalOperator: =
+							PredicateFormal: the wipers = RCMVAL_on
+						</FormalSemantic>
+						is repeated = false
+					</Action>
+					<RequirementScope>
+					</RequirementScope>
+				</RCMDetails>
+			</PR>
+		</PrimitiveReq>
+	</Requirement>
+
+	<Requirement>
+		ID: [req_24:]
+		text: the electricity circuit is active.
+
+		<PrimitiveReq>
+			<PR>
+				Id: [1]
+				text: the electricity circuit is active.
+				<Formal-Representation>
+					MTL-AbbrevatedFormula: G( [P] )
+					MTL-Formula: G( [the electricity circuit = active] )
+					CTL-AbbrevatedFormula: AG( [(P)] )
+					CTL-Formula: AG( [(the electricity circuit = active)] )
+				</Formal-Representation>
+				<RCMDetails>
+					
+					<Action>
+						Text = the electricity circuit is active
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: the electricity circuit
+							</ArgDetails>
+							Arg[1]
+							<ArgDetails>
+								Text: active
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:is
+						</Operator>
+						Has valid-time:  false
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0]
+							RHS: Arg[1]
+							TechnicalOperator: =
+							PredicateFormal: the electricity circuit = active
+						</FormalSemantic>
+						is repeated = false
+					</Action>
+					<RequirementScope>
+					</RequirementScope>
+				</RCMDetails>
+			</PR>
+		</PrimitiveReq>
+	</Requirement>
+
+	<Requirement>
+		ID: [req_18:]
+		text: if it rains for 1 minute, the wipers are activated.
+
+		<PrimitiveReq>
+			<PR>
+				Id: [1]
+				text: if it rains for 1 minute, the wipers are activated.
+				<Formal-Representation>
+					MTL-AbbrevatedFormula: G( [G{t=1}(P)] ==> [Q] )
+					MTL-Formula: G( [G{t=1}(it.crrStatus = rain)] ==> [the wipers.crrStatus = activate] )
+					CTL-AbbrevatedFormula: AG( [(P)] ==> [(Q)] )
+					CTL-Formula: AG( [(it.crrStatus = rain)] ==> [(the wipers.crrStatus = activate)] )
+				</Formal-Representation>
+				<RCMDetails>
+					
+					<Condition>
+						Keyword: if
+						Text = if it rains
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: it
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:rains
+						</Operator>
+						Has valid-time:  true
+						<ValidTime>
+							TimeType: Scope
+							Value: 1
+							Unit: minute
+							QPRelation: null
+							<FormalSemantic>
+							TechnicalOperator: =
+							Value: 1
+							</FormalSemantic>
+						</ValidTime>
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0].crrStatus
+							RHS: rain
+							TechnicalOperator: =
+							PredicateFormal: it.crrStatus = rain
+						</FormalSemantic>
+					</Condition>
+					<Action>
+						Text = the wipers are activated
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: the wipers
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:are activated
+						</Operator>
+						Has valid-time:  false
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0].crrStatus
+							RHS: activate
+							TechnicalOperator: =
+							PredicateFormal: the wipers.crrStatus = activate
+						</FormalSemantic>
+						is repeated = false
+					</Action>
+					<RequirementScope>
+					</RequirementScope>
+				</RCMDetails>
+			</PR>
+		</PrimitiveReq>
+	</Requirement>
+
+	<Requirement>
+		ID: [req_28:]
+		text: the radio is powered within 5 seconds.
+
+		<PrimitiveReq>
+			<PR>
+				Id: [1]
+				text: the radio is powered within 5 seconds.
+				<Formal-Representation>
+					MTL-AbbrevatedFormula: G( [(F{t<=5}P)] )
+					MTL-Formula: G( [(F{t<=5} the radio.crrStatus = powered)] )
+					CTL-AbbrevatedFormula: AG( [(P)] )
+					CTL-Formula: AG( [(the radio.crrStatus = powered)] )
+				</Formal-Representation>
+				<RCMDetails>
+					
+					<Action>
+						Text = the radio is powered
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: the radio
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:is powered
+						</Operator>
+						Has valid-time:  false
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0].crrStatus
+							RHS: powered
+							TechnicalOperator: =
+							PredicateFormal: the radio.crrStatus = powered
+						</FormalSemantic>
+						is repeated = false
+						<PreElapsedTime>
+							TimeType: PreElapsed
+							Value: 5
+							Unit: seconds
+							QPRelation: null
+							<FormalSemantic>
+							TechnicalOperator: <=
+							Value: 5
+							</FormalSemantic>
+						</PreElapsedTime>
+					</Action>
+					<RequirementScope>
+					</RequirementScope>
+				</RCMDetails>
+			</PR>
+		</PrimitiveReq>
+	</Requirement>
+
+	<Requirement>
+		ID: [req_30:]
+		text: the airbag is not activated before a crash is detected.
+
+		<PrimitiveReq>
+			<PR>
+				Id: [1]
+				text: the airbag is not activated before a crash is detected.
+				<Formal-Representation>
+					MTL-AbbrevatedFormula: G( [FQ ==> (F(¬P || Q ) U Q)] )
+					MTL-Formula: G( [F crash.crrStatus = detected ==> (F(¬the airbag.crrStatus = activated || a crash.crrStatus = detected ) U a crash.crrStatus = detected)] )
+					CTL-AbbrevatedFormula: AG( [A[((AF((¬P) v (Q))) v AG(¬(Q))) W (Q)]] )
+					CTL-Formula: AG( [A[((AF((¬the airbag.crrStatus = activateed) v (a crash.crrStatus = detected))) v AG(¬(a crash.crrStatus = detected))) W (a crash.crrStatus = detected)]] )
+				</Formal-Representation>
+				<RCMDetails>
+					
+					<Action>
+						Text = the airbag is not activated
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: the airbag
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:is activated
+						</Operator>
+						Has valid-time:  false
+						Is negatted: true
+						<FormalSemantic>
+							LHS: Arg[0].crrStatus
+							RHS: activated
+							TechnicalOperator: =
+							PredicateFormal: the airbag.crrStatus = activated
+						</FormalSemantic>
+						is repeated = false
+					</Action>
+					<RequirementScope>
+						<ActionScope>
+							<ConditionalScope>
+								scope phase: EndUpPhase
+								<Condition>
+									Keyword: before
+									Text = before a crash is detected
+									<Operands>
+										Arg[0]
+										<ArgDetails>
+											Text: a crash
+										</ArgDetails>
+									</Operands>
+									<Operator>
+										relation:is detected
+									</Operator>
+									Has valid-time:  false
+									Is negatted: false
+									<FormalSemantic>
+										LHS: Arg[0].crrStatus
+										RHS: detected
+										TechnicalOperator: =
+										PredicateFormal: a crash.crrStatus = detected
+									</FormalSemantic>
+								</Condition>
+							</ConditionalScope>
+						</ActionScope>
+					</RequirementScope>
+				</RCMDetails>
+			</PR>
+		</PrimitiveReq>
+	</Requirement>
+
+	<Requirement>
+		ID: [req_12:]
+		text: if it rains and the wipers are active, the wipers are active for 30 seconds.
+
+		<PrimitiveReq>
+			<PR>
+				Id: [1]
+				text: if it rains, the wipers are active for 30 seconds.
+				<Formal-Representation>
+					MTL-AbbrevatedFormula: G([P] ==> [G{t=30}(Q)] )
+					MTL-Formula: G( [it.crrStatus= rains] ==> [G{t=30}(the wipers = active)] )
+					CTL-AbbrevatedFormula: AG([P] ==> [(Q)] )
+					CTL-Formula: AG( [it.crrStatus= rains] ==> [(the wipers = active)] )
+				</Formal-Representation>
+				<RCMDetails>
+					
+					<Condition>
+						Keyword: if
+						Text = if it rains
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: it
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:rains
+						</Operator>
+						Has valid-time:  false
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0].crrStatus
+							RHS: rains
+							TechnicalOperator: =
+							PredicateFormal: it.crrStatus = rains
+						</FormalSemantic>
+					</Condition>
+					<Action>
+						Text = the wipers are active
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: the wipers
+							</ArgDetails>
+							Arg[1]
+							<ArgDetails>
+								Text: active
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:are
+						</Operator>
+						Has valid-time:  true
+						<ValidTime>
+							TimeType: Scope
+							Value: 30
+							Unit: seconds
+							QPRelation: null
+							<FormalSemantic>
+							TechnicalOperator: =
+							Value: 30
+							</FormalSemantic>
+						</ValidTime>
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0]
+							RHS: Arg[1]
+							TechnicalOperator: =
+							PredicateFormal: the wipers = active
+						</FormalSemantic>
+						is repeated = false
+					</Action>
+					<RequirementScope>
+					</RequirementScope>
+				</RCMDetails>
+			</PR>
+		</PrimitiveReq>
+	</Requirement>
+
+	<Requirement>
+		ID: [req_22:]
+		text: if it rains for 1 minute, the wipers are active within 1 minute.
+
+		<PrimitiveReq>
+			<PR>
+				Id: [1]
+				text: if it rains for 1 minute, the wipers are active within 1 minute.
+				<Formal-Representation>
+					MTL-AbbrevatedFormula: G( [G{t=1}(P)] ==> [(F{t=1}Q)] )
+					MTL-Formula: G([G{t=1}(it.crrStatus = rains)] ==> [(F{t=1} the wipers = active)] )
+					CTL-AbbrevatedFormula: AG( [(P)] ==> [(Q)] )
+					CTL-Formula: AG( [(it.crrStatus = rain)] ==> [(the wipers = active)] )
+				</Formal-Representation>
+				<RCMDetails>
+					
+					<Condition>
+						Keyword: if
+						Text = if it rains
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: it
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:rains
+						</Operator>
+						Has valid-time:  true
+						<ValidTime>
+							TimeType: Scope
+							Value: 1
+							Unit: minute
+							QPRelation: null
+							<FormalSemantic>
+							TechnicalOperator: =
+							Value: 1
+							</FormalSemantic>
+						</ValidTime>
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0].crrStatus
+							RHS: rain
+							TechnicalOperator: =
+							PredicateFormal: it.crrStatus = rain
+						</FormalSemantic>
+					</Condition>
+					<Action>
+						Text = the wipers are active
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: the wipers
+							</ArgDetails>
+							Arg[1]
+							<ArgDetails>
+								Text: active
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:are
+						</Operator>
+						Has valid-time:  false
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0]
+							RHS: Arg[1]
+							TechnicalOperator: =
+							PredicateFormal: the wipers = active
+						</FormalSemantic>
+						is repeated = false
+						<PreElapsedTime>
+							TimeType: PreElapsed
+							Value: 1
+							Unit: minute
+							QPRelation: null
+							<FormalSemantic>
+							TechnicalOperator: <=
+							Value: 1
+							</FormalSemantic>
+						</PreElapsedTime>
+					</Action>
+					<RequirementScope>
+					</RequirementScope>
+				</RCMDetails>
+			</PR>
+		</PrimitiveReq>
+	</Requirement>
+
+	<Requirement>
+		ID: [req_10:]
+		text: if a crash is detected, an emergency signal is sent.
+
+		<PrimitiveReq>
+			<PR>
+				Id: [1]
+				text: if a crash is detected, an emergency signal is sent.
+				<Formal-Representation>
+					MTL-AbbrevatedFormula: G( [P] ==> [Q] )
+					MTL-Formula: G( [a crash.crrStatus = detected] ==> [an emergency signal.crrStatus = sent] )
+					CTL-AbbrevatedFormula: AG( [(P)] ==> [(Q)] )
+					CTL-Formula: AG( [(a crash.crrStatus = detect)] ==> [(an emergency signal.crrStatus = send)] )
+				</Formal-Representation>
+				<RCMDetails>
+					
+					<Condition>
+						Keyword: if
+						Text = if a crash is detected
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: a crash
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:is detected
+						</Operator>
+						Has valid-time:  false
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0].crrStatus
+							RHS: detected
+							TechnicalOperator: =
+							PredicateFormal: a crash.crrStatus = detected
+						</FormalSemantic>
+					</Condition>
+					<Action>
+						Text = an emergency signal is sent
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: an emergency signal
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:is sent
+						</Operator>
+						Has valid-time:  false
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0].crrStatus
+							RHS: sent
+							TechnicalOperator: =
+							PredicateFormal: an emergency signal.crrStatus = sent
+						</FormalSemantic>
+						is repeated = false
+					</Action>
+					<RequirementScope>
+					</RequirementScope>
+				</RCMDetails>
+			</PR>
+		</PrimitiveReq>
+	</Requirement>
+
+	<Requirement>
+		ID: [req_32:]
+		text: if it is dark, the lights are RCMVAL_on before it is bright for at most 10 minutes.
+
+		<PrimitiveReq>
+			<PR>
+				Id: [1]
+				text: if it is dark, the lights are RCMVAL_on before it is bright for at most 10 minutes.
+				<Formal-Representation>
+					MTL-AbbrevatedFormula: G( [P] ==> [FR ==> (F(G{t<=10}(Q) || R ) U R)] )
+					MTL-Formula: G( [it = dark] ==> [F (it = bright) ==> (F(G{t<=10}(the lights = RCMVAL_on) || it = bright ) U it = bright)] )
+					CTL-AbbrevatedFormula: AG( [(P)] ==> A[((AF((¬Q) v (R))) v AG(¬(R))) W (R)] )
+					CTL-Formula: AG( [(it = dark)] ==> A[((AF((the lights = RCMVAL_on)  v (it = bright))) v AG(¬(it = bright))) W (it = bright)])
+				</Formal-Representation>
+				<RCMDetails>
+					
+					<Condition>
+						Keyword: if
+						Text = if it is dark
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: it
+							</ArgDetails>
+							Arg[1]
+							<ArgDetails>
+								Text: dark
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:is
+						</Operator>
+						Has valid-time:  false
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0]
+							RHS: Arg[1]
+							TechnicalOperator: =
+							PredicateFormal: it = dark
+						</FormalSemantic>
+					</Condition>
+					<Action>
+						Text = the lights are RCMVAL_on
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: the lights
+							</ArgDetails>
+							Arg[1]
+							<ArgDetails>
+								Text: RCMVAL_on
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:are
+						</Operator>
+						Has valid-time:  true
+						<ValidTime>
+							TimeType: Scope
+							Value: 10
+							Unit: minutes
+							QPRelation: at  most
+							<FormalSemantic>
+							TechnicalOperator: <=
+							Value: 10
+							</FormalSemantic>
+						</ValidTime>
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0]
+							RHS: Arg[1]
+							TechnicalOperator: =
+							PredicateFormal: the lights = RCMVAL_on
+						</FormalSemantic>
+						is repeated = false
+					</Action>
+					<RequirementScope>
+						<ActionScope>
+							<ConditionalScope>
+								scope phase: EndUpPhase
+								<Condition>
+									Keyword: null
+									Text = before it is bright
+									<Operands>
+										Arg[0]
+										<ArgDetails>
+											Text: it
+										</ArgDetails>
+										Arg[1]
+										<ArgDetails>
+											Text: bright
+										</ArgDetails>
+									</Operands>
+									<Operator>
+										relation:is
+									</Operator>
+									Has valid-time:  false
+									Is negatted: false
+									<FormalSemantic>
+										LHS: Arg[0]
+										RHS: Arg[1]
+										TechnicalOperator: =
+										PredicateFormal: it = bright
+									</FormalSemantic>
+								</Condition>
+							</ConditionalScope>
+						</ActionScope>
+					</RequirementScope>
+				</RCMDetails>
+			</PR>
+		</PrimitiveReq>
+	</Requirement>
+
+	<Requirement>
+		ID: [req_20:]
+		text: if it rains for 1 minute, the wipers are activated within 30 seconds before the windscreen is dry.
+
+		<PrimitiveReq>
+			<PR>
+				Id: [1]
+				text: if it rains for 1 minute, the wipers are activated within 30 seconds before the windscreen is dry.
+				<Formal-Representation>
+					MTL-AbbrevatedFormula: G( [G{t=1}(P)] ==> [FR ==> (F((F{t<=30} Q) || R ) U R)] )
+					MTL-Formula: G( [G{t=1}(it.crrStatus = rains)]==> [Fthe windscreen = dry ==>(F((F{t<=30} the wipers.crrStatus = activated) || the windscreen = dry ) U the windscreen = dry)] )
+					CTL-AbbrevatedFormula: AG( [(P)] ==> [A[((AF((Q) v (R))) v AG(¬(R))) W (R)]] )
+					CTL-Formula: AG( [(it.crrStatus = rain)] ==> [A[((AF((the wipers.crrStatus = activate) v (the windscreen = dry))) v AG(¬(the windscreen = dry))) W (the windscreen = dry)]] )
+				</Formal-Representation>
+				<RCMDetails>
+					
+					<Condition>
+						Keyword: if
+						Text = if it rains
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: it
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:rains
+						</Operator>
+						Has valid-time:  true
+						<ValidTime>
+							TimeType: Scope
+							Value: 1
+							Unit: minute
+							QPRelation: null
+							<FormalSemantic>
+							TechnicalOperator: =
+							Value: 1
+							</FormalSemantic>
+						</ValidTime>
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0].crrStatus
+							RHS: rain
+							TechnicalOperator: =
+							PredicateFormal: it.crrStatus = rain
+						</FormalSemantic>
+					</Condition>
+					<Action>
+						Text = the wipers are activated
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: the wipers
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:are activated
+						</Operator>
+						Has valid-time:  false
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0].crrStatus
+							RHS: activated
+							TechnicalOperator: =
+							PredicateFormal: the wipers.crrStatus = activated
+						</FormalSemantic>
+						is repeated = false
+						<PreElapsedTime>
+							TimeType: PreElapsed
+							Value: 30
+							Unit: seconds
+							QPRelation: null
+							<FormalSemantic>
+							TechnicalOperator: <=
+							Value: 30
+							</FormalSemantic>
+						</PreElapsedTime>
+					</Action>
+					<RequirementScope>
+						<ActionScope>
+							<ConditionalScope>
+								scope phase: EndUpPhase
+								<Condition>
+									Keyword: null
+									Text = before the windscreen is dry
+									<Operands>
+										Arg[0]
+										<ArgDetails>
+											Text: the windscreen
+										</ArgDetails>
+										Arg[1]
+										<ArgDetails>
+											Text: dry
+										</ArgDetails>
+									</Operands>
+									<Operator>
+										relation:is
+									</Operator>
+									Has valid-time:  false
+									Is negatted: false
+									<FormalSemantic>
+										LHS: Arg[0]
+										RHS: Arg[1]
+										TechnicalOperator: =
+										PredicateFormal: the windscreen = dry
+									</FormalSemantic>
+								</Condition>
+							</ConditionalScope>
+						</ActionScope>
+					</RequirementScope>
+				</RCMDetails>
+			</PR>
+		</PrimitiveReq>
+	</Requirement>
+
+	<Requirement>
+		ID: [req_3:]
+		text: the fuel display blinks while the fuel level is low.
+
+		<PrimitiveReq>
+			<PR>
+				Id: [1]
+				text: the fuel display blinks while the fuel level is low.
+				<Formal-Representation>
+					MTL-AbbrevatedFormula: G( [G( ((S) ∧ ¬ (¬R) ∧ F(¬R)) ==> (F(Q || (¬R) ) U (¬R)) )] )
+					MTL-Formula: G( [G( ((the fuel level = low) ∧ ¬ (¬the fuel level = low) ∧ F(¬the fuel level = low)) ==> (F(the fuel display.crrStatus = blinks || (¬the fuel level = low) ) U (¬the fuel level = low)) )] )
+					CTL-AbbrevatedFormula: AG( [AG((((R)) ∧ ¬((¬Q))) ==> A[(AF((P) v ((¬Q)))) W ((¬Q))])] )
+					CTL-Formula: AG( [AG((((the fuel level = low)) ∧ ¬((¬the fuel level = low))) ==> A[(A((the fuel display.crrStatus = blink) v ((¬the fuel level = low)))) W ((¬the fuel level = low))])] )
+				</Formal-Representation>
+				<RCMDetails>
+					
+					<Action>
+						Text = the fuel display blinks
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: the fuel display
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:blinks
+						</Operator>
+						Has valid-time:  false
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0].crrStatus
+							RHS: blinks
+							TechnicalOperator: =
+							PredicateFormal: the fuel display.crrStatus = blinks
+						</FormalSemantic>
+						is repeated = false
+					</Action>
+					<RequirementScope>
+						<ActionScope>
+							<LogicalRelation>
+								relation: AND
+							</LogicalRelation>
+								<ConditionalScope>
+									scope phase: StartUpPhase
+									<Condition>
+										Keyword: after
+										Text = after the fuel level is low
+										<Operands>
+											Arg[0]
+											<ArgDetails>
+												Text: the fuel level
+											</ArgDetails>
+											Arg[1]
+											<ArgDetails>
+												Text: low
+											</ArgDetails>
+										</Operands>
+										<Operator>
+											relation:is
+										</Operator>
+										Has valid-time:  false
+										Is negatted: false
+										<FormalSemantic>
+											LHS: Arg[0]
+											RHS: Arg[1]
+											TechnicalOperator: =
+											PredicateFormal: the fuel level = low
+										</FormalSemantic>
+									</Condition>
+								</ConditionalScope>
+								<ConditionalScope>
+									scope phase: EndUpPhase
+									<Condition>
+										Keyword: until
+										Text = until the fuel level is low
+										<Operands>
+											Arg[0]
+											<ArgDetails>
+												Text: the fuel level
+											</ArgDetails>
+											Arg[1]
+											<ArgDetails>
+												Text: low
+											</ArgDetails>
+										</Operands>
+										<Operator>
+											relation:is
+										</Operator>
+										Has valid-time:  false
+										Is negatted: true
+										<FormalSemantic>
+											LHS: Arg[0]
+											RHS: Arg[1]
+											TechnicalOperator: =
+											PredicateFormal: the fuel level = low
+										</FormalSemantic>
+									</Condition>
+								</ConditionalScope>
+						</ActionScope>
+					</RequirementScope>
+				</RCMDetails>
+			</PR>
+		</PrimitiveReq>
+	</Requirement>
+
+	<Requirement>
+		ID: [req_1:]
+		text:  the wipers are active while it rains.
+
+		<PrimitiveReq>
+			<PR>
+				Id: [1]
+				text:  the wipers are active while it rains.
+				<Formal-Representation>
+					MTL-AbbrevatedFormula: G( [G( ((S) ∧ ¬ (¬R) ∧ F(¬R)) ==> (F(Q || (¬R) ) U (¬R)) )] )
+					MTL-Formula: G( [G( ((it.crrStatus = rains) ∧ ¬ (¬it.crrStatus = rains) ∧ F(¬it.crrStatus = rains)) ==> (F(the wipers = active || (¬it.crrStatus = rains) ) U (¬it.crrStatus = rains)) )] )
+					CTL-AbbrevatedFormula: AG( [AG((((R)) ∧ ¬((¬Q))) ==> A[(A((P) v ((¬Q)))) W ((¬Q))])] )
+					CTL-Formula: AG( [AG((((it.crrStatus = rains)) ∧ ¬((¬it.crrStatus = rains))) ==> A[(A((the wipers = active) v ((¬it.crrStatus = rains)))) W ((¬it.crrStatus = rains))])] )
+				</Formal-Representation>
+				<RCMDetails>
+					
+					<Action>
+						Text = the wipers are active
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: the wipers
+							</ArgDetails>
+							Arg[1]
+							<ArgDetails>
+								Text: active
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:are
+						</Operator>
+						Has valid-time:  false
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0]
+							RHS: Arg[1]
+							TechnicalOperator: =
+							PredicateFormal: the wipers = active
+						</FormalSemantic>
+						is repeated = false
+					</Action>
+					<RequirementScope>
+						<ActionScope>
+							<LogicalRelation>
+								relation: AND
+							</LogicalRelation>
+								<ConditionalScope>
+									scope phase: StartUpPhase
+									<Condition>
+										Keyword: after
+										Text = after it rains
+										<Operands>
+											Arg[0]
+											<ArgDetails>
+												Text: it
+											</ArgDetails>
+										</Operands>
+										<Operator>
+											relation:rains
+										</Operator>
+										Has valid-time:  false
+										Is negatted: false
+										<FormalSemantic>
+											LHS: Arg[0].crrStatus
+											RHS: rains
+											TechnicalOperator: =
+											PredicateFormal: it.crrStatus = rains
+										</FormalSemantic>
+									</Condition>
+								</ConditionalScope>
+								<ConditionalScope>
+									scope phase: EndUpPhase
+									<Condition>
+										Keyword: until
+										Text = until it rains
+										<Operands>
+											Arg[0]
+											<ArgDetails>
+												Text: it
+											</ArgDetails>
+										</Operands>
+										<Operator>
+											relation:rains
+										</Operator>
+										Has valid-time:  false
+										Is negatted: true
+										<FormalSemantic>
+											LHS: Arg[0].crrStatus
+											RHS: rains
+											TechnicalOperator: =
+											PredicateFormal: it.crrStatus = rains
+										</FormalSemantic>
+									</Condition>
+								</ConditionalScope>
+						</ActionScope>
+					</RequirementScope>
+				</RCMDetails>
+			</PR>
+		</PrimitiveReq>
+	</Requirement>
+
+	<Requirement>
+		ID: [req_5:]
+		text: the wipers are active for at most 10 seconds while it rains.
+
+		<PrimitiveReq>
+			<PR>
+				Id: [1]
+				text: the wipers are active for at most 10 seconds while it rains.
+				<Formal-Representation>
+					MTL-AbbrevatedFormula: G( [G( ((S) ∧ ¬ (¬R) ∧ F(¬R)) ==> (F(G{t<=10}(Q) || (¬R) ) U (¬R)) )] )
+					MTL-Formula: G( [G( ((it.crrStatus = rains) ∧ ¬ (¬it.crrStatus = rains) ∧ F(¬it.crrStatus = rains)) ==> (F(G{t<=10}(the wipers = active) || (¬it.crrStatus = rains) ) U (¬it.crrStatus = rains)) )] )
+					CTL-AbbrevatedFormula: AG( [AG((((R)) ∧ ¬((¬Q))) ==> A[(A((P) v ((¬Q)))) W ((¬Q))])] )
+					CTL-Formula: AG( [AG((((it.crrStatus = rains)) ∧ ¬((¬it.crrStatus = rains))) ==> A[(A((the wipers = active) v ((¬it.crrStatus = rains)))) W ((¬it.crrStatus = rains))])] )
+				</Formal-Representation>
+				<RCMDetails>
+					
+					<Action>
+						Text = the wipers are active
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: the wipers
+							</ArgDetails>
+							Arg[1]
+							<ArgDetails>
+								Text: active
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:are
+						</Operator>
+						Has valid-time:  true
+						<ValidTime>
+							TimeType: Scope
+							Value: 10
+							Unit: seconds
+							QPRelation: at  most
+							<FormalSemantic>
+							TechnicalOperator: <=
+							Value: 10
+							</FormalSemantic>
+						</ValidTime>
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0]
+							RHS: Arg[1]
+							TechnicalOperator: =
+							PredicateFormal: the wipers = active
+						</FormalSemantic>
+						is repeated = false
+					</Action>
+					<RequirementScope>
+						<ActionScope>
+							<LogicalRelation>
+								relation: AND
+							</LogicalRelation>
+								<ConditionalScope>
+									scope phase: StartUpPhase
+									<Condition>
+										Keyword: after
+										Text = after it rains
+										<Operands>
+											Arg[0]
+											<ArgDetails>
+												Text: it
+											</ArgDetails>
+										</Operands>
+										<Operator>
+											relation:rains
+										</Operator>
+										Has valid-time:  false
+										Is negatted: false
+										<FormalSemantic>
+											LHS: Arg[0].crrStatus
+											RHS: rains
+											TechnicalOperator: =
+											PredicateFormal: it.crrStatus = rains
+										</FormalSemantic>
+									</Condition>
+								</ConditionalScope>
+								<ConditionalScope>
+									scope phase: EndUpPhase
+									<Condition>
+										Keyword: until
+										Text = until it rains
+										<Operands>
+											Arg[0]
+											<ArgDetails>
+												Text: it
+											</ArgDetails>
+										</Operands>
+										<Operator>
+											relation:rains
+										</Operator>
+										Has valid-time:  false
+										Is negatted: true
+										<FormalSemantic>
+											LHS: Arg[0].crrStatus
+											RHS: rains
+											TechnicalOperator: =
+											PredicateFormal: it.crrStatus = rains
+										</FormalSemantic>
+									</Condition>
+								</ConditionalScope>
+						</ActionScope>
+					</RequirementScope>
+				</RCMDetails>
+			</PR>
+		</PrimitiveReq>
+	</Requirement>
+
+	<Requirement>
+		ID: [req_9:]
+		text: if a crash is detected, an emergency signal is sent within 10 seconds.
+
+		<PrimitiveReq>
+			<PR>
+				Id: [1]
+				text: if a crash is detected, an emergency signal is sent within 10 seconds.
+				<Formal-Representation>
+					MTL-AbbrevatedFormula: G( [P] ==> [(F{t<=10}Q)] )
+					MTL-Formula: G( [a crash.crrStatus = detected] ==>	[(F{t<=10} an emergency signal.crrStatus = sent)] )
+					CTL-AbbrevatedFormula: AG( [(P)] ==> [(Q)] )
+					CTL-Formula: AG( [(a crash.crrStatus = detected)] ==> [(an emergency signal.crrStatus = sent)] )
+				</Formal-Representation>
+				<RCMDetails>
+					
+					<Condition>
+						Keyword: if
+						Text = if a crash is detected
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: a crash
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:is detected
+						</Operator>
+						Has valid-time:  false
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0].crrStatus
+							RHS: detected
+							TechnicalOperator: =
+							PredicateFormal: a crash.crrStatus = detected
+						</FormalSemantic>
+					</Condition>
+					<Action>
+						Text = an emergency signal is sent
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: an emergency signal
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:is sent
+						</Operator>
+						Has valid-time:  false
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0].crrStatus
+							RHS: sent
+							TechnicalOperator: =
+							PredicateFormal: an emergency signal.crrStatus = sent
+						</FormalSemantic>
+						is repeated = false
+						<PreElapsedTime>
+							TimeType: PreElapsed
+							Value: 10
+							Unit: seconds
+							QPRelation: null
+							<FormalSemantic>
+							TechnicalOperator: <=
+							Value: 10
+							</FormalSemantic>
+						</PreElapsedTime>
+					</Action>
+					<RequirementScope>
+					</RequirementScope>
+				</RCMDetails>
+			</PR>
+		</PrimitiveReq>
+	</Requirement>
+
+	<Requirement>
+		ID: [req_27:]
+		text: the motor is RCMVAL_on within 1 second.
+
+		<PrimitiveReq>
+			<PR>
+				Id: [1]
+				text: the motor is RCMVAL_on within 1 second.
+				<Formal-Representation>
+					MTL-AbbrevatedFormula: G( [(F{t<=1}P)] )
+					MTL-Formula: G( [(F{t<=1}the motor = RCMVAL_on)] )
+					CTL-AbbrevatedFormula: AG( [(P)] )
+					CTL-Formula: AG( [(the motor = RCMVAL_on)] )
+				</Formal-Representation>
+				<RCMDetails>
+					
+					<Action>
+						Text = the motor is RCMVAL_on
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: the motor
+							</ArgDetails>
+							Arg[1]
+							<ArgDetails>
+								Text: RCMVAL_on
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:is
+						</Operator>
+						Has valid-time:  false
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0]
+							RHS: Arg[1]
+							TechnicalOperator: =
+							PredicateFormal: the motor = RCMVAL_on
+						</FormalSemantic>
+						is repeated = false
+						<PreElapsedTime>
+							TimeType: PreElapsed
+							Value: 1
+							Unit: second
+							QPRelation: null
+							<FormalSemantic>
+							TechnicalOperator: <=
+							Value: 1
+							</FormalSemantic>
+						</PreElapsedTime>
+					</Action>
+					<RequirementScope>
+					</RequirementScope>
+				</RCMDetails>
+			</PR>
+		</PrimitiveReq>
+	</Requirement>
+
+	<Requirement>
+		ID: [req_15:]
+		text: if it rains, the wipers are RCMVAL_on after 30 seconds.
+
+		<PrimitiveReq>
+			<PR>
+				Id: [1]
+				text: if it rains, the wipers are RCMVAL_on after 30 seconds.
+				<Formal-Representation>
+					MTL-AbbrevatedFormula: G( [P] ==> [(F{t<=30}Q)] )
+					MTL-Formula: G( [it.crrStatus = rains] ==> [(F{t<=30}the wipers = RCMVAL_on)] )
+					CTL-AbbrevatedFormula: AG( [(P)] ==> [(Q)] )
+					CTL-Formula: AG( [(it.crrStatus = rain)] ==> [(the wipers = RCMVAL_on)] )
+				</Formal-Representation>
+				<RCMDetails>
+					
+					<Condition>
+						Keyword: if
+						Text = if it rains
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: it
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:rains
+						</Operator>
+						Has valid-time:  false
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0].crrStatus
+							RHS: rains
+							TechnicalOperator: =
+							PredicateFormal: it.crrStatus = rains
+						</FormalSemantic>
+					</Condition>
+					<Action>
+						Text = the wipers are RCMVAL_on
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: the wipers
+							</ArgDetails>
+							Arg[1]
+							<ArgDetails>
+								Text: RCMVAL_on
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:are
+						</Operator>
+						Has valid-time:  false
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0]
+							RHS: Arg[1]
+							TechnicalOperator: =
+							PredicateFormal: the wipers = RCMVAL_on
+						</FormalSemantic>
+						is repeated = false
+						<PreElapsedTime>
+							TimeType: PreElapsed
+							Value: 30
+							Unit: seconds
+							QPRelation: null
+							<FormalSemantic>
+							TechnicalOperator: =
+							Value: 30
+							</FormalSemantic>
+						</PreElapsedTime>
+					</Action>
+					<RequirementScope>
+					</RequirementScope>
+				</RCMDetails>
+			</PR>
+		</PrimitiveReq>
+	</Requirement>
+
+	<Requirement>
+		ID: [req_25:]
+		text: the light is RCMVAL_on.
+
+		<PrimitiveReq>
+			<PR>
+				Id: [1]
+				text: the light is RCMVAL_on.
+				<Formal-Representation>
+					MTL-AbbrevatedFormula: G( [P] )
+					MTL-Formula: G( [the light = RCMVAL_on] )
+					CTL-AbbrevatedFormula: AG( [(P)] )
+					CTL-Formula: AG( [(the light = RCMVAL_on)] )
+				</Formal-Representation>
+				<RCMDetails>
+					
+					<Action>
+						Text = the light is RCMVAL_on
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: the light
+							</ArgDetails>
+							Arg[1]
+							<ArgDetails>
+								Text: RCMVAL_on
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:is
+						</Operator>
+						Has valid-time:  false
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0]
+							RHS: Arg[1]
+							TechnicalOperator: =
+							PredicateFormal: the light = RCMVAL_on
+						</FormalSemantic>
+						is repeated = false
+					</Action>
+					<RequirementScope>
+					</RequirementScope>
+				</RCMDetails>
+			</PR>
+		</PrimitiveReq>
+	</Requirement>
+
+	<Requirement>
+		ID: [req_13:]
+		text: if it rains, the wipers are RCMVAL_on for 30 seconds.
+
+		<PrimitiveReq>
+			<PR>
+				Id: [1]
+				text: if it rains, the wipers are RCMVAL_on for 30 seconds.
+				<Formal-Representation>
+					MTL-AbbrevatedFormula: G( [P] ==> [G{t=30}(Q)] )
+					MTL-Formula: G( [it.crrStatus = rains] ==> [G{t=30}(the wipers = RCMVAL_on)] )
+					CTL-AbbrevatedFormula: AG( [(P)] ==> [(Q)] )
+					CTL-Formula: AG( [(it.crrStatus = rain)] ==> [(the wipers = RCMVAL_on)] )
+				</Formal-Representation>
+				<RCMDetails>
+					
+					<Condition>
+						Keyword: if
+						Text = if it rains
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: it
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:rains
+						</Operator>
+						Has valid-time:  false
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0].crrStatus
+							RHS: rains
+							TechnicalOperator: =
+							PredicateFormal: it.crrStatus = rains
+						</FormalSemantic>
+					</Condition>
+					<Action>
+						Text = the wipers are RCMVAL_on
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: the wipers
+							</ArgDetails>
+							Arg[1]
+							<ArgDetails>
+								Text: RCMVAL_on
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:are
+						</Operator>
+						Has valid-time:  true
+						<ValidTime>
+							TimeType: Scope
+							Value: 30
+							Unit: seconds
+							QPRelation: null
+							<FormalSemantic>
+							TechnicalOperator: =
+							Value: 30
+							</FormalSemantic>
+						</ValidTime>
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0]
+							RHS: Arg[1]
+							TechnicalOperator: =
+							PredicateFormal: the wipers = RCMVAL_on
+						</FormalSemantic>
+						is repeated = false
+					</Action>
+					<RequirementScope>
+					</RequirementScope>
+				</RCMDetails>
+			</PR>
+		</PrimitiveReq>
+	</Requirement>
+
+	<Requirement>
+		ID: [req_19:]
+		text: if it rains for 1 minute, the wipers are activated within 30 seconds.
+
+		<PrimitiveReq>
+			<PR>
+				Id: [1]
+				text: if it rains for 1 minute, the wipers are activated within 30 seconds.
+				<Formal-Representation>
+					MTL-AbbrevatedFormula: G( [G{t=1}(P)] ==> [(F{<=30}>Q)] )
+					MTL-Formula: G( [G{t=1}(it.crrStatus = rain)] ==> [(F{t<=30}the wipers.crrStatus = activated)] )
+					CTL-AbbrevatedFormula: AG( [(P)] ==> [(Q)] )
+					CTL-Formula: AG( [(it.crrStatus = rain)] ==> [(the wipers.crrStatus = activate)] )
+				</Formal-Representation>
+				<RCMDetails>
+					
+					<Condition>
+						Keyword: if
+						Text = if it rains
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: it
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:rains
+						</Operator>
+						Has valid-time:  true
+						<ValidTime>
+							TimeType: Scope
+							Value: 1
+							Unit: minute
+							QPRelation: null
+							<FormalSemantic>
+							TechnicalOperator: =
+							Value: 1
+							</FormalSemantic>
+						</ValidTime>
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0].crrStatus
+							RHS: rains
+							TechnicalOperator: =
+							PredicateFormal: it.crrStatus = rains
+						</FormalSemantic>
+					</Condition>
+					<Action>
+						Text = the wipers are activated
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: the wipers
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:are activated
+						</Operator>
+						Has valid-time:  false
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0].crrStatus
+							RHS: activate
+							TechnicalOperator: =
+							PredicateFormal: the wipers.crrStatus = activated
+						</FormalSemantic>
+						is repeated = false
+						<PreElapsedTime>
+							TimeType: PreElapsed
+							Value: 30
+							Unit: seconds
+							QPRelation: null
+							<FormalSemantic>
+							TechnicalOperator: <=
+							Value: 30
+							</FormalSemantic>
+						</PreElapsedTime>
+					</Action>
+					<RequirementScope>
+					</RequirementScope>
+				</RCMDetails>
+			</PR>
+		</PrimitiveReq>
+	</Requirement>
+
+	<Requirement>
+		ID: [req_29:]
+		text: the airbag is activated after a crash is detected.
+
+		<PrimitiveReq>
+			<PR>
+				Id: [1]
+				text: the airbag is activated after a crash is detected.
+				<Formal-Representation>
+					MTL-AbbrevatedFormula: G( [(R ==> Q)] )
+					MTL-Formula: G( [(a crash.crrStatus = detected ==> the airbag.crrStatus = activated)] )
+					CTL-AbbrevatedFormula: AG( [AG((Q) ==> AG(A(P)))] )
+					CTL-Formula: AG( [AG((a crash.crrStatus = detect) ==> AG(A(the airbag.crrStatus = activate)))] )
+				</Formal-Representation>
+				<RCMDetails>
+					
+					<Action>
+						Text = the airbag is activated
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: the airbag
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:is activated
+						</Operator>
+						Has valid-time:  false
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0].crrStatus
+							RHS: activated
+							TechnicalOperator: =
+							PredicateFormal: the airbag.crrStatus = activated
+						</FormalSemantic>
+						is repeated = false
+					</Action>
+					<RequirementScope>
+						<ActionScope>
+							<ConditionalScope>
+								scope phase: StartUpPhase
+								<Condition>
+									Keyword: null
+									Text = after a crash is detected
+									<Operands>
+										Arg[0]
+										<ArgDetails>
+											Text: a crash
+										</ArgDetails>
+									</Operands>
+									<Operator>
+										relation:is detected
+									</Operator>
+									Has valid-time:  false
+									Is negatted: false
+									<FormalSemantic>
+										LHS: Arg[0].crrStatus
+										RHS: detected
+										TechnicalOperator: =
+										PredicateFormal: a crash.crrStatus = detected
+									</FormalSemantic>
+								</Condition>
+							</ConditionalScope>
+						</ActionScope>
+					</RequirementScope>
+				</RCMDetails>
+			</PR>
+		</PrimitiveReq>
+	</Requirement>
+
+	<Requirement>
+		ID: [req_17:]
+		text: if it is dark and the lights are RCMVAL_on, the lights are RCMVAL_on before it is bright.
+
+		<PrimitiveReq>
+			<PR>
+				Id: [1]
+				text: if it is dark and the lights are RCMVAL_on, the lights are RCMVAL_on before it is bright.
+				<Formal-Representation>
+					MTL-AbbrevatedFormula: G( [P ∧ S] ==> [FR ==> (F(Q || R ) U R)] )
+					MTL-Formula: G( [it = dark ∧ lights = RCMVAL_on ] ==> [F(it = bright) ==> (F(the lights = RCMVAL_on || it = bright ) U it = bright)] )
+					CTL-AbbrevatedFormula: AG( [((P) AND (Q))] ==> [A[((AF((R) v (S))) v AG(¬(S))) W (S)]] )
+					CTL-Formula: AG( [((it = dark) AND (lights = RCMVAL_on))] ==> [A[((AF((the lights = RCMVAL_on) v (it = bright))) v AG(¬(it = bright))) W (it = bright)]] )
+				</Formal-Representation>
+				<RCMDetails>
+					<LogicalRelation>
+						relation: AND
+					</LogicalRelation>
+					   <Condition>
+						Keyword: if
+						Text = if it is dark
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: it
+							</ArgDetails>
+							Arg[1]
+							<ArgDetails>
+								Text: dark
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:is
+						</Operator>
+						Has valid-time:  false
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0]
+							RHS: Arg[1]
+							TechnicalOperator: =
+							PredicateFormal: it = dark
+						</FormalSemantic>
+				   	   </Condition>
+					   <Condition>
+						Keyword: if
+						Text = if the lights are RCMVAL_on
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: the lights
+							</ArgDetails>
+							Arg[1]
+							<ArgDetails>
+								Text: RCMVAL_on
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:are
+						</Operator>
+						Has valid-time:  false
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0]
+							RHS: Arg[1]
+							TechnicalOperator: =
+							PredicateFormal: the lights = RCMVAL_on
+						</FormalSemantic>
+				  	   </Condition>
+					<Action>
+						Text = the lights are RCMVAL_on
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: the lights
+							</ArgDetails>
+							Arg[1]
+							<ArgDetails>
+								Text: RCMVAL_on
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:are
+						</Operator>
+						Has valid-time:  false
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0]
+							RHS: Arg[1]
+							TechnicalOperator: =
+							PredicateFormal: the lights = RCMVAL_on
+						</FormalSemantic>
+						is repeated = false
+					</Action>
+					<RequirementScope>
+						<ActionScope>
+							<ConditionalScope>
+								scope phase: EndUpPhase
+								<Condition>
+									Keyword: before
+									Text = before it is bright
+									<Operands>
+										Arg[0]
+										<ArgDetails>
+											Text: it
+										</ArgDetails>
+										Arg[1]
+										<ArgDetails>
+											Text: bright
+										</ArgDetails>
+									</Operands>
+									<Operator>
+										relation:is
+									</Operator>
+									Has valid-time:  false
+									Is negatted: false
+									<FormalSemantic>
+										LHS: Arg[0]
+										RHS: Arg[1]
+										TechnicalOperator: =
+										PredicateFormal: it = bright
+									</FormalSemantic>
+								</Condition>
+							</ConditionalScope>
+						</ActionScope>
+					</RequirementScope>
+				</RCMDetails>
+			</PR>
+		</PrimitiveReq>
+	</Requirement>
+
+	<Requirement>
+		ID: [req_23:]
+		text: if it rains for 1 minute, the wipers are active for 30 seconds after 1 minute.
+
+		<PrimitiveReq>
+			<PR>
+				Id: [1]
+				text: if it rains for 1 minute, the wipers are active for 30 seconds after 1 minute.
+				<Formal-Representation>
+					MTL-AbbrevatedFormula: G( [G{t=1}(P)] ==> [F{t=1}(G{t=30}(Q))] )
+					MTL-Formula: G( [G{t=1}(it.crrStatus = rains)] ==> [F{t=1}(G{t=30}(the wipers = active))] )
+					CTL-AbbrevatedFormula: G( (P) ==> F(Q) )
+					CTL-Formula: G( (it.crrStatus = rains) ==> F(the wipers = active) ) 
+				</Formal-Representation>
+				<RCMDetails>
+					
+					<Condition>
+						Keyword: if
+						Text = if it rains
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: it
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:rains
+						</Operator>
+						Has valid-time:  true
+						<ValidTime>
+							TimeType: Scope
+							Value: 1
+							Unit: minute
+							QPRelation: null
+							<FormalSemantic>
+							TechnicalOperator: =
+							Value: 1
+							</FormalSemantic>
+						</ValidTime>
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0].crrStatus
+							RHS: rains
+							TechnicalOperator: =
+							PredicateFormal: it.crrStatus = rains
+						</FormalSemantic>
+					</Condition>
+					<Action>
+						Text = the wipers are active
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: the wipers
+							</ArgDetails>
+							Arg[1]
+							<ArgDetails>
+								Text: active
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:are
+						</Operator>
+						Has valid-time:  true
+						<ValidTime>
+							TimeType: Scope
+							Value: 30
+							Unit: seconds
+							QPRelation: null
+							<FormalSemantic>
+							TechnicalOperator: =
+							Value: 30
+							</FormalSemantic>
+						</ValidTime>
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0]
+							RHS: Arg[1]
+							TechnicalOperator: =
+							PredicateFormal: the wipers = active
+						</FormalSemantic>
+						is repeated = false
+						<PreElapsedTime>
+							TimeType: PreElapsed
+							Value: 1
+							Unit: minute
+							QPRelation: null
+							<FormalSemantic>
+							TechnicalOperator: =
+							Value: 1
+							</FormalSemantic>
+						</PreElapsedTime>
+					</Action>
+					<RequirementScope>
+					</RequirementScope>
+				</RCMDetails>
+			</PR>
+		</PrimitiveReq>
+	</Requirement>
+
+	<Requirement>
+		ID: [req_11:]
+		text: if it rains and the wipers are active, the wipers are active for 30 seconds.
+
+		<PrimitiveReq>
+			<PR>
+				Id: [1]
+				text: if it rains and the wipers are active, the wipers are active for 30 seconds.
+				<Formal-Representation>
+					MTL-AbbrevatedFormula: G( [R ∧ S] ==> [G{t=30}(Q)] )
+					MTL-Formula: G( [(it = rains ∧ the wipers = active)] ==> [G{t=30}(the wipers = active)] )
+					CTL-AbbrevatedFormula: G( [R ∧ S] ==> Q )
+					CTL-Formula: G( [(it = rains ∧ the wipers = active)] ==> (the wipers = active) )
+				</Formal-Representation>
+				<RCMDetails>
+					
+					   <Condition>
+						Keyword: if
+						Text = if rains
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: it
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:rains
+						</Operator>
+						Has valid-time:  false
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0].crrStatus
+							RHS: rains
+							TechnicalOperator: =
+							PredicateFormal: it.crrStatus = rains
+						</FormalSemantic>
+				  	   </Condition>
+				           <Condition>
+					  	Text = the wipers are active
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: the wipers
+							</ArgDetails>
+							Arg[1]
+							<ArgDetails>
+								Text: active
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:are
+						</Operator>
+						Has valid-time:  false
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0]
+							RHS: Arg[1]
+							TechnicalOperator: =
+							PredicateFormal: the wipers = active
+						</FormalSemantic>
+				           </Condition>
+					<Action>
+						Text = the wipers are active
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: the wipers
+							</ArgDetails>
+							Arg[1]
+							<ArgDetails>
+								Text: active
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:are
+						</Operator>
+						Has valid-time:  true
+						<ValidTime>
+							TimeType: Scope
+							Value: 30
+							Unit: seconds
+							QPRelation: null
+							<FormalSemantic>
+							TechnicalOperator: =
+							Value: 30
+							</FormalSemantic>
+						</ValidTime>
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0]
+							RHS: Arg[1]
+							TechnicalOperator: =
+							PredicateFormal: the wipers = active
+						</FormalSemantic>
+						is repeated = false
+					</Action>
+					<RequirementScope>
+					</RequirementScope>
+				</RCMDetails>
+			</PR>
+		</PrimitiveReq>
+	</Requirement>
+
+	<Requirement>
+		ID: [req_33:]
+		text: if a crash is detected, the airbag is activated	within 5 ms, after an emergency signal is sent for 10 seconds.
+
+		<PrimitiveReq>
+			<PR>
+				Id: [1]
+				text: if a crash is detected, the airbag is activated within 5 ms, after an emergency signal is sent for 10 seconds..
+				<Formal-Representation>
+					MTL-AbbrevatedFormula: G( [Q] ==> [(S ==> F{t<=5}(R))] )
+					MTL-Formula: G( [a crash.crrStatus = detected] ==> [(an emergency signal.crrStatus = sent ==> the airbag.crrStatus = activated)] )
+					CTL-AbbrevatedFormula: AG( [(P)] ==> [AG((R) ==> AG(AF(Q)))] )
+					CTL-Formula: AG( [(a crash.crrStatus = detected)] ==> [AG((an emergency signal.crrStatus = sent) ==> AG(AF(the airbag.crrStatus = activated)))] )
+				</Formal-Representation>
+				<RCMDetails>
+					
+					<Condition>
+						Keyword: if
+						Text = if a crash is detected
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: a crash
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:is detected
+						</Operator>
+						Has valid-time:  false
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0].crrStatus
+							RHS: detected
+							TechnicalOperator: =
+							PredicateFormal: a crash.crrStatus = detected
+						</FormalSemantic>
+					</Condition>
+					<Action>
+						Text = the airbag is activated
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: the airbag
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:is activated
+						</Operator>
+						Has valid-time:  false
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0].crrStatus
+							RHS: activated
+							TechnicalOperator: =
+							PredicateFormal: the airbag.crrStatus = activated
+						</FormalSemantic>
+						is repeated = false
+						<PreElapsedTime>
+							TimeType: PreElapsed
+							Value: 5
+							Unit: ms
+							QPRelation: null
+							<FormalSemantic>
+							TechnicalOperator: =
+							Value: 5
+							</FormalSemantic>
+						</PreElapsedTime>
+					</Action>
+					<RequirementScope>
+						<ActionScope>
+							<ConditionalScope>
+								scope phase: StartUpPhase
+								<Condition>
+									Keyword: null
+									Text = after an emergency signal is sent
+									<Operands>
+										Arg[0]
+										<ArgDetails>
+											Text: an emergency signal
+										</ArgDetails>
+									</Operands>
+									<Operator>
+										relation:is sent
+									</Operator>
+									Has valid-time:  false
+									Is negatted: false
+									<FormalSemantic>
+										LHS: Arg[0].crrStatus
+										RHS: sent
+										TechnicalOperator: =
+										PredicateFormal: an emergency signal.crrStatus = sent
+									</FormalSemantic>
+								</Condition>
+							</ConditionalScope>
+						</ActionScope>
+					</RequirementScope>
+				</RCMDetails>
+			</PR>
+		</PrimitiveReq>
+	</Requirement>
+
+	<Requirement>
+		ID: [req_21:]
+		text: if it rains for 1 minute, the wipers are active for 30 seconds within 1 minute.
+
+		<PrimitiveReq>
+			<PR>
+				Id: [1]
+				text: if it rains for 1 minute, the wipers are active for 30 seconds within 1 minute.
+				<Formal-Representation>
+					MTL-AbbrevatedFormula: G( [G{t=1}(P)] ==> [F{t=1}(G{t=30}(Q))] )
+					MTL-Formula: G( [G{t=1}(it.crrStatus = rains)] ==> [F{t=1}(G{t=30}(the wipers = active))] )
+					CTL-AbbrevatedFormula: AG( [(P)] ==> [(Q)] )
+					CTL-Formula: AG( [(it.crrStatus = rain)] ==> [(the wipers = active)] )
+				</Formal-Representation>
+				<RCMDetails>
+					
+					<Condition>
+						Keyword: if
+						Text = if it rains
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: it
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:rains
+						</Operator>
+						Has valid-time:  true
+						<ValidTime>
+							TimeType: Scope
+							Value: 1
+							Unit: minute
+							QPRelation: null
+							<FormalSemantic>
+							TechnicalOperator: =
+							Value: 1
+							</FormalSemantic>
+						</ValidTime>
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0].crrStatus
+							RHS: rains
+							TechnicalOperator: =
+							PredicateFormal: it.crrStatus = rains
+						</FormalSemantic>
+					</Condition>
+					<Action>
+						Text = the wipers are active
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: the wipers
+							</ArgDetails>
+							Arg[1]
+							<ArgDetails>
+								Text: active
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:are
+						</Operator>
+						Has valid-time:  true
+						<ValidTime>
+							TimeType: Scope
+							Value: 30
+							Unit: seconds
+							QPRelation: null
+							<FormalSemantic>
+							TechnicalOperator: =
+							Value: 30
+							</FormalSemantic>
+						</ValidTime>
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0]
+							RHS: Arg[1]
+							TechnicalOperator: =
+							PredicateFormal: the wipers = active
+						</FormalSemantic>
+						is repeated = false
+						<PreElapsedTime>
+							TimeType: PreElapsed
+							Value: 1
+							Unit: minute
+							QPRelation: null
+						<FormalSemantic>
+							TechnicalOperator: <=
+							Value: 1
+							</FormalSemantic>
+						</PreElapsedTime>
+					</Action>
+					<RequirementScope>
+					</RequirementScope>
+				</RCMDetails>
+			</PR>
+		</PrimitiveReq>
+	</Requirement>
+
+	<Requirement>
+		ID: [req_31:]
+		text: if the in front vehicle decelerates, the vehicle decelerates before the safety_distance is restored for at most 2 seconds.
+
+		<PrimitiveReq>
+			<PR>
+				Id: [1]
+				text: if the in front vehicle decelerates, the vehicle decelerates before the safety_distance is restored for at most 2 seconds.
+				<Formal-Representation>
+					MTL-AbbrevatedFormula: G( [S] ==> [F(G{t<=2}(Q)) ==> (F(P || G{t<=2}(Q) ) U G{t<=2}(Q))] )
+					MTL-Formula: G( [the in front vehicle.crrStatus = decelerates] ==> [F(G{t<=2} (the safety_distance.crrStatus = restored)) ==> (F(the vehicle.crrStatus = decelerates || G{t<=2} (the safety_distance.crrStatus = restored) ) U G{t<=2} (the safety_distance.crrStatus = restored))] )
+					CTL-AbbrevatedFormula: AG([S] ==> A[((AF((P) v (Q))) v AG(¬(Q))) W (Q)]] )
+					CTL-Formula: AG((the in front vehicle.crrStatus = decelerates ==> A[((AF((the vehicle.crrStatus = decelerate) v (the safety_distance.crrStatus = restore))) v AG(¬(the safety_distance.crrStatus = restore))) W (the safety_distance.crrStatus = restore)] )
+				</Formal-Representation>
+				<RCMDetails>
+					<Condition>
+						Text = if the in front vehicle decelerates
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: the in front vehicle
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:decelerates
+						</Operator>
+						Has valid-time:  false
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0].crrStatus
+							RHS: decelerates
+							TechnicalOperator: =
+							PredicateFormal: the in front vehicle.crrStatus = decelerates
+						</FormalSemantic>
+						is repeated = false
+					</Condition>
+					<Action>
+						Text = the vehicle decelerates
+						<Operands>
+							Arg[0]
+							<ArgDetails>
+								Text: the vehicle
+							</ArgDetails>
+						</Operands>
+						<Operator>
+							relation:decelerates
+						</Operator>
+						Has valid-time:  false
+						Is negatted: false
+						<FormalSemantic>
+							LHS: Arg[0].crrStatus
+							RHS: decelerates
+							TechnicalOperator: =
+							PredicateFormal: the vehicle.crrStatus = decelerates
+						</FormalSemantic>
+						is repeated = false
+					</Action>
+					<RequirementScope>
+						<ActionScope>
+							<ConditionalScope>
+								scope phase: EndUpPhase
+								<Condition>
+									Keyword: null
+									Text = before the safety_distance is restored
+									<Operands>
+										Arg[0]
+										<ArgDetails>
+											Text: the safety_distance
+										</ArgDetails>
+									</Operands>
+									<Operator>
+										relation:is restored
+									</Operator>
+									Has valid-time:  true
+									<ValidTime>
+									  TimeType: Scope
+									  Value: 2
+									  Unit: seconds
+									  QPRelation:at most
+									  <FormalSemantic>
+									    TechnicalOperator: <=
+									    Value: 2
+									  </FormalSemantic>
+									  <ValidTime>
+									Is negatted: false
+									<FormalSemantic>
+										LHS: Arg[0].crrStatus
+										RHS: restored
+										TechnicalOperator: =
+										PredicateFormal: the safety_distance.crrStatus = restored
+									</FormalSemantic>
+								</Condition>
+							</ConditionalScope>
+						</ActionScope>
+					</RequirementScope>
+				</RCMDetails>
+			</PR>
+		</PrimitiveReq>
+	</Requirement>
+
+</SucceededRequirement>
+</log>

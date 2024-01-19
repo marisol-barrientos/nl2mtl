@@ -1,0 +1,10 @@
+(  introduction_screen___ available___no_attribute___no_action_scope ) -> ()(  eventually selection_procedure___ enabled___no_attribute___no_action_scope )
+(  selection_procedure___ terminates___no_attribute___no_action_scope ) -> <>(  anything___ selected___no_attribute___no_action_scope )
+(  selection_procedure___ terminates___no_attribute___no_action_scope ) -> <>(  anything___ selected___no_attribute___no_action_scope )
+(  something___ ordered___no_attribute___no_action_scope ) -> <>(  introduction_screen___ enabled___no_attribute___no_action_scope )
+(  ordering_procedure___ terminates___no_attribute___no_action_scope ) -> <>(  something___ ordered___no_attribute___no_action_scope )
+(  Introduction_screen___ enabled___no_attribute___no_action_scope ) -> <>(  Introduction_screen___ enabled___no_attribute___no_action_scope )
+ Specifical_offer or group_selection or back_button___ selected___no_attribute___ in selection_procedure
+(  back_button___ selected___no_attribute___no_action_scope ) -> ()(  selection_procedure___ terminates___no_attribute___no_action_scope )
+(  special_offer_procedure___ terminates___no_attribute___no_action_scope ) -> <>( (  Specifical_offer___ selected___no_attribute___no_action_scope ) -> ()(  system_information___ displayed___no_attribute___no_action_scope ) )
+(  Specifical_offer___ selected___no_attribute___no_action_scope ) -> ()(  special_display_information___ displayed___no_attribute___no_action_scope )

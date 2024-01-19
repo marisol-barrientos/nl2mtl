@@ -1,0 +1,3 @@
+o1 or i1 pushed implication next floor1 be reached o2 or i2 pushed implication next floor2 be reached o3 or i3 pushed implication next floor3 be reached o1 pushed implication next o1 implication next  floor1 reached implication next o2 pushed implication next o2  implication next floor2 reached implication next o3 pushed i1 pushed implication next i1 implication next  floor1 reached implication next i2 pushed implication next i2  implication next floor2 reached implication next i3 pushed elevator idle implication next door be opened 
+
+

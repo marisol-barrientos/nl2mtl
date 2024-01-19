@@ -1,0 +1,66 @@
+Req-1: The wipers are active while it rains.
+%%%
+Req-2:The parking sensor beeps while an obstacle is detected.
+%%%
+Req-3:The fuel display blinks while the fuel level is low.
+%%%
+Req-4:The fuel display blinks as long as the fuel level is low.
+%%%
+Req-5:The wipers are active for at most 10 seconds while it rains.
+%%%
+Req-6:The parking sensor beeps for at most 10 seconds while an obstacle is detected.
+%%%
+Req-7:The fuel display blinks for at most 10 seconds as long as the fuel level is low.
+%%%
+Req-8:If a crash is detected, then an emergency signal is sent within 10 second.
+%%%
+Req-9:If a crash is detected, then an emergency signal is sent within 10 seconds.
+%%%
+Req-10:If a crash is detected, then an emergency signal is sent.
+%%%
+Req-11:If it rains and the wipers are active, then the wipers are active for 30 seconds.
+%%%
+Req-12:If it rains and the wipers are active, then the wipers are active for 30 seconds.
+%%%
+Req-13:If it rains, then the wipers are [on] for 30 seconds.
+%%%
+Req-14:If it rains, then the wipers are [on] for 30 seconds.
+%%%
+Req-15:If it rains, then the wipers are [on] after 30 seconds.
+%%%
+Req-16:If it rains, then the wipers are [on] after 30 seconds.
+%%%
+Req-17:If it is dark and the lights are [on], then the lights are [on] until it is bright.
+%%%
+Req-18:If it rains for 1 minute, then the wipers are activated.
+%%%
+Req-19:If it rains for 1 minute, then the wipers are activated within 30 seconds.
+%%%
+Req-20:If it rains for 1 minute, then the wipers are activated within 30 seconds until the windscreen is dry.
+%%%
+Req-21:If it rains for 1 minute, then the wipers are active for 30 seconds within 1 minute.
+%%%
+Req-22:If it rains for 1 minute, then the wipers are active within 1 minute.
+%%%
+Req-23:If it rains for 1 minute, then the wipers are active for 30 seconds after 1 minute.
+%%%
+Req-24:The electricity circuit is active.
+%%%
+Req-25:The light is [on].
+%%%
+Req-26:The display elements glow.
+%%%
+Req-27:The motor is [on] within 1 second.
+%%%
+Req-28:The radio is powered within 5 seconds.
+%%%
+Req-29:The airbag is activated after a crash is detected.
+%%%
+Req-30:The airbag is not activated before a crash is detected.
+%%%
+Req-31:If the in front vehicle decelerates, the vehicle decelerates until the safety_distance is restored for at most 2 seconds.
+%%%
+Req-32:If it is dark,  the lights are [on] until it is bright for at most 10 minutes.
+%%%
+Req-33:If a crash is detected, the airbag is activated within 5 ms, after
+ an emergency signal is sent for 10 seconds.
