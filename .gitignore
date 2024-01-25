@@ -1,4 +1,5 @@
 # nl2spec/
+.idea/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -1,0 +1,41 @@
+Translate Natural Language to Metric Temporal Logic (MTL)
+
+We know that Metric Temporal Logic (MTL) allows for the formalization of time-bound statements using atomic propositions, Boolean operators, and temporal operators. Highlight the use of temporal operators G (globally), X (next), F (eventually), O (once), and S (since) with specified time intervals [lb, ub]. Also, mention the Boolean operators ¬ (not), ∧ (and), ∨ (or), and the implication a =⇒ b (defined as ¬a ∨ b).
+
+Text to be Formalized: "HERE_INPUT_TEXT"
+
+The output should be a JSON file representing the MTL translation, with the following naming conventions:
+- Use snake_case for key names.
+
+The JSON structure should include:
+1. "scenario_title": A representative title for the given input.
+2. "context": An indication of the scenario's context.
+3. "MTL_expressions": An array where each element contains:
+   3.1. "id"
+   3.2. "description"
+   3.3. "MTL_fitness_details": Contains three variables:
+       - "explanation": Evaluates if MTL is the proper format to formalize this description.
+       - "MTL_fitness": A score ("High," "Medium," or "Low").
+       - "alternative_methods": Suggests other formalization formats that could fit better.
+   3.4. "propositions": An array containing all propositions. Each proposition contains the following variables:
+       - "id"
+       - "description"
+       - "assumptions"
+       - "ambiguities": Indicates if any part of the text was unclear, vague, or lacked context.
+       - "priority": Can be "High," "Medium," or "Low," depending on its relevance in the overall scenario.
+       - "granularity": Indicates the temporal granularity of the proposition (e.g., seconds).
+   3.5. "MTL_expression": The built MTL expression containing all propositions.
+4. "non_formalized_parts": An array where each element contains:
+   - "id"
+   - "description": Original part of text not formalized.
+   - "reason_for_non_formalization": The reason why it was not possible to formalize it.
+5. "sequence_dependencies": An array where each element contains:
+   - "preceding_id": The ID of the preceding MTL expression.
+   - "following_id": The ID of the following MTL expressions.
+   - "dependency_description": A description of the dependency.
+6. "conflicts": An array where each element contains:
+   - "id"
+   - "description": Explanation of the conflict.
+   - "ids_involved_mtl_expressions": A set of IDs of the MTL expressions that generate conflicts between each other.
+
+Please, generate the JSON file step by step, do not miss any MTL_expression.

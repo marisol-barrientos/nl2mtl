@@ -1,0 +1,213 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Automated Control System Requirements Formalization</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f4;
+                color: #333;
+            }
+            .container {
+                width: 80%;
+                margin: 20px auto;
+                background: white;
+                padding: 20px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            h1, h2, h3 {
+                color: #007BFF;
+            }
+            h1 {
+                border-bottom: 2px solid #007BFF;
+            }
+            h2 {
+                border-bottom: 1px solid #007BFF;
+            }
+            .expression, .non-formalized, .dependencies, .conflicts {
+                background-color: #E9ECEF;
+                padding: 15px;
+                margin-bottom: 20px;
+                border-radius: 5px;
+            }
+            .proposition {
+                background-color: #F8F9FA;
+                margin: 10px 0;
+                padding: 10px;
+                border-left: 5px solid #007BFF;
+                border-radius: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Automated Control System Requirements Formalization</h1>
+            <p>Using MTL to formalize time-sensitive operational requirements of an automated control system</p>
+    <h2>MTL Expressions</h2>
+                <div class="expression">
+                    <h3>Expression Req-01: The CARA will be operational whenever the <LSTAT> is [poweredOn].</h3>
+                    <p><strong>MTL Expression:</strong> G(P2 -> P1)</p>
+            
+                <div class="proposition">
+                    <h4>Proposition P1: CARA operational</h4>
+                    <p><strong>Assumptions:</strong> Binary status</p>
+                    <p><strong>Ambiguities:</strong> None</p>
+                    <p><strong>Priority:</strong> High</p>
+                    <p><strong>Granularity:</strong> State-based</p>
+                </div>
+            
+                <div class="proposition">
+                    <h4>Proposition P2: <LSTAT> is powered on</h4>
+                    <p><strong>Assumptions:</strong> Binary status</p>
+                    <p><strong>Ambiguities:</strong> None</p>
+                    <p><strong>Priority:</strong> High</p>
+                    <p><strong>Granularity:</strong> State-based</p>
+                </div>
+            </div>
+                <div class="expression">
+                    <h3>Expression Req-08: If Air_Ok signal is Low, auto_control_mode is terminated within 3 sec.</h3>
+                    <p><strong>MTL Expression:</strong> G(P3 -> F_[0,3] P4)</p>
+            
+                <div class="proposition">
+                    <h4>Proposition P3: Air_Ok signal is Low</h4>
+                    <p><strong>Assumptions:</strong> Binary state</p>
+                    <p><strong>Ambiguities:</strong> None</p>
+                    <p><strong>Priority:</strong> High</p>
+                    <p><strong>Granularity:</strong> State-based</p>
+                </div>
+            
+                <div class="proposition">
+                    <h4>Proposition P4: Auto_control_mode terminated</h4>
+                    <p><strong>Assumptions:</strong> Instantaneous action</p>
+                    <p><strong>Ambiguities:</strong> None</p>
+                    <p><strong>Priority:</strong> High</p>
+                    <p><strong>Granularity:</strong> Seconds</p>
+                </div>
+            </div>
+                <div class="expression">
+                    <h3>Expression Req-17C1: When auto_control_mode is running, the cuff will be inflated.</h3>
+                    <p><strong>MTL Expression:</strong> G(P5 -> P6)</p>
+            
+                <div class="proposition">
+                    <h4>Proposition P5: Auto_control_mode is running</h4>
+                    <p><strong>Assumptions:</strong> Binary status</p>
+                    <p><strong>Ambiguities:</strong> None</p>
+                    <p><strong>Priority:</strong> High</p>
+                    <p><strong>Granularity:</strong> State-based</p>
+                </div>
+            
+                <div class="proposition">
+                    <h4>Proposition P6: Cuff is inflated</h4>
+                    <p><strong>Assumptions:</strong> Binary status</p>
+                    <p><strong>Ambiguities:</strong> None</p>
+                    <p><strong>Priority:</strong> High</p>
+                    <p><strong>Granularity:</strong> State-based</p>
+                </div>
+            </div>
+                <div class="expression">
+                    <h3>Expression Req-17C3: If alarm_reset_button is pressed, the alarm is disabled.</h3>
+                    <p><strong>MTL Expression:</strong> G(P7 -> X P8)</p>
+            
+                <div class="proposition">
+                    <h4>Proposition P7: Alarm_reset_button is pressed</h4>
+                    <p><strong>Assumptions:</strong> Instantaneous action</p>
+                    <p><strong>Ambiguities:</strong> None</p>
+                    <p><strong>Priority:</strong> High</p>
+                    <p><strong>Granularity:</strong> State-based</p>
+                </div>
+            
+                <div class="proposition">
+                    <h4>Proposition P8: Alarm is disabled</h4>
+                    <p><strong>Assumptions:</strong> Binary status</p>
+                    <p><strong>Ambiguities:</strong> None</p>
+                    <p><strong>Priority:</strong> High</p>
+                    <p><strong>Granularity:</strong> State-based</p>
+                </div>
+            </div>
+                <div class="expression">
+                    <h3>Expression Req-28: If a valid blood_pressure is unavailable after at least 180 sec, manual_mode should be triggered.</h3>
+                    <p><strong>MTL Expression:</strong> G(P9 -> F_[180,180] P10)</p>
+            
+                <div class="proposition">
+                    <h4>Proposition P9: Valid blood_pressure unavailable for at least 180 sec</h4>
+                    <p><strong>Assumptions:</strong> Duration is measurable</p>
+                    <p><strong>Ambiguities:</strong> None</p>
+                    <p><strong>Priority:</strong> High</p>
+                    <p><strong>Granularity:</strong> Seconds</p>
+                </div>
+            
+                <div class="proposition">
+                    <h4>Proposition P10: Manual_mode triggered</h4>
+                    <p><strong>Assumptions:</strong> Instantaneous action</p>
+                    <p><strong>Ambiguities:</strong> None</p>
+                    <p><strong>Priority:</strong> High</p>
+                    <p><strong>Granularity:</strong> State-based</p>
+                </div>
+            </div>
+                <div class="expression">
+                    <h3>Expression Req-34: When auto_control_mode is running, terminate_auto_control_button should be available.</h3>
+                    <p><strong>MTL Expression:</strong> G(P11 -> P12)</p>
+            
+                <div class="proposition">
+                    <h4>Proposition P11: Auto_control_mode is running</h4>
+                    <p><strong>Assumptions:</strong> Binary status</p>
+                    <p><strong>Ambiguities:</strong> None</p>
+                    <p><strong>Priority:</strong> High</p>
+                    <p><strong>Granularity:</strong> State-based</p>
+                </div>
+            
+                <div class="proposition">
+                    <h4>Proposition P12: Terminate_auto_control_button is available</h4>
+                    <p><strong>Assumptions:</strong> Binary status</p>
+                    <p><strong>Ambiguities:</strong> None</p>
+                    <p><strong>Priority:</strong> High</p>
+                    <p><strong>Granularity:</strong> State-based</p>
+                </div>
+            </div>
+                <div class="expression">
+                    <h3>Expression Req-48C1: Whenever terminate_auto_control_button is selected, a confirmation button is available.</h3>
+                    <p><strong>MTL Expression:</strong> G(P13 -> P14)</p>
+            
+                <div class="proposition">
+                    <h4>Proposition P13: Terminate_auto_control_button is selected</h4>
+                    <p><strong>Assumptions:</strong> Instantaneous action</p>
+                    <p><strong>Ambiguities:</strong> None</p>
+                    <p><strong>Priority:</strong> High</p>
+                    <p><strong>Granularity:</strong> State-based</p>
+                </div>
+            
+                <div class="proposition">
+                    <h4>Proposition P14: Confirmation button is available</h4>
+                    <p><strong>Assumptions:</strong> Binary status</p>
+                    <p><strong>Ambiguities:</strong> None</p>
+                    <p><strong>Priority:</strong> High</p>
+                    <p><strong>Granularity:</strong> State-based</p>
+                </div>
+            </div>
+                <div class="expression">
+                    <h3>Expression Req-49: When a start_auto_control_button is enabled, the start_auto_control_button is enabled until it is pressed.</h3>
+                    <p><strong>MTL Expression:</strong> G(P15 S P16)</p>
+            
+                <div class="proposition">
+                    <h4>Proposition P15: Start_auto_control_button is enabled</h4>
+                    <p><strong>Assumptions:</strong> Binary status</p>
+                    <p><strong>Ambiguities:</strong> None</p>
+                    <p><strong>Priority:</strong> High</p>
+                    <p><strong>Granularity:</strong> State-based</p>
+                </div>
+            
+                <div class="proposition">
+                    <h4>Proposition P16: Start_auto_control_button is pressed</h4>
+                    <p><strong>Assumptions:</strong> Instantaneous action</p>
+                    <p><strong>Ambiguities:</strong> None</p>
+                    <p><strong>Priority:</strong> High</p>
+                    <p><strong>Granularity:</strong> State-based</p>
+                </div>
+            </div><h2>Non-Formalized Parts</h2><h2>Sequence Dependencies</h2><h2>Conflicts</h2>
+        </div>
+    </body>
+    </html>
+    

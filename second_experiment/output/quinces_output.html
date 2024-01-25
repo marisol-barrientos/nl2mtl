@@ -1,0 +1,147 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Quince Harvesting Process Management</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f4;
+                color: #333;
+            }
+            .container {
+                width: 80%;
+                margin: 20px auto;
+                background: white;
+                padding: 20px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            h1, h2, h3 {
+                color: #007BFF;
+            }
+            h1 {
+                border-bottom: 2px solid #007BFF;
+            }
+            h2 {
+                border-bottom: 1px solid #007BFF;
+            }
+            .expression, .non-formalized, .dependencies, .conflicts {
+                background-color: #E9ECEF;
+                padding: 15px;
+                margin-bottom: 20px;
+                border-radius: 5px;
+            }
+            .proposition {
+                background-color: #F8F9FA;
+                margin: 10px 0;
+                padding: 10px;
+                border-left: 5px solid #007BFF;
+                border-radius: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Quince Harvesting Process Management</h1>
+            <p>Agricultural process management involving time-bound tasks and conditions</p>
+    <h2>MTL Expressions</h2>
+                <div class="expression">
+                    <h3>Expression exp1: The manager checks the plantation for codling moth from 7am every day.</h3>
+                    <p><strong>MTL Expression:</strong> G[07:00,&infin;) (manager_checks)</p>
+            
+                <div class="proposition">
+                    <h4>Proposition prop1: Manager checks plantation</h4>
+                    <p><strong>Assumptions:</strong> Occurs daily starting at 7am</p>
+                    <p><strong>Ambiguities:</strong> None</p>
+                    <p><strong>Priority:</strong> High</p>
+                    <p><strong>Granularity:</strong> hours</p>
+                </div>
+            </div>
+                <div class="expression">
+                    <h3>Expression exp2: If the plantation is affected by codling moth, that day's production is interrupted.</h3>
+                    <p><strong>MTL Expression:</strong> (codling_moth_detected &rArr; production_interrupted)</p>
+            
+                <div class="proposition">
+                    <h4>Proposition prop2: Production interrupted if codling moth detected</h4>
+                    <p><strong>Assumptions:</strong> Dependent on daily check</p>
+                    <p><strong>Ambiguities:</strong> None</p>
+                    <p><strong>Priority:</strong> High</p>
+                    <p><strong>Granularity:</strong> days</p>
+                </div>
+            </div>
+                <div class="expression">
+                    <h3>Expression exp3: Employees start picking fruits at 8am, with almost no dew on quinces.</h3>
+                    <p><strong>MTL Expression:</strong> F[08:00,08:00] (fruit_picking_starts)</p>
+            
+                <div class="proposition">
+                    <h4>Proposition prop3: Fruit picking starts at 8am</h4>
+                    <p><strong>Assumptions:</strong> Minimal dew on quinces</p>
+                    <p><strong>Ambiguities:</strong> None</p>
+                    <p><strong>Priority:</strong> High</p>
+                    <p><strong>Granularity:</strong> hours</p>
+                </div>
+            </div>
+                <div class="expression">
+                    <h3>Expression exp4: If workers haven't taken a break before 1pm, they are reminded to take one soon.</h3>
+                    <p><strong>MTL Expression:</strong> (&not;break_taken_before_13:00 &rArr; reminder_for_break)</p>
+            
+                <div class="proposition">
+                    <h4>Proposition prop4: Reminder for break if not taken by 1pm</h4>
+                    <p><strong>Assumptions:</strong> Break is expected before 1pm</p>
+                    <p><strong>Ambiguities:</strong> None</p>
+                    <p><strong>Priority:</strong> Medium</p>
+                    <p><strong>Granularity:</strong> hours</p>
+                </div>
+            </div>
+                <div class="expression">
+                    <h3>Expression exp5: 7 hours after fruit picking starts, trucks arrive and loading must be completed by 5pm.</h3>
+                    <p><strong>MTL Expression:</strong> F[fruit_picking_start_time + 7 hours,17:00] (trucks_arrive_and_loading)</p>
+            
+                <div class="proposition">
+                    <h4>Proposition prop5: Trucks arrive 7 hours after fruit picking starts</h4>
+                    <p><strong>Assumptions:</strong> Loading finishes by 5pm</p>
+                    <p><strong>Ambiguities:</strong> None</p>
+                    <p><strong>Priority:</strong> High</p>
+                    <p><strong>Granularity:</strong> hours</p>
+                </div>
+            </div>
+                <div class="expression">
+                    <h3>Expression exp6: The supervisor notes down spoiled fruit within 30 minutes after the trucks are loaded.</h3>
+                    <p><strong>MTL Expression:</strong> O[loading_completed, loading_completed + 30min] (note_down_spoiled_fruit)</p>
+            
+                <div class="proposition">
+                    <h4>Proposition prop6: Note down spoiled fruit after loading</h4>
+                    <p><strong>Assumptions:</strong> Within 30 minutes of loading completion</p>
+                    <p><strong>Ambiguities:</strong> None</p>
+                    <p><strong>Priority:</strong> High</p>
+                    <p><strong>Granularity:</strong> minutes</p>
+                </div>
+            </div>
+                <div class="expression">
+                    <h3>Expression exp7: In the evening, the supervisor reports the total kilos collected and hours worked.</h3>
+                    <p><strong>MTL Expression:</strong> G[evening, evening] (report_kilos_and_hours)</p>
+            
+                <div class="proposition">
+                    <h4>Proposition prop7: Evening report of kilos collected and hours worked</h4>
+                    <p><strong>Assumptions:</strong> Occurs daily in the evening</p>
+                    <p><strong>Ambiguities:</strong> None</p>
+                    <p><strong>Priority:</strong> High</p>
+                    <p><strong>Granularity:</strong> days</p>
+                </div>
+            </div><h2>Non-Formalized Parts</h2>
+                <div class="non-formalized">
+                    <h3>ID: nfp1</h3>
+                    <p><strong>Description:</strong> Harvesting process takes place in October and November</p>
+                    <p><strong>Reason for Non-Formalization:</strong> General time frame without specific daily tasks</p>
+                </div>
+            <h2>Sequence Dependencies</h2>
+                <div class="dependencies">
+                    <p><strong>Dependency:</strong> Truck arrival and loading is dependent on the start of fruit picking.</p>
+                </div>
+            <h2>Conflicts</h2>
+        </div>
+    </body>
+    </html>
+    
