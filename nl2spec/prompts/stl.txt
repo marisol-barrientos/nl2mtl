@@ -12,8 +12,3 @@ Natural Langauge: Between 2s and 6s the signal is between -2 and 2. Given transl
 temporal operator "G[2,6]" and "the signal is between -2 and 2" translates to the predicate "|x[t]| < 2". Explanation dictionary: {"Between 2s and 6s": "G[2,6]",
 "the signal is between -2 and 2": "|x[t]| < 2"}.
 FINAL: G[2,6] (|x[t]| < 2).
-
-Employees must finish their daily work by 4 pm.
-
-Mandatory Meeting Every Day Starting at 3:30 pm and Lasting for 1 Hour.
-

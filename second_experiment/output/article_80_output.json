@@ -1,0 +1,77 @@
+{
+  "scenario_title": "Expressway Vehicle Distance Regulation",
+  "context": "Regulation for maintaining safe distances between vehicles on an expressway, dependent on vehicle speed.",
+  "MTL_expressions": [
+    {
+      "id": "exp1",
+      "description": "Vehicle exceeds 100 km/h must maintain a distance of at least 100 meters from the vehicle in front in the same lane.",
+      "MTL_fitness_details": {
+        "explanation": "MTL is suitable for formalizing time-bound speed and distance conditions.",
+        "MTL_fitness": "High",
+        "alternative_methods": "Other logical formalisms or rule-based systems."
+      },
+      "propositions": [
+        {
+          "id": "prop1",
+          "description": "Vehicle speed exceeds 100 km/h",
+          "assumptions": "",
+          "ambiguities": "Measurement method for speed not specified.",
+          "priority": "High",
+          "granularity": "seconds"
+        },
+        {
+          "id": "prop2",
+          "description": "Distance to the vehicle in front is at least 100 meters",
+          "assumptions": "",
+          "ambiguities": "Method of distance measurement not specified.",
+          "priority": "High",
+          "granularity": "meters"
+        }
+      ],
+      "MTL_expression": "G(speed > 100 km/h ⇒ distance ≥ 100 meters)"
+    },
+    {
+      "id": "exp2",
+      "description": "When speed is lower than 100 km/h, distance to vehicle in front can be reduced but not less than 50 meters.",
+      "MTL_fitness_details": {
+        "explanation": "MTL appropriate for formalizing variable speed and distance constraints.",
+        "MTL_fitness": "High",
+        "alternative_methods": "Other logical or rule-based formalisms."
+      },
+      "propositions": [
+        {
+          "id": "prop3",
+          "description": "Vehicle speed is lower than 100 km/h",
+          "assumptions": "",
+          "ambiguities": "Method of speed measurement not clear.",
+          "priority": "High",
+          "granularity": "seconds"
+        },
+        {
+          "id": "prop4",
+          "description": "Distance to the vehicle in front is not less than 50 meters",
+          "assumptions": "",
+          "ambiguities": "Method of distance measurement not specified.",
+          "priority": "High",
+          "granularity": "meters"
+        }
+      ],
+      "MTL_expression": "G(speed < 100 km/h ⇒ distance ≥ 50 meters)"
+    }
+  ],
+  "non_formalized_parts": [
+    {
+      "id": "nfp1",
+      "description": "Time bounds for speed measurement and method for measuring distance are not specified.",
+      "reason_for_non_formalization": "Lack of specific details in the text."
+    }
+  ],
+  "sequence_dependencies": [
+    {
+      "preceding_id": "exp1",
+      "following_id": "exp2",
+      "dependency_description": "The second condition is relevant when the first is not met."
+    }
+  ],
+  "conflicts": []
+}

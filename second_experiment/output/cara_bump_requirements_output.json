@@ -1,0 +1,122 @@
+{
+  "scenario_title": "Automated Control System Requirements Formalization",
+  "context": "Using MTL to formalize time-sensitive operational requirements of an automated control system",
+  "MTL_expressions": [
+    {
+      "id": "Req-01",
+      "description": "The CARA will be operational whenever the <LSTAT> is [poweredOn].",
+      "MTL_fitness_details": {
+        "explanation": "Consistent temporal relationship, suitable for MTL.",
+        "MTL_fitness": "High",
+        "alternative_methods": "None"
+      },
+      "propositions": [
+        {"id": "P1", "description": "CARA operational", "assumptions": "Binary status", "ambiguities": "None", "priority": "High", "granularity": "State-based"},
+        {"id": "P2", "description": "<LSTAT> is powered on", "assumptions": "Binary status", "ambiguities": "None", "priority": "High", "granularity": "State-based"}
+      ],
+      "MTL_expression": "G(P2 -> P1)"
+    },
+    {
+      "id": "Req-08",
+      "description": "If Air_Ok signal is Low, auto_control_mode is terminated within 3 sec.",
+      "MTL_fitness_details": {
+        "explanation": "Temporal constraint with a specific time bound, suitable for MTL.",
+        "MTL_fitness": "High",
+        "alternative_methods": "None"
+      },
+      "propositions": [
+        {"id": "P3", "description": "Air_Ok signal is Low", "assumptions": "Binary state", "ambiguities": "None", "priority": "High", "granularity": "State-based"},
+        {"id": "P4", "description": "Auto_control_mode terminated", "assumptions": "Instantaneous action", "ambiguities": "None", "priority": "High", "granularity": "Seconds"}
+      ],
+      "MTL_expression": "G(P3 -> F_[0,3] P4)"
+    },
+    {
+      "id": "Req-17C1",
+      "description": "When auto_control_mode is running, the cuff will be inflated.",
+      "MTL_fitness_details": {
+        "explanation": "Direct causal relationship, suitable for MTL.",
+        "MTL_fitness": "High",
+        "alternative_methods": "None"
+      },
+      "propositions": [
+        {"id": "P5", "description": "Auto_control_mode is running", "assumptions": "Binary status", "ambiguities": "None", "priority": "High", "granularity": "State-based"},
+        {"id": "P6", "description": "Cuff is inflated", "assumptions": "Binary status", "ambiguities": "None", "priority": "High", "granularity": "State-based"}
+      ],
+      "MTL_expression": "G(P5 -> P6)"
+    },
+    {
+      "id": "Req-17C3",
+      "description": "If alarm_reset_button is pressed, the alarm is disabled.",
+      "MTL_fitness_details": {
+        "explanation": "Immediate causal relationship, suitable for MTL.",
+        "MTL_fitness": "High",
+        "alternative_methods": "None"
+      },
+      "propositions": [
+        {"id": "P7", "description": "Alarm_reset_button is pressed", "assumptions": "Instantaneous action", "ambiguities": "None", "priority": "High", "granularity": "State-based"},
+        {"id": "P8", "description": "Alarm is disabled", "assumptions": "Binary status", "ambiguities": "None", "priority": "High", "granularity": "State-based"}
+      ],
+      "MTL_expression": "G(P7 -> X P8)"
+    },
+    {
+      "id": "Req-28",
+      "description": "If a valid blood_pressure is unavailable after at least 180 sec, manual_mode should be triggered.",
+      "MTL_fitness_details": {
+        "explanation": "Time-bounded conditional requirement, suitable for MTL.",
+        "MTL_fitness": "High",
+        "alternative_methods": "None"
+      },
+      "propositions": [
+        {"id": "P9", "description": "Valid blood_pressure unavailable for at least 180 sec", "assumptions": "Duration is measurable", "ambiguities": "None", "priority": "High", "granularity": "Seconds"},
+        {"id": "P10", "description": "Manual_mode triggered", "assumptions": "Instantaneous action", "ambiguities": "None", "priority": "High", "granularity": "State-based"}
+      ],
+      "MTL_expression": "G(P9 -> F_[180,180] P10)"
+    },
+    {
+      "id": "Req-34",
+      "description": "When auto_control_mode is running, terminate_auto_control_button should be available.",
+      "MTL_fitness_details": {
+        "explanation": "Direct causal relationship, suitable for MTL.",
+        "MTL_fitness": "High",
+        "alternative_methods": "None"
+      },
+      "propositions": [
+        {"id": "P11", "description": "Auto_control_mode is running", "assumptions": "Binary status", "ambiguities": "None", "priority": "High", "granularity": "State-based"},
+        {"id": "P12", "description": "Terminate_auto_control_button is available", "assumptions": "Binary status", "ambiguities": "None", "priority": "High", "granularity": "State-based"}
+      ],
+      "MTL_expression": "G(P11 -> P12)"
+    },
+    {
+      "id": "Req-48C1",
+      "description": "Whenever terminate_auto_control_button is selected, a confirmation button is available.",
+      "MTL_fitness_details": {
+        "explanation": "Immediate causal relationship, suitable for MTL.",
+        "MTL_fitness": "High",
+        "alternative_methods": "None"
+      },
+      "propositions": [
+        {"id": "P13", "description": "Terminate_auto_control_button is selected", "assumptions": "Instantaneous action", "ambiguities": "None", "priority": "High", "granularity": "State-based"},
+        {"id": "P14", "description": "Confirmation button is available", "assumptions": "Binary status", "ambiguities": "None", "priority": "High", "granularity": "State-based"}
+      ],
+      "MTL_expression": "G(P13 -> P14)"
+    },
+    {
+      "id": "Req-49",
+      "description": "When a start_auto_control_button is enabled, the start_auto_control_button is enabled until it is pressed.",
+      "MTL_fitness_details": {
+        "explanation": "State maintenance until an event, suitable for MTL.",
+        "MTL_fitness": "High",
+        "alternative_methods": "None"
+      },
+      "propositions": [
+        {"id": "P15", "description": "Start_auto_control_button is enabled", "assumptions": "Binary status", "ambiguities": "None", "priority": "High", "granularity": "State-based"},
+        {"id": "P16", "description": "Start_auto_control_button is pressed", "assumptions": "Instantaneous action", "ambiguities": "None", "priority": "High", "granularity": "State-based"}
+      ],
+      "MTL_expression": "G(P15 S P16)"
+    }
+  ],
+  "non_formalized_parts": [],
+  "sequence_dependencies": [],
+  "conflicts": []
+}
+

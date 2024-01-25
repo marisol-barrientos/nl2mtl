@@ -1,0 +1,9 @@
+Whenever the transition action that the value of signal r S n n 4 G B S u b goes out of the bound (2044, 2391) occurs, and the l J a H E 9 g Y signal remains larger than 5.7, then in response after a time in the subsequent 46 time units, the value of signal U _ d T x 6 shall be in the interval [2, 4] and then always remains like this for every moment in the following 8 time units.
+
+OUTPUT
+"Whenever the transition action that the value of signal r S n n 4 G B S u b goes out of the bound (2044, 2391) occurs" translates to "rSnn4GBSub[t] < 2044 | rSnn4GBSub[t] > 2391".
+"and the l J a H E 9 g Y signal remains larger than 5.7" translates to "lJaHE9gY[t] > 5.7".
+"then in response after a time in the subsequent 46 time units, the value of signal U _ d T x 6 shall be in the interval [2, 4]" translates to "F[0,46] (2 <= UdTx6[t] <= 4)".
+"and then always remains like this for every moment in the following 8 time units" translates to "G[0,8] (2 <= UdTx6[t] <= 4)".
+
+FINAL: (rSnn4GBSub[t] < 2044 | rSnn4GBSub[t] > 2391) & lJaHE9gY[t] > 5.7 -> F[0,46] (2 <= UdTx6[t] <= 4) & G[0,8] (2 <= UdTx6[t] <= 4).
