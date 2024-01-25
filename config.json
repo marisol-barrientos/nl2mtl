@@ -1,9 +1,9 @@
 {
-    "input_file": "/data/input/cara_bump_requirements.txt",
-    "output_file": "/data/output/cara_bump_requirements_test.json",
+    "input_file": "/data/input/harvesting_process.txt",
+    "output_file": "/data/output/harvesting_process_2.json",
     "prompt_file": "/prompts/nl2mtl.txt",
-    "in_between_output_file":"/tmp/temporal_file.json",
-    "html_output_file":"/data/output/cara_bump_requirements_test.html",
+    "in_between_output_file":"/tmp/harvesting_process_2.json",
+    "html_output_file":"/data/output/harvesting_process_2.html",
     "api_key": "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",
     "model_name": "gpt-4"
 }

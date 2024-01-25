@@ -59,7 +59,7 @@ class JsonToHtmlConverter:
         html_content = '''
         <html>
         <head>
-            <title>Quince Harvesting Process</title>
+            <title>NL2MTL</title>
             <style>
                 body {
                     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -139,7 +139,7 @@ class JsonToHtmlConverter:
             <header>
                 <div class="container">
                     <div id="branding">
-                        <h1>Quince Harvesting Process</h1>
+                        <h1>NL2MTL</h1>
                     </div>
                 </div>
             </header>
