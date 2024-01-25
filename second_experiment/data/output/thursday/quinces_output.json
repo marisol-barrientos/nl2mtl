@@ -1,0 +1,153 @@
+{
+    "context": "The quince harvesting process in October and November.",
+    "MTL_expressions": [
+        {
+            "id": 1,
+            "description": "Every day, from 7am the manager checks that the plantation has not been affected by codling moth.",
+            "propositions": [
+                {
+                    "id": "a",
+                    "description": "Manager checks the plantation.",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "days"
+                },
+                {
+                    "id": "b",
+                    "description": "Plantation not affected by codling moth.",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "days"
+                }
+            ],
+            "MTL_expression": "G[0,\u221e) ((time=7am) =\u21d2 (a \u2227 b))"
+        },
+        {
+            "id": 2,
+            "description": "If it is affected that day's production is interrupted.",
+            "propositions": [
+                {
+                    "id": "c",
+                    "description": "Production is interrupted.",
+                    "assumptions": [],
+                    "ambiguities": [
+                        "The type of effect codling moth has on the plantation."
+                    ],
+                    "granularity": "days"
+                }
+            ],
+            "MTL_expression": "G[0,\u221e) ((\u00acb) =\u21d2 c)"
+        },
+        {
+            "id": 3,
+            "description": "The employees begin to pick the fruits at 8am, when the quinces have almost no dew.",
+            "propositions": [
+                {
+                    "id": "d",
+                    "description": "Employees picking fruits.",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "days"
+                }
+            ],
+            "MTL_expression": "G[0,\u221e) ((time=8am) =\u21d2 d)"
+        },
+        {
+            "id": 4,
+            "description": "If the workers have not taken a break before 1pm, the manager reminds them that they should take a break soon.",
+            "propositions": [
+                {
+                    "id": "e",
+                    "description": "Workers taking a break.",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "days"
+                },
+                {
+                    "id": "f",
+                    "description": "Manager reminds workers to take a break.",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "days"
+                }
+            ],
+            "MTL_expression": "G[0,\u221e) (((time<1pm) \u2227 (\u00ace)) =\u21d2 f)"
+        },
+        {
+            "id": 5,
+            "description": "7 hours after the employees started picking the fruits, the trucks come and the employees load them at most until 5pm.",
+            "propositions": [
+                {
+                    "id": "g",
+                    "description": "Employees loading trucks with fruits.",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "days"
+                }
+            ],
+            "MTL_expression": "G[0,\u221e) ((X[7hours]d) =\u21d2 ((g) \u2227 (O[0,5pm]g)) )"
+        },
+        {
+            "id": 6,
+            "description": "The supervisor notes down the spoiled fruit not later than 30 minutes after the trucks have been loaded.",
+            "propositions": [
+                {
+                    "id": "h",
+                    "description": "Supervisor notes down the spoiled fruit.",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "days"
+                }
+            ],
+            "MTL_expression": "G[0,\u221e) ((X[30minutes]g) =\u21d2 h )"
+        },
+        {
+            "id": 7,
+            "description": "In the evening, the supervisor reports the total number of kilos collected and the hours the employees have worked.",
+            "propositions": [
+                {
+                    "id": "i",
+                    "description": "Supervisor reports the total number of kilos collected and the hours the employees have worked.",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "days"
+                }
+            ],
+            "MTL_expression": "G[0,\u221e) ((time=evening) =\u21d2 i)"
+        }
+    ],
+    "dependency_sequence": [
+        {
+            "preceding_id": 1,
+            "following_id": 2,
+            "dependency_description": "The proposition 'Production is interrupted.' depends on 'Manager checks the plantation.'"
+        },
+        {
+            "preceding_id": 3,
+            "following_id": 4,
+            "dependency_description": "The proposition 'Manager reminds workers to take a break.' depends on 'Employees picking fruits.'"
+        },
+        {
+            "preceding_id": 4,
+            "following_id": 5,
+            "dependency_description": "The proposition 'Employees loading trucks with fruits.' depends on 'Employees picking fruits.'"
+        },
+        {
+            "preceding_id": 5,
+            "following_id": 6,
+            "dependency_description": "The proposition 'Supervisor notes down the spoiled fruit.' depends on 'Employees loading trucks with fruits.'"
+        },
+        {
+            "preceding_id": 6,
+            "following_id": 7,
+            "dependency_description": "The proposition 'Supervisor reports total collected kilos & hours worked.' depends on 'Supervisor notes down the spoiled fruit.'"
+        }
+    ],
+    "non_formalized_parts": [
+        {
+            "id": 1,
+            "description": "The quince harvesting process takes place in October and November.",
+            "reason_for_non_formalization": "This statement sets the context but doesn't contain actions, events, or temporal relationships that can be translated into MTL."
+        }
+    ]
+}

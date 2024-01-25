@@ -1,0 +1,55 @@
+{
+    "context": "A motor vehicle is running on an expressway with variable speeds and must maintain specified distances from the vehicle ahead in the same lane.",
+    "MTL_expressions": [
+        {
+            "id": "MTL_exp1",
+            "description": "When running above 100 kmph, vehicle should maintain 100 meters distance from the vehicle in front in the same lane",
+            "propositions": [
+                {
+                    "id": "prop1",
+                    "description": "Vehicle is running at a speed which exceeds 100 kilometers per hour",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "seconds"
+                },
+                {
+                    "id": "prop2",
+                    "description": "Vehicle is maintaining a distance of 100 meters or more from the vehicle in front in the same lane",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "seconds"
+                }
+            ],
+            "MTL_expression": "G(speed>100_kmph =\u21d2 distance>100_meters)"
+        },
+        {
+            "id": "MTL_exp2",
+            "description": "When running below 100 kmph, vehicle should maintain a minimum of 50 meters distance from the vehicle in front in the same lane",
+            "propositions": [
+                {
+                    "id": "prop3",
+                    "description": "Vehicle is running at a speed which is less than 100 kilometers per hour",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "seconds"
+                },
+                {
+                    "id": "prop4",
+                    "description": "Vehicle is maintaining a distance which may be less than 100 meters but not less than 50 meters from the vehicle in front in the same lane",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "seconds"
+                }
+            ],
+            "MTL_expression": "G(speed<100_kmph =\u21d2 (distance<100_meters \u2227 distance\u226550_meters))"
+        }
+    ],
+    "dependency_sequence": [],
+    "non_formalized_parts": [
+        {
+            "id": "part1",
+            "description": "narrowed appropriately, but",
+            "reason_for_non_formalization": "The term 'appropriately' is subjective and context-dependent, thus cannot be formalized without specific values."
+        }
+    ]
+}

@@ -1,0 +1,152 @@
+{
+    "context": "Quince harvesting process",
+    "MTL_expressions": [
+        {
+            "id": 1,
+            "description": "Plantation check takes place at 7am every day for codling moth infestation.",
+            "propositions": [
+                {
+                    "id": 1,
+                    "description": "The plantation check regime.",
+                    "assumptions": [
+                        "At 7am everyday, the manager checks for codling moth infestation."
+                    ],
+                    "ambiguities": [
+                        "It is unclear how long this process lasts"
+                    ],
+                    "granularity": "hours"
+                }
+            ],
+            "MTL_expression": "G[0,24](plantation_check \u21d2 X^7(\u00accodling_moth))"
+        },
+        {
+            "id": 2,
+            "description": "If plantation is affected by codling moth, the production is interrupted.",
+            "propositions": [
+                {
+                    "id": 2,
+                    "description": "The codling moth infestation interrupts the production.",
+                    "assumptions": [
+                        "The production is ongoing."
+                    ],
+                    "ambiguities": [
+                        "It is unclear when production is resumed."
+                    ],
+                    "granularity": "hours"
+                }
+            ],
+            "MTL_expression": "G[0,24](codling_moth \u21d2 X(interrupt_production))"
+        },
+        {
+            "id": 3,
+            "description": "Fruit picking starts at 8am after checking for dews.",
+            "propositions": [
+                {
+                    "id": 3,
+                    "description": "The start time for fruit picking.",
+                    "assumptions": [
+                        "The dew check happens immediately before 8am and does not affect the start time of fruit picking."
+                    ],
+                    "ambiguities": [],
+                    "granularity": "hours"
+                }
+            ],
+            "MTL_expression": "G[0,24](plantation_check \u21d2 X^1(start_fruit_picking))"
+        },
+        {
+            "id": 4,
+            "description": "If workers do not take break by 1pm, manager reminds them.",
+            "propositions": [
+                {
+                    "id": 4,
+                    "description": "Reminder for workers to take a break.",
+                    "assumptions": [
+                        "The workers start the break at or before 1pm."
+                    ],
+                    "ambiguities": [],
+                    "granularity": "hours"
+                }
+            ],
+            "MTL_expression": "G[0,24](\u00acworker_break \u21d2 X^5(reminder))"
+        },
+        {
+            "id": 5,
+            "description": "Trucks come 7 hours after fruit picking starts and loading ends by 5pm.",
+            "propositions": [
+                {
+                    "id": 5,
+                    "description": "Truck loading of fruits.",
+                    "assumptions": [
+                        "The end time for fruit loading is always at 5pm regardless of when the trucks come."
+                    ],
+                    "ambiguities": [
+                        "It is unclear when the trucks actually depart."
+                    ],
+                    "granularity": "hours"
+                }
+            ],
+            "MTL_expression": "G[0,24](start_fruit_picking \u21d2 X^7(truck_arrival) \u2227 X^9(end_fruit_loading))"
+        },
+        {
+            "id": 6,
+            "description": "Spoiled fruit count is noted down within 30 minutes of loading trucks.",
+            "propositions": [
+                {
+                    "id": 6,
+                    "description": "Marking of spoiled fruits.",
+                    "assumptions": [
+                        "This process takes less than 30 minutes."
+                    ],
+                    "ambiguities": [],
+                    "granularity": "minutes"
+                }
+            ],
+            "MTL_expression": "G[0,24](end_fruit_loading \u21d2 X^30(spoiled_fruit_count))"
+        },
+        {
+            "id": 7,
+            "description": "In the evening, supervisor reports kilos collected and hours worked by employees.",
+            "propositions": [
+                {
+                    "id": 7,
+                    "description": "End of day report by the supervisor.",
+                    "assumptions": [
+                        "The report is only prepared once in the evening."
+                    ],
+                    "ambiguities": [],
+                    "granularity": "hours"
+                }
+            ],
+            "MTL_expression": "G[0,24](evening_report_kilos \u2227 evening_report_hours)"
+        }
+    ],
+    "dependency_sequence": [
+        {
+            "preceding_id": 1,
+            "following_id": 2,
+            "dependency_description": "ID 2 depends on the result of ID 1, production stops if infestation is found."
+        },
+        {
+            "preceding_id": 1,
+            "following_id": 3,
+            "dependency_description": "ID 3 follows ID 1, indicating that fruit picking starts after the corridor check is done."
+        },
+        {
+            "preceding_id": 3,
+            "following_id": 5,
+            "dependency_description": "ID 5 depends on ID 3, stating that the trucks arrive after fruit picking starts."
+        },
+        {
+            "preceding_id": 5,
+            "following_id": 6,
+            "dependency_description": "ID 6 follows ID 5, indicating that the spoiled fruit count occurs after fruit loading ends."
+        }
+    ],
+    "non_formalized_parts": [
+        {
+            "id": 1,
+            "description": "The harvesting takes place in October and November",
+            "reason_for_non_formalization": "The mentioned time period is out of the scope of daily processes formalized herein."
+        }
+    ]
+}

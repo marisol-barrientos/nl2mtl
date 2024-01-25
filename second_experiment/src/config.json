@@ -1,0 +1,9 @@
+{
+    "input_file": "/home/marisolbarrientosmoreno/Desktop/1st_semester_phd/nl2mtl/second_experiment/data/input/cara_bump_requirements.txt",
+    "output_file": "/home/marisolbarrientosmoreno/Desktop/1st_semester_phd/nl2mtl/second_experiment/data/output/cara_bump_requirements.json",
+    "prompt_file": "/home/marisolbarrientosmoreno/Desktop/1st_semester_phd/nl2mtl/second_experiment/prompts/nl2mtl.txt",
+    "in_between_output_file":"/home/marisolbarrientosmoreno/Desktop/1st_semester_phd/nl2mtl/second_experiment/tmp/temporal_file.json",
+    "html_output_file":"/home/marisolbarrientosmoreno/Desktop/1st_semester_phd/nl2mtl/second_experiment/data/output/cara_bump_requirements.html",
+    "api_key": "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",
+    "model_name": "gpt-4"
+}

@@ -1,0 +1,40 @@
+Prompt for Translating Natural Language Text to Metric Temporal Logic (MTL)
+
+Objective: Translate a given natural language text into Metric Temporal Logic (MTL).
+
+Background: Metric Temporal Logic (MTL) is a formalization tool that incorporates time-bound statements using atomic propositions,
+Boolean operators, and temporal operators. Key temporal operators include G (globally), X (next), F (eventually), O (once), and S (since),
+which can be used with specific time intervals [lb, ub]. Additionally, Boolean operators ¬ (not), ∧ (and), ∨ (or),
+and the implication operator a =⇒ b (defined as ¬a ∨ b) are essential components.
+
+Text to be Formalized: [NATURAL_LANGUAGE_TEXT_HERE]
+
+Translation Process:
+1. Decompose the provided statement into individual atomic propositions.
+2. Identify temporal relationships within the statement.
+3. Construct MTL expressions using the appropriate temporal and Boolean operators, as outlined above.
+
+Expected Output: A JSON file representing the MTL translation, adhering to a snake_case naming convention.
+
+JSON Structure:
+1. "context": Describes the scenario's context.
+2. "MTL_expressions": An array of elements, each containing:
+   - "id"
+   - "description"
+   - "propositions": Each proposition includes:
+       - "id"
+       - "description"
+       - "assumptions": Assumptions made during MTL_expression construction.
+       - "ambiguities": Unclear or vague aspects, or those lacking context.
+       - "granularity": Temporal granularity of the proposition (e.g., seconds).
+   - "MTL_expression": The constructed MTL expression incorporating all propositions.
+3. "dependency_sequence": An array detailing the dependency among expressions, including:
+   - "preceding_id": ID of the preceding MTL expression.
+   - "following_id": ID of the following MTL expression.
+   - "dependency_description": Description of the dependency.
+4. "non_formalized_parts": Elements for parts of the text not formalized, including:
+   - "id"
+   - "description": Original text part not formalized.
+   - "reason_for_non_formalization": Explanation for the inability to formalize.
+
+Instruction: Generate the JSON file methodically, ensuring each MTL_expression is included without omission.

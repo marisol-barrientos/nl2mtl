@@ -1,0 +1,71 @@
+{
+    "context": "Motor vehicle operations on an expressway, governing speed and following distance.",
+    "MTL_expressions": [
+        {
+            "id": "e1",
+            "description": "When the vehicle is running faster than 100 km/h, the following distance is 100m or more",
+            "propositions": [
+                {
+                    "id": "p1",
+                    "description": "The vehicle is running faster than 100 km/h",
+                    "assumptions": [
+                        "The vehicle speed is being monitored."
+                    ],
+                    "ambiguities": [
+                        "The exact speed of the vehicle is not specified beyond being higher than 100 km/h."
+                    ],
+                    "granularity": "seconds"
+                },
+                {
+                    "id": "p2",
+                    "description": "The following distance is maintained at 100m or more.",
+                    "assumptions": [
+                        "The following vehicle maintains the distance from the vehicle in front."
+                    ],
+                    "ambiguities": [
+                        "The exact distance is not specified beyond being greater than 100 meters."
+                    ],
+                    "granularity": "meters"
+                }
+            ],
+            "MTL_expression": "G(p1 =\u21d2 X[0,\u221e] p2)"
+        },
+        {
+            "id": "e2",
+            "description": "When the vehicle speed is lower than 100 km/h, the distance from the vehicle in front may be narrowed appropriately, but it should not be less than 50 meters.",
+            "propositions": [
+                {
+                    "id": "p3",
+                    "description": "The vehicle is running slower than 100 km/h",
+                    "assumptions": [
+                        "The vehicle speed is being monitored."
+                    ],
+                    "ambiguities": [
+                        "The exact speed of the vehicle is not specified beyond being lower than 100 km/h."
+                    ],
+                    "granularity": "seconds"
+                },
+                {
+                    "id": "p4",
+                    "description": "The following distance is maintained at less than 100m but not less than 50m.",
+                    "assumptions": [
+                        "The following vehicle maintains the distance from the vehicle in front."
+                    ],
+                    "ambiguities": [
+                        "The exact distance is not specified, other than it's less than 100m but not less than 50m."
+                    ],
+                    "granularity": "meters"
+                }
+            ],
+            "MTL_expression": "G(p3 =\u21d2 X[0,\u221e] p4)"
+        }
+    ],
+    "dependency_sequence": [
+        {
+            "preceding_id": "e1",
+            "following_id": "e2",
+            "dependency_description": "The second expression follows the first, as the vehicle's speed decreases from over 100 km/h to less than 100 km/h"
+        }
+    ],
+    "non_formalized_parts": []
+}

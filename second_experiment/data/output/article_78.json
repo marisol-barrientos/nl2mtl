@@ -1,0 +1,116 @@
+{
+    "context": "Driving rules for speed limits for vehicles on an expressway",
+    "MTL_expressions": [
+        {
+            "id": "MTL_1",
+            "description": "Speeds for different vehicle lanes on an expressway are indicated.",
+            "propositions": [
+                {
+                    "id": "P1",
+                    "description": "Speeds for different vehicle lanes on an expressway are indicated",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "continuous"
+                }
+            ],
+            "MTL_expression": "G(speeds_indicated)"
+        },
+        {
+            "id": "MTL_2",
+            "description": "The maximum speed does not exceed 120 kilometers per hour and the minimum speed is not lower than 60 kilometers per hour.",
+            "propositions": [
+                {
+                    "id": "P2",
+                    "description": "The maximum speed does not exceed 120 kilometers per hour",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "continuous"
+                },
+                {
+                    "id": "P3",
+                    "description": "The minimum speed is not lower than 60 kilometers per hour",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "continuous"
+                }
+            ],
+            "MTL_expression": "G(((max_speed \u2264 120) \u2227 (min_speed \u2265 60)))"
+        },
+        {
+            "id": "MTL_3",
+            "description": "Under specific conditions (number of lanes), specific minimum speeds are defined.",
+            "propositions": [
+                {
+                    "id": "P4",
+                    "description": "There are two lanes in the same direction",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "discrete"
+                },
+                {
+                    "id": "P5",
+                    "description": "There are three or more lanes in the same direction",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "discrete"
+                },
+                {
+                    "id": "P6",
+                    "description": "Speed for left lane is at least 100 km/h in case of two lanes",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "continuous"
+                },
+                {
+                    "id": "P7",
+                    "description": "Speed for farthest left lane is at least 110 km/h, and 90 km/h for middle lane, in case of three lanes or more",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "continuous"
+                }
+            ],
+            "MTL_expression": "G((two_lanes=\u21d2(left_lane_speed \u2265 100)) \u2227 (three_or_more_lanes =\u21d2 ((far_left_lane_speed \u2265 110) \u2227 (middle_lane_speed \u2265 90))))"
+        },
+        {
+            "id": "MTL_4",
+            "description": "In case of a discrepancy between speed limit sign, drivers must follow the speed limit sign.",
+            "propositions": [
+                {
+                    "id": "P8",
+                    "description": "Discrepancy exists between speed limit sign and indicated speeds",
+                    "assumptions": [],
+                    "ambiguities": [
+                        "Discrepancy is not specified, assumed as any variation between sign speed limit and indicated speeds"
+                    ],
+                    "granularity": "discrete"
+                },
+                {
+                    "id": "P9",
+                    "description": "Motor vehicle is driven at the speed indicated by the speed limit sign",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "continuous"
+                }
+            ],
+            "MTL_expression": "G((discrepancy=\u21d2G(vehicles_follow_sign_speed))"
+        }
+    ],
+    "dependency_sequence": [
+        {
+            "preceding_id": "MTL_1",
+            "following_id": "MTL_2",
+            "dependency_description": "Speed limit rules are dependent on the indication of speeds in different lanes."
+        },
+        {
+            "preceding_id": "MTL_2",
+            "following_id": "MTL_3",
+            "dependency_description": "Specific conditions based on the number of lanes are dependent on the general speed rules."
+        },
+        {
+            "preceding_id": "MTL_3",
+            "following_id": "MTL_4",
+            "dependency_description": "Discrepancy rules are dependent on the specific conditions for each lane."
+        }
+    ],
+    "non_formalized_parts": []
+}

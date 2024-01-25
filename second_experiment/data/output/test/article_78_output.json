@@ -1,0 +1,70 @@
+{
+    "context": "Expressway Driving Rules",
+    "MTL_expressions": [
+        {
+            "id": "EXP_1",
+            "description": "Driving speeds for all lanes shall be indicated",
+            "propositions": {
+                "id": "P1",
+                "description": "Driving speeds are indicated",
+                "assumptions": [],
+                "ambiguities": [],
+                "granularity": "Over the duration of the drive"
+            },
+            "MTL_expression": "G [0, inf) (speed_indicated)"
+        },
+        {
+            "id": "EXP_2",
+            "description": "The maximum speed on all lanes shall not exceed 120 km/hr",
+            "propositions": {
+                "id": "P2",
+                "description": "Maximum speed is not greater than 120 km/hr",
+                "assumptions": [],
+                "ambiguities": [],
+                "granularity": "At every point in the drive"
+            },
+            "MTL_expression": "G [0, inf) (max_speed \u2264 120)"
+        },
+        {
+            "id": "EXP_3",
+            "description": "The minimum speed on all lanes shall not be lower than 60 km/hr",
+            "propositions": {
+                "id": "P3",
+                "description": "Minimum speed is at least 60 km/hr",
+                "assumptions": [],
+                "ambiguities": [],
+                "granularity": "At every point in the drive"
+            },
+            "MTL_expression": "G [0, inf) (min_speed \u2265 60)"
+        }
+    ],
+    "dependency_sequence": [
+        {
+            "preceding_id": "EXP_1",
+            "following_id": "EXP_2",
+            "dependency_description": "Both relate to expressway speed regulations"
+        },
+        {
+            "preceding_id": "EXP_1",
+            "following_id": "EXP_3",
+            "dependency_description": "Both relate to expressway speed regulations"
+        },
+        {
+            "preceding_id": "EXP_2",
+            "following_id": "EXP_3",
+            "dependency_description": "Both relate to expressway speed minimums and maximums"
+        }
+    ],
+    "non_formalized_parts": [
+        {
+            "id": "NFP_1",
+            "description": "Specific lane speed regulations for a two-lane or three-lane expressway",
+            "reason_for_non_formalization": "The formalization of specific speeds for different lanes based on the total number of lanes, requires the knowledge of lane count, which is not arrived at dynamically in the course of driving. Such specific formalizations could potentially be formulated at design-time of particular expressway segments."
+        },
+        {
+            "id": "NFP_2",
+            "description": "Procedure to be followed in the case of a discrepancy between indicated speed and speed limit sign",
+            "reason_for_non_formalization": "It is a procedural recommendation that isn't strictly bound by time or measurable by temporal logic"
+        }
+    ]
+}

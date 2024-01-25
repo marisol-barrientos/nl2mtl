@@ -1,0 +1,129 @@
+{
+    "context": "Regulation of driving speeds on an expressway with varying lane specifications",
+    "MTL_expressions": [
+        {
+            "id": "MTL_exp_1",
+            "description": "Driving speeds for different vehicle lanes of an expressway are indicated",
+            "propositions": [
+                {
+                    "id": "prop_1",
+                    "description": "Driving speeds are indicated in different vehicle lanes on an expressway",
+                    "asscumptions": [
+                        "Speed limit indicators are present in all lanes",
+                        "Drivers have visible access to these indicators"
+                    ],
+                    "ambiguities": [],
+                    "granularity": "continuous"
+                }
+            ],
+            "MTL_expression": "G(speed_limit_indicated)"
+        },
+        {
+            "id": "MTL_exp_2",
+            "description": "Speed limit ranges defined globally",
+            "propositions": [
+                {
+                    "id": "prop_2",
+                    "description": "Maximum speed limit is globally defined as 120km/hr",
+                    "assumptions": [
+                        "The speed limit does not change over time or with varying conditions"
+                    ],
+                    "ambiguities": [],
+                    "granularity": "continuous"
+                },
+                {
+                    "id": "prop_3",
+                    "description": "Minimum speed limit is globally defined as 60km/hr",
+                    "assumptions": [
+                        "The speed limit does not change over time or with varying conditions"
+                    ],
+                    "ambiguities": [],
+                    "granularity": "continuous"
+                }
+            ],
+            "MTL_expression": "G(speed \u2264 120 \u2227 speed \u2265 60)"
+        },
+        {
+            "id": "MTL_exp_3",
+            "description": "Lane-specific speed limit rules",
+            "propositions": [
+                {
+                    "id": "prop_4",
+                    "description": "Minimum speed limit for left lane when there are two lanes is 100km/hr",
+                    "assumptions": [
+                        "Specific direction of lanes is not specified"
+                    ],
+                    "ambiguities": [
+                        "Assumed we are considering the scenario from the driver\u2019s perspective"
+                    ],
+                    "granularity": "continuous"
+                },
+                {
+                    "id": "prop_5",
+                    "description": "Minimum speed limit for farthest left lane when there are three or more lanes is 110km/hr",
+                    "assumptions": [
+                        "Case for exactly three lanes is considered"
+                    ],
+                    "ambiguities": [
+                        "What if there are more than 3 lanes?"
+                    ],
+                    "granularity": "continuous"
+                },
+                {
+                    "id": "prop_6",
+                    "description": "Minimum speed limit for middle lane when there are three or more lanes is 90km/hr",
+                    "assumptions": [
+                        "Case for exactly three lanes is considered"
+                    ],
+                    "ambiguities": [
+                        "What if there are more than 3 lanes?"
+                    ],
+                    "granularity": "continuous"
+                }
+            ],
+            "MTL_expression": "G(two_lanes \u21d2 speed_left_lane \u2265 100) \u2227 G(three_or_more_lanes \u21d2 speed_left_most_lane \u2265 110 \u2227 speed_middle_lane \u2265 90)"
+        },
+        {
+            "id": "MTL_exp_4",
+            "description": "Discrepancies in speed limit signs and stated regulations",
+            "propositions": [
+                {
+                    "id": "prop_7",
+                    "description": "Discrepancy between speed limit sign and stated regulation is resolved in favour of the speed limit sign",
+                    "assumptions": [
+                        "The speed limit sign is correct and overrides any other regulations"
+                    ],
+                    "ambiguities": [
+                        "Conditions or criteria for discrepancy are not mentioned"
+                    ],
+                    "granularity": "occasional"
+                }
+            ],
+            "MTL_expression": "G(speed_limit_discrepancy \u21d2 speed = speed_limit_on_sign)"
+        }
+    ],
+    "dependency_sequence": [
+        {
+            "preceding_id": "MTL_exp_1",
+            "following_id": "MTL_exp_2",
+            "dependency_description": "Once speeds are indicated, global speed limits apply"
+        },
+        {
+            "preceding_id": "MTL_exp_2",
+            "following_id": "MTL_exp_3",
+            "dependency_description": "Lane-specific speed limits are defined after global limits"
+        },
+        {
+            "preceding_id": "MTL_exp_3",
+            "following_id": "MTL_exp_4",
+            "dependency_description": "Discrepancies between speed limits and indicated speeds are resolved last"
+        }
+    ],
+    "non_formalized_parts": [
+        {
+            "id": "NFP_1",
+            "description": "Where there is any discrepancy between the speed indicated by a speed limit sign put up on a road and the driving speeds mentioned above...",
+            "reason_for_non_formalization": "Not all terms in this sub clause have been completely formalized"
+        }
+    ]
+}

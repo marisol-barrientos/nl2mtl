@@ -1,0 +1,89 @@
+
+        <html>
+        <head>
+            <title>Article 78</title>
+            <style>
+                body {
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                    margin: 0;
+                    padding: 0;
+                    background-color: #f4f4f4;
+                    color: #333;
+                }
+                .container {
+                    width: 80%;
+                    margin: auto;
+                    overflow: hidden;
+                }
+                header {
+                    background: #0077B6;  /* Deep Blue */
+                    color: #fff;
+                    padding-top: 30px;
+                    min-height: 70px;
+                    border-bottom: #023E8A 3px solid;  /* Darker Blue */
+                }
+                header a {
+                    color: #ffffff;
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    font-size: 16px;
+                }
+                header ul {
+                    padding: 0;
+                    margin: 0;
+                    list-style: none;
+                    overflow: hidden;
+                }
+                header li {
+                    float: left;
+                    display: inline;
+                    padding: 0 20px 0 20px;
+                }
+                header #branding {
+                    float: left;
+                }
+                header #branding h1 {
+                    margin: 0;
+                }
+                header nav {
+                    float: right;
+                    margin-top: 10px;
+                }
+                header .highlight, header .current a {
+                    color: #023E8A; /* Darker Blue */
+                    font-weight: bold;
+                }
+                header a:hover {
+                    color: #48CAE4; /* Light Blue */
+                    font-weight: bold;
+                }
+                .mtl-expression, .proposition, .dependency, .non-formalized {
+                    background: #fff;
+                    padding: 15px;
+                    margin-bottom: 15px;
+                    border-radius: 10px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                }
+                h2 {
+                    color: #0077B6; /* Deep Blue */
+                }
+                .proposition {
+                    background-color: #CAF0F8; /* Very Light Blue */
+                    margin-left: 20px;
+                }
+                .assumption, .ambiguity, .granularity {
+                    font-style: italic;
+                    color: #555;
+                }
+            </style>
+        </head>
+        <body>
+            <header>
+                <div class="container">
+                    <div id="branding">
+                        <h1>Article 78</h1>
+                    </div>
+                </div>
+            </header>
+            <div class="container">
+        <h2>MTL Expressions</h2><div class="mtl-expression"><strong>ID MTL_1</strong>: Speeds for different vehicle lanes on an expressway are indicated.<ul><li class="proposition"><strong>Proposition ID P1</strong>: Speeds for different vehicle lanes on an expressway are indicated<ul><li class="granularity"><strong>Granularity:</strong> continuous</li></ul></li><li><strong>MTL Expression</strong>: G(speeds_indicated)</li></ul></div><div class="mtl-expression"><strong>ID MTL_2</strong>: The maximum speed does not exceed 120 kilometers per hour and the minimum speed is not lower than 60 kilometers per hour.<ul><li class="proposition"><strong>Proposition ID P2</strong>: The maximum speed does not exceed 120 kilometers per hour<ul><li class="granularity"><strong>Granularity:</strong> continuous</li></ul></li><li class="proposition"><strong>Proposition ID P3</strong>: The minimum speed is not lower than 60 kilometers per hour<ul><li class="granularity"><strong>Granularity:</strong> continuous</li></ul></li><li><strong>MTL Expression</strong>: G(((max_speed &le; 120) &and; (min_speed &ge; 60)))</li></ul></div><div class="mtl-expression"><strong>ID MTL_3</strong>: Under specific conditions (number of lanes), specific minimum speeds are defined.<ul><li class="proposition"><strong>Proposition ID P4</strong>: There are two lanes in the same direction<ul><li class="granularity"><strong>Granularity:</strong> discrete</li></ul></li><li class="proposition"><strong>Proposition ID P5</strong>: There are three or more lanes in the same direction<ul><li class="granularity"><strong>Granularity:</strong> discrete</li></ul></li><li class="proposition"><strong>Proposition ID P6</strong>: Speed for left lane is at least 100 km/h in case of two lanes<ul><li class="granularity"><strong>Granularity:</strong> continuous</li></ul></li><li class="proposition"><strong>Proposition ID P7</strong>: Speed for farthest left lane is at least 110 km/h, and 90 km/h for middle lane, in case of three lanes or more<ul><li class="granularity"><strong>Granularity:</strong> continuous</li></ul></li><li><strong>MTL Expression</strong>: G((two_lanes=&rArr;(left_lane_speed &ge; 100)) &and; (three_or_more_lanes =&rArr; ((far_left_lane_speed &ge; 110) &and; (middle_lane_speed &ge; 90))))</li></ul></div><div class="mtl-expression"><strong>ID MTL_4</strong>: In case of a discrepancy between speed limit sign, drivers must follow the speed limit sign.<ul><li class="proposition"><strong>Proposition ID P8</strong>: Discrepancy exists between speed limit sign and indicated speeds<ul><li class="ambiguity"><strong>Ambiguity:</strong> Discrepancy is not specified, assumed as any variation between sign speed limit and indicated speeds</li><li class="granularity"><strong>Granularity:</strong> discrete</li></ul></li><li class="proposition"><strong>Proposition ID P9</strong>: Motor vehicle is driven at the speed indicated by the speed limit sign<ul><li class="granularity"><strong>Granularity:</strong> continuous</li></ul></li><li><strong>MTL Expression</strong>: G((discrepancy=&rArr;G(vehicles_follow_sign_speed))</li></ul></div><h2>Dependency Sequence</h2><div class="dependency">From ID MTL_1 to ID MTL_2: Speed limit rules are dependent on the indication of speeds in different lanes.</div><div class="dependency">From ID MTL_2 to ID MTL_3: Specific conditions based on the number of lanes are dependent on the general speed rules.</div><div class="dependency">From ID MTL_3 to ID MTL_4: Discrepancy rules are dependent on the specific conditions for each lane.</div><h2>Non Formalized Parts</h2></div></body></html>
