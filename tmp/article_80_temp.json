@@ -1,0 +1,23 @@
+{
+    "id": "chatcmpl-8lK0BBJaTDxAqAuDd3Lsq5bq1CgCt",
+    "object": "chat.completion",
+    "created": 1706288995,
+    "model": "gpt-4-0613",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "{\n\"context\": \"A motor vehicle is running on an expressway\",\n\"MTL_expressions\": [\n    {\n        \"id\": 1,\n        \"description\": \"When the vehicle's speed exceeds 100 kilometers per hour, a distance of 100 meters or more must be maintained from the vehicle ahead in the same lane\",\n        \"propositions\": [\n            {\n                \"id\": \"vehicle_speed_exceeds_100\",\n                \"description\": \"Vehicle's speed exceeds 100 kilometers per hour\",\n                \"assumptions\": [],\n                \"ambiguities\": [],\n                \"granularity\": \"seconds\"\n            },\n            {\n                \"id\": \"distance_from_front_vehicle_is_100_or_more\",\n                \"description\": \"Distance from the vehicle in front is 100 meters or more\",\n                \"assumptions\": [],\n                \"ambiguities\": [],\n                \"granularity\": \"seconds\"\n            }\n        ],\n        \"MTL_expression\": \"G(vehicle_speed_exceeds_100 \u21d2 X(distance_from_front_vehicle_is_100_or_more))\"\n    },\n    {\n        \"id\": 2,\n        \"description\": \"When the vehicle's speed is below 100 kilometers per hour, the distance from the vehicle in front may be narrowed, but not less than 50 meters\",\n        \"propositions\": [\n            {\n                \"id\": \"vehicle_speed_below_100\",\n                \"description\": \"Vehicle's speed is below 100 kilometers per hour\",\n                \"assumptions\": [],\n                \"ambiguities\": [],\n                \"granularity\": \"seconds\"\n            },\n            {\n                \"id\": \"distance_from_front_vehicle_is_50_or_more\",\n                \"description\": \"Distance from the vehicle in front is 50 meters or more\",\n                \"assumptions\": [],\n                \"ambiguities\": [],\n                \"granularity\": \"seconds\"\n            }\n        ],\n        \"MTL_expression\": \"G(vehicle_speed_below_100 \u21d2 X(distance_from_front_vehicle_is_50_or_more))\"\n    }],\n\"dependency_sequence\": [\n    {\n        \"preceding_id\": 1,\n        \"following_id\": 2,\n        \"dependency_description\": \"The dependency relation represents a mutual exclusion. Only one of the two scenarios can happen at any given point\"\n    }\n],\n\"non_formalized_parts\": []\n}"
+            },
+            "logprobs": null,
+            "finish_reason": "stop"
+        }
+    ],
+    "usage": {
+        "prompt_tokens": 566,
+        "completion_tokens": 473,
+        "total_tokens": 1039
+    },
+    "system_fingerprint": null
+}

@@ -1,9 +1,9 @@
 {
-    "input_file": "/data/input/harvesting_process.txt",
-    "output_file": "/data/output/harvesting_process_2.json",
+    "input_file": "/data/input/article_80.txt",
+    "output_file": "/data/output/article_80_test.json",
     "prompt_file": "/prompts/nl2mtl.txt",
-    "in_between_output_file":"/tmp/harvesting_process_2.json",
-    "html_output_file":"/data/output/harvesting_process_2.html",
+    "in_between_output_file":"/tmp/article_80_temp.json",
+    "html_output_file":"/data/output/article_80_test.html",
     "api_key": "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",
     "model_name": "gpt-4"
 }

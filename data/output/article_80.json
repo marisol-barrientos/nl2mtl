@@ -1,78 +1,55 @@
 {
-    "context": "Traffic regulation",
+    "context": "A motor vehicle is running on an expressway",
     "MTL_expressions": [
         {
-            "id": "MTL1",
-            "description": "Motor vehicle speed exceeds 100 kilometers per hour",
+            "id": 1,
+            "description": "When the vehicle's speed exceeds 100 kilometers per hour, a distance of 100 meters or more must be maintained from the vehicle ahead in the same lane",
             "propositions": [
                 {
-                    "id": "p1",
-                    "description": "Speed of the vehicle exceeds 100 kmph",
-                    "assumptions": [
-                        "The speedometer of the vehicle is functioning properly"
-                    ],
-                    "ambiguities": [
-                        "The temporal granularity could differ based on the speed of the vehicle"
-                    ],
+                    "id": "vehicle_speed_exceeds_100",
+                    "description": "Vehicle's speed exceeds 100 kilometers per hour",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "seconds"
+                },
+                {
+                    "id": "distance_from_front_vehicle_is_100_or_more",
+                    "description": "Distance from the vehicle in front is 100 meters or more",
+                    "assumptions": [],
+                    "ambiguities": [],
                     "granularity": "seconds"
                 }
             ],
-            "MTL_expression": "G[p1]"
+            "MTL_expression": "G(vehicle_speed_exceeds_100 \u21d2 X(distance_from_front_vehicle_is_100_or_more))"
         },
         {
-            "id": "MTL2",
-            "description": "Vehicle maintains a distance of 100 meters or more from the vehicle in front in the same lane when speed exceeds 100 kilometers per hour",
+            "id": 2,
+            "description": "When the vehicle's speed is below 100 kilometers per hour, the distance from the vehicle in front may be narrowed, but not less than 50 meters",
             "propositions": [
                 {
-                    "id": "p2",
-                    "description": "Vehicle maintains a distance of 100 meters or more from the vehicle in front in the same vehicle lane",
-                    "assumptions": [
-                        "The distance indicator of the vehicle is functioning properly"
-                    ],
-                    "ambiguities": [
-                        "The temporal granularity of maintaining the distance is not mentioned"
-                    ],
+                    "id": "vehicle_speed_below_100",
+                    "description": "Vehicle's speed is below 100 kilometers per hour",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "seconds"
+                },
+                {
+                    "id": "distance_from_front_vehicle_is_50_or_more",
+                    "description": "Distance from the vehicle in front is 50 meters or more",
+                    "assumptions": [],
+                    "ambiguities": [],
                     "granularity": "seconds"
                 }
             ],
-            "MTL_expression": "G[(speed > 100) -> (distance >= 100)]"
-        },
-        {
-            "id": "MTL3",
-            "description": "When the vehicle speed is lower than 100 kmph, the distance from the vehicle in front may be narrowed, but not less than 50 meters",
-            "propositions": [
-                {
-                    "id": "p3",
-                    "description": "Vehicle maintains a distance of 50 meters or more, but less than 100 meters, from the vehicle in front in the same vehicle lane when speed is less than 100 kilometers per hour",
-                    "assumptions": [
-                        "The distance and speed indicators of the vehicle are functioning properly"
-                    ],
-                    "ambiguities": [
-                        "The temporal granularity of maintaining the distance is not mentioned"
-                    ],
-                    "granularity": "seconds"
-                }
-            ],
-            "MTL_expression": "G[(speed < 100) -> (50 <= distance < 100)]"
+            "MTL_expression": "G(vehicle_speed_below_100 \u21d2 X(distance_from_front_vehicle_is_50_or_more))"
         }
     ],
     "dependency_sequence": [
         {
-            "preceding_id": "MTL1",
-            "following_id": "MTL2",
-            "dependency_description": "Speed exceeding 100 kilometers per hour, leads to maintaining a specific distance."
-        },
-        {
-            "preceding_id": "MTL2",
-            "following_id": "MTL3",
-            "dependency_description": "When speed reduces below 100 kilometers per hour, the distance can be narrowed, but not less than 50 meters."
+            "preceding_id": 1,
+            "following_id": 2,
+            "dependency_description": "The dependency relation represents a mutual exclusion. Only one of the two scenarios can happen at any given point"
         }
     ],
-    "non_formalized_parts": [
-        {
-            "id": "NF1",
-            "description": "narrowed appropriately",
-            "reason_for_non_formalization": "This phrase is subjective and depends on the judgement of the driver. Hence, it cannot be formalized."
-        }
-    ]
+    "non_formalized_parts": []
 }

@@ -17,7 +17,6 @@ def main():
     file_handler = FileHandler()
     api_handler = APIHandler(config_data['api_key'], config_data['model_name'])
 
-
     try:
         input_text = file_handler.read_file(parent_dir + config_data['input_file'])
         prompt = file_handler.read_file(parent_dir + config_data['prompt_file']).replace(
@@ -32,7 +31,8 @@ def main():
 
         print("Output saved to", parent_dir + config_data['output_file'])
 
-        converter = JsonToHtmlConverter(parent_dir + config_data['output_file'], parent_dir + config_data['html_output_file'])
+        converter = JsonToHtmlConverter(parent_dir + config_data['output_file'],
+                                        parent_dir + config_data['html_output_file'])
         converter.convert()
 
     except Exception as e:
