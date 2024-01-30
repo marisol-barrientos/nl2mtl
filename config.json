@@ -4,6 +4,6 @@
     "prompt_file": "/prompts/nl2mtl.txt",
     "in_between_output_file":"/tmp/article_80_temp.json",
     "html_output_file":"/data/output/article_80_test.html",
-    "api_key": "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",
+    "api_key": "HERE_API_KEY",
     "model_name": "gpt-4"
 }
