@@ -1,6 +1,19 @@
-# nl2mtl
-Automatic Extraction and Formalization of Temporal Requirements from Text: A Survey
+# NL2MTL - Automatic Extraction and Formalization of Temporal Requirements from Text: A Survey
 
+## 1. Implementation:
+All the scripts which allow the extraction of MTL formulas are inside [src folder](src/). To enable their execution, one should add local configuration to this [file](config.json).
+
+## 2. Results:
+Inside [data folder](data/), there are the input files used in the evaluation together with their corresponding outputs. The sheet containing the qualitative evaluation is [inside this file](survey_material/eval/eval_re_2024.ods).
+
+## 3. Survey Material:
+
+### Bibliography Sheet:
+Information about all included studies can be found [in this sheet](survey_material/re_2024_automatic_extraction_and_formalization_of_temporal_requirements_fromt_text_a_survey.xlsx).
+
+
+### Open Source Data:
+The open source data from selected papers from the category of Automatic Generation of Formal Specifications is available [here](survey_material/datasets). The following table shows from which studies was coming which dataset, together with an input and output example.
 
 | Paper title                                                                                                                                                                                                                                                                                                               | Example                                                                                                                                                                                                                                                                                                                                        | Output (Formal Language)                                     | Example                                                                                                               |
 |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|
@@ -17,37 +30,5 @@ Automatic Extraction and Formalization of Temporal Requirements from Text: A Sur
 | NL2TL: Transforming Natural Languages to Temporal Logics using  Large Language Models                                                                                                                                                                                                                                     | During the interval that signal_1_n stays larger than 11.4 and below 72.4, and the signal_2_n signal is in signal_3_n, then the following condition holds: after a certain time point within 6 time units, signal_4_n will have to be 71.3 and then should keep like that uninterruptedly for every moment during the following 44 time units. | Signal Temporal Logic                                        | G ( (signal_1_n > 11.4 & signal_1_n < 72.4) & signal_2_n == signal_3_n -> F [0:6] ( G [0:44] (signal_4_n == 71.3) ) ) |
 | nl2spec: Interactively Translating Unstructured Natural Language to Temporal Logics with Large Language Models                                                                                                                                                                                                            | If it is the case that every a is eventually followed by a b, then c needs to holds infinitely often.                                                                                                                                                                                                                                          | Linear Temporal Logic (Optional: Signal Temporal Logic)      | G(a -> F b) -> G F c                                                                                                             |
 
-Technical Report on Neural Language Models and Few-Shot Learning for Systematic Requirements  Processing in MDSE - https://www.se-rwth.de/publications/Technical-Report-on-Neural-Language-Models-and-Few-Shot-Learning-for-Systematic-Requirements-Processing-in-MDSE.pdf
 
-Component and Connector Views in Practice: An Experience Report - https://www.se-rwth.de/publications/Component-and-Connector-Views-in-Practice-An-Experience-Report.pdf
-
-AUTOMATE - Mapping natural language procedures descriptions to linear temporal logic templates: an application in the surgical robotic domain - https://gitlab.com/altairLab/AUTOMATE - only if_procedural
-
-nl2spec: Interactively Translating Unstructured Natural Language to Temporal Logics with Large Language Models
-
-Data-Efficient Learning of Natural Language to Linear Temporal Logic Translators for Robot Task Specification
-
-Lang2LTL - https://drive.google.com/drive/folders/1ept4vnvlUevzqUellFt938vV2VDcgdwb
-
-LTLTalk - Interactive Synthesis of Temporal Specifications from Examples and Natural Language
-
-FORMAL SPECIFICATIONS FROM NATURAL LANGUAGE
-
-
-RCM-Extractor: An Automated NLP-Based Approach for Extracting a Semi Formal Representation Model from Natural Language Requirements
-A Comprehensive Requirement Capturing Model Enabling the Automated Formalisation of NL Requirements 
-ARF: Automatic Requirements Formalisation Tool
-
-Automatic Generation of Specification from Natural Language Based on Temporal Logic - Modeling take-over performance in level 3 conditionally automated vehicles
-
-DeepSTL - add link
-
-NL2TL: Transforming Natural Languages to Temporal Logics using  Large Language Models
-
-Formalization of Natural Language into PPTL Specification via Neural Machine Translation - Requirement specification extraction and analysis based on propositional projection temporal logic
-
-Leveraging Natural Language Processing for a Consistency Checking Toolchain of Automotive Requirements - add link to requirements
-
-
-% no tiene sentido - Extracting Software Requirements from Unstructured Documents - PURE 
 
