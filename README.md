@@ -3,6 +3,8 @@
 ## 1. Implementation:
 All the scripts which allow the extraction of MTL formulas are inside [src folder](src/). To enable their execution, one should add local configuration to this [file](config.json).
 
+The final prompt used for the evaluation is also provided [here](prompts/nl2mtl.txt)
+
 ## 2. Results:
 Inside [data folder](data/), there are the input files used in the evaluation together with their corresponding outputs. The sheet containing the qualitative evaluation is [inside this file](survey_material/eval/eval_re_2024.ods).
 
