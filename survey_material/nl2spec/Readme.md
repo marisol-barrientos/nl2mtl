@@ -76,23 +76,3 @@ Followed by few shot examples, where each few shot example consists of the follo
 The tool can be easily extended to other specification languages based on temporal logics (see ```/prompts/stl.txt```). The best performance is expected when drawing the few-shot examples from the distribution to translate. Adding a few well-crafted examples to the prompt and then using the tool to translate the rest of the workload is significantly easier than translating every requirement from scratch.
 
 Additionally, the tool can be extended to more fine-tuned or other upcoming open-source language models. To this end, ```backend.py``` must be extended with a new ```new_model```, for which a method named ```new_model``` must be implemented in ```models.py```.
-
-# How to cite
-
-```
-@inproceedings{nl2spec,
-	title = {nl2spec: Interactively Translating Unstructured Natural Language to Temporal Logics with Large Language Models},
-	author = {Cosler, Matthias and Hahn, Christopher and Mendoza, Daniel and Schmitt, Frederik and Trippel, Caroline},
-	booktitle = {Computer {Aided} {Verification}},
-	series = {Lecture {Notes} in {Computer} {Science}},
-	address = {Cham},
-	isbn = {978-3-031-37703-7},
-	shorttitle = {nl2spec},
-	doi = {10.1007/978-3-031-37703-7_18},
-	language = {en},
-	publisher = {Springer Nature Switzerland},
-	editor = {Enea, Constantin and Lal, Akash},
-	year = {2023},
-	pages = {383--396},
-}
-```
