@@ -1,0 +1,89 @@
+
+        <html>
+        <head>
+            <title>NL2MTL</title>
+            <style>
+                body {
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                    margin: 0;
+                    padding: 0;
+                    background-color: #f4f4f4;
+                    color: #333;
+                }
+                .container {
+                    width: 80%;
+                    margin: auto;
+                    overflow: hidden;
+                }
+                header {
+                    background: #0077B6;  /* Deep Blue */
+                    color: #fff;
+                    padding-top: 30px;
+                    min-height: 70px;
+                    border-bottom: #023E8A 3px solid;  /* Darker Blue */
+                }
+                header a {
+                    color: #ffffff;
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    font-size: 16px;
+                }
+                header ul {
+                    padding: 0;
+                    margin: 0;
+                    list-style: none;
+                    overflow: hidden;
+                }
+                header li {
+                    float: left;
+                    display: inline;
+                    padding: 0 20px 0 20px;
+                }
+                header #branding {
+                    float: left;
+                }
+                header #branding h1 {
+                    margin: 0;
+                }
+                header nav {
+                    float: right;
+                    margin-top: 10px;
+                }
+                header .highlight, header .current a {
+                    color: #023E8A; /* Darker Blue */
+                    font-weight: bold;
+                }
+                header a:hover {
+                    color: #48CAE4; /* Light Blue */
+                    font-weight: bold;
+                }
+                .mtl-expression, .proposition, .dependency, .non-formalized {
+                    background: #fff;
+                    padding: 15px;
+                    margin-bottom: 15px;
+                    border-radius: 10px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                }
+                h2 {
+                    color: #0077B6; /* Deep Blue */
+                }
+                .proposition {
+                    background-color: #CAF0F8; /* Very Light Blue */
+                    margin-left: 20px;
+                }
+                .assumption, .ambiguity, .granularity {
+                    font-style: italic;
+                    color: #555;
+                }
+            </style>
+        </head>
+        <body>
+            <header>
+                <div class="container">
+                    <div id="branding">
+                        <h1>NL2MTL</h1>
+                    </div>
+                </div>
+            </header>
+            <div class="container">
+        <h2>MTL Expressions</h2><div class="mtl-expression"><strong>ID Req-01</strong>: The CARA will be operational whenever the <LSTAT> is [poweredOn].<ul><li class="proposition"><strong>Proposition ID p1</strong>: <LSTAT> is [poweredOn]<ul><li class="granularity"><strong>Granularity:</strong> events</li></ul></li><li class="proposition"><strong>Proposition ID p2</strong>: CARA is operational<ul><li class="granularity"><strong>Granularity:</strong> events</li></ul></li><li><strong>MTL Expression</strong>: G(p1 =&rArr; F[p2])</li></ul></div><div class="mtl-expression"><strong>ID Req-08</strong>: If Air_Ok signal is Low, auto_control_mode is terminated within 3 sec.<ul><li class="proposition"><strong>Proposition ID p3</strong>: Air_Ok signal is Low<ul><li class="granularity"><strong>Granularity:</strong> events</li></ul></li><li class="proposition"><strong>Proposition ID p4</strong>: auto_control_mode is terminated<ul><li class="granularity"><strong>Granularity:</strong> seconds</li></ul></li><li><strong>MTL Expression</strong>: p3 =&rArr; F[p4, 0, 3]</li></ul></div><div class="mtl-expression"><strong>ID Req-17C1</strong>: When auto_control_mode is running, the cuff  will be inflated.<ul><li class="proposition"><strong>Proposition ID p5</strong>: auto_control_mode is running<ul><li class="granularity"><strong>Granularity:</strong> events</li></ul></li><li class="proposition"><strong>Proposition ID p6</strong>: the cuff is inflated<ul><li class="granularity"><strong>Granularity:</strong> events</li></ul></li><li><strong>MTL Expression</strong>: p5 =&rArr; F[p6]</li></ul></div><div class="mtl-expression"><strong>ID Req-17C3</strong>: If alarm_reset_button  is pressed, the alarm is disabled.<ul><li class="proposition"><strong>Proposition ID p7</strong>: alarm_reset_button is pressed<ul><li class="granularity"><strong>Granularity:</strong> events</li></ul></li><li class="proposition"><strong>Proposition ID p8</strong>: the alarm is disabled<ul><li class="granularity"><strong>Granularity:</strong> events</li></ul></li><li><strong>MTL Expression</strong>: p7 =&rArr; F[p8]</li></ul></div><div class="mtl-expression"><strong>ID Req-28</strong>: If a valid blood_pressure is unavailable  after at least 180  sec, manual_mode should be triggered.<ul><li class="proposition"><strong>Proposition ID p9</strong>: a valid blood_pressure is unavailable<ul><li class="granularity"><strong>Granularity:</strong> seconds</li></ul></li><li class="proposition"><strong>Proposition ID p10</strong>: manual_mode is triggered<ul><li class="granularity"><strong>Granularity:</strong> events</li></ul></li><li><strong>MTL Expression</strong>: G(p9 =&rArr; F[p10, 180, &infin;])</li></ul></div><div class="mtl-expression"><strong>ID Req-34</strong>: When auto_control_mode is running, terminate_auto_control_button should be available.<ul><li class="proposition"><strong>Proposition ID p11</strong>: auto_control_mode is running<ul><li class="granularity"><strong>Granularity:</strong> events</li></ul></li><li class="proposition"><strong>Proposition ID p12</strong>: terminate_auto_control_button is available<ul><li class="granularity"><strong>Granularity:</strong> events</li></ul></li><li><strong>MTL Expression</strong>: p11 =&rArr; F[p12]</li></ul></div><div class="mtl-expression"><strong>ID Req-48C1</strong>: whenever terminate_auto_control_button is selected, a confirmation button is available.<ul><li class="proposition"><strong>Proposition ID p13</strong>: terminate_auto_control_button is selected<ul><li class="granularity"><strong>Granularity:</strong> events</li></ul></li><li class="proposition"><strong>Proposition ID p14</strong>: a confirmation button is available<ul><li class="granularity"><strong>Granularity:</strong> events</li></ul></li><li><strong>MTL Expression</strong>: G(p13 =&rArr; F[p14])</li></ul></div><div class="mtl-expression"><strong>ID Req-49</strong>: When a start_auto_control_button  is enabled,  the start_auto_control_button is enabled until it is pressed.<ul><li class="proposition"><strong>Proposition ID p15</strong>: start_auto_control_button  is enabled<ul><li class="granularity"><strong>Granularity:</strong> events</li></ul></li><li class="proposition"><strong>Proposition ID p16</strong>: start_auto_control_button is pressed<ul><li class="granularity"><strong>Granularity:</strong> events</li></ul></li><li><strong>MTL Expression</strong>: p15 =&rArr; F(p16 =&rArr; &not;X(p15))</li></ul></div><h2>Dependency Sequence</h2><h2>Non Formalized Parts</h2></div></body></html>

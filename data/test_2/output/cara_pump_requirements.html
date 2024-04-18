@@ -1,0 +1,89 @@
+
+        <html>
+        <head>
+            <title>NL2MTL</title>
+            <style>
+                body {
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                    margin: 0;
+                    padding: 0;
+                    background-color: #f4f4f4;
+                    color: #333;
+                }
+                .container {
+                    width: 80%;
+                    margin: auto;
+                    overflow: hidden;
+                }
+                header {
+                    background: #0077B6;  /* Deep Blue */
+                    color: #fff;
+                    padding-top: 30px;
+                    min-height: 70px;
+                    border-bottom: #023E8A 3px solid;  /* Darker Blue */
+                }
+                header a {
+                    color: #ffffff;
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    font-size: 16px;
+                }
+                header ul {
+                    padding: 0;
+                    margin: 0;
+                    list-style: none;
+                    overflow: hidden;
+                }
+                header li {
+                    float: left;
+                    display: inline;
+                    padding: 0 20px 0 20px;
+                }
+                header #branding {
+                    float: left;
+                }
+                header #branding h1 {
+                    margin: 0;
+                }
+                header nav {
+                    float: right;
+                    margin-top: 10px;
+                }
+                header .highlight, header .current a {
+                    color: #023E8A; /* Darker Blue */
+                    font-weight: bold;
+                }
+                header a:hover {
+                    color: #48CAE4; /* Light Blue */
+                    font-weight: bold;
+                }
+                .mtl-expression, .proposition, .dependency, .non-formalized {
+                    background: #fff;
+                    padding: 15px;
+                    margin-bottom: 15px;
+                    border-radius: 10px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                }
+                h2 {
+                    color: #0077B6; /* Deep Blue */
+                }
+                .proposition {
+                    background-color: #CAF0F8; /* Very Light Blue */
+                    margin-left: 20px;
+                }
+                .assumption, .ambiguity, .granularity {
+                    font-style: italic;
+                    color: #555;
+                }
+            </style>
+        </head>
+        <body>
+            <header>
+                <div class="container">
+                    <div id="branding">
+                        <h1>NL2MTL</h1>
+                    </div>
+                </div>
+            </header>
+            <div class="container">
+        <h2>MTL Expressions</h2><div class="mtl-expression"><strong>ID Req-01</strong>: The CARA will be operational whenever the <LSTAT> is [poweredOn].<ul><li class="proposition"><strong>Proposition ID p1</strong>: LSTAT is poweredOn<ul><li class="granularity"><strong>Granularity:</strong> interval</li></ul></li><li class="proposition"><strong>Proposition ID p2</strong>: CARA is operational<ul><li class="granularity"><strong>Granularity:</strong> interval</li></ul></li><li><strong>MTL Expression</strong>: G(p1 =&rArr; X[0,inf) p2)</li></ul></div><div class="mtl-expression"><strong>ID Req-08</strong>: If Air_Ok signal is Low, auto_control_mode is terminated within 3 sec.<ul><li class="proposition"><strong>Proposition ID p3</strong>: Air_Ok signal is Low<ul><li class="granularity"><strong>Granularity:</strong> seconds</li></ul></li><li class="proposition"><strong>Proposition ID p4</strong>: auto_control_mode is terminated<ul><li class="granularity"><strong>Granularity:</strong> seconds</li></ul></li><li><strong>MTL Expression</strong>: G(p3 =&rArr; F[0,3] p4)</li></ul></div><div class="mtl-expression"><strong>ID Req-17C1</strong>: When auto_control_mode is running, the cuff will be inflated.<ul><li class="proposition"><strong>Proposition ID p5</strong>: auto_control_mode is running<ul><li class="granularity"><strong>Granularity:</strong> interval</li></ul></li><li class="proposition"><strong>Proposition ID p6</strong>: the cuff is inflated<ul><li class="granularity"><strong>Granularity:</strong> interval</li></ul></li><li><strong>MTL Expression</strong>: G(p5 =&rArr; X[0,inf) p6)</li></ul></div><div class="mtl-expression"><strong>ID Req-17C3</strong>: If alarm_reset_button is pressed, the alarm is disabled.<ul><li class="proposition"><strong>Proposition ID p7</strong>: alarm_reset_button is pressed<ul><li class="granularity"><strong>Granularity:</strong> interval</li></ul></li><li class="proposition"><strong>Proposition ID p8</strong>: the alarm is disabled<ul><li class="granularity"><strong>Granularity:</strong> interval</li></ul></li><li><strong>MTL Expression</strong>: G(p7 =&rArr; X[0,inf) p8)</li></ul></div><h2>Dependency Sequence</h2><h2>Non Formalized Parts</h2></div></body></html>

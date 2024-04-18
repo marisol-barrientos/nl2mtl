@@ -1,0 +1,138 @@
+{
+    "context": "The daily quince harvesting process taking place in October and November.",
+    "MTL_expressions": [
+        {
+            "id": 1,
+            "description": "Manager checks plantation for codling moth infection daily from 7am.",
+            "propositions": [
+                {
+                    "id": 1.1,
+                    "description": "Checking for codling moth infection",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "hours"
+                }
+            ],
+            "MTL_expression": "G_[07:00,\u221e) (check_codling_moth_infection)"
+        },
+        {
+            "id": 2,
+            "description": "If the plantation is affected by moth, production is interrupted for the day.",
+            "propositions": [
+                {
+                    "id": 2.1,
+                    "description": "Interrupting production if infection found",
+                    "assumptions": [
+                        "Only the presence of codling moth infection will interrupt production."
+                    ],
+                    "ambiguities": [],
+                    "granularity": "days"
+                }
+            ],
+            "MTL_expression": "G (\u2200 day) (check_codling_moth_infection \u21d2 X !(fruit_picking))"
+        },
+        {
+            "id": 3,
+            "description": "Workers start picking fruits from 8am.",
+            "propositions": [
+                {
+                    "id": 3.1,
+                    "description": "Starting to pick fruits",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "hours"
+                }
+            ],
+            "MTL_expression": "G_[08:00,\u221e) (fruit_picking)"
+        },
+        {
+            "id": 4,
+            "description": "The manager reminds the workers to take break if not done before 1pm.",
+            "propositions": [
+                {
+                    "id": 4.1,
+                    "description": "Initiating break reminder",
+                    "assumptions": [
+                        "A 'break reminder' means workers have not taken a break."
+                    ],
+                    "ambiguities": [],
+                    "granularity": "hours"
+                }
+            ],
+            "MTL_expression": "G_[13:00,\u221e) (\u00acbreak_taken \u21d2 announce_break)"
+        },
+        {
+            "id": 5,
+            "description": "Trucks come 7 hours after the start of fruit picking.",
+            "propositions": [
+                {
+                    "id": 5.1,
+                    "description": "Arrival of trucks",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "hours"
+                }
+            ],
+            "MTL_expression": "G (fruit_picking =\u21d2 F_[7,7] (trucks_arrive))"
+        },
+        {
+            "id": 6,
+            "description": "Loading of trucks should be completed by 5pm.",
+            "propositions": [
+                {
+                    "id": 6.1,
+                    "description": "Completion of truck loading",
+                    "assumptions": [
+                        "Truck loading starts soon after the trucks arrive."
+                    ],
+                    "ambiguities": [],
+                    "granularity": "hours"
+                }
+            ],
+            "MTL_expression": "G (trucks_arrive =\u21d2 F_[0,9] (trucks_load_completion))"
+        },
+        {
+            "id": 7,
+            "description": "The supervisor notes down spoiled fruit within 30 minutes of truck loading completion.",
+            "propositions": [
+                {
+                    "id": 7.1,
+                    "description": "Noting spoiled fruits",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "minutes"
+                }
+            ],
+            "MTL_expression": "G (trucks_load_completion =\u21d2 F_[0,30] (note_spoiled_fruit))"
+        }
+    ],
+    "dependency_sequence": [
+        {
+            "preceding_id": 1,
+            "following_id": 2,
+            "dependency_description": "Checking for infection precedes decision to suspend production."
+        },
+        {
+            "preceding_id": 3,
+            "following_id": 5,
+            "dependency_description": "The arrival of trucks depends on the fruit picking starting time."
+        },
+        {
+            "preceding_id": 5,
+            "following_id": 6,
+            "dependency_description": "The truck arrival precedes their loading."
+        },
+        {
+            "preceding_id": 6,
+            "following_id": 7,
+            "dependency_description": "Noting down of spoiled fruit depends on the truck loading completion time."
+        }
+    ],
+    "non_formalized_parts": [
+        {
+            "id": 1,
+            "description": "In the evening, the supervisor reports the total number of kilos collected and the hours the employees have worked.",
+            "reason_for_non_formalization": "Lack of explicit times and temporal relationships for the indicated activities."
+        }
+    ]
+}

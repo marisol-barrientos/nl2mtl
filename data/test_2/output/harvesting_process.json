@@ -1,0 +1,163 @@
+{
+    "context": "Scenario relating to the annual quince harvesting process that occurs in October and November.",
+    "MTL_expressions": [
+        {
+            "id": "EXP1",
+            "description": "Every day, from 7am the manager checks that the plantation has not been affected by codling moth.",
+            "propositions": [
+                {
+                    "id": "PROP1",
+                    "description": "Manager checks the plantation for codling moth at 7am.",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "hours"
+                }
+            ],
+            "MTL_expression": "G_[0, 24h](7am \u2192 PROP1)"
+        },
+        {
+            "id": "EXP2",
+            "description": "If the plantation is affected that day's production is interrupted.",
+            "propositions": [
+                {
+                    "id": "PROP2",
+                    "description": "The plantation is affected by codling moth.",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "days"
+                },
+                {
+                    "id": "PROP3",
+                    "description": "The day's production is interrupted.",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "days"
+                }
+            ],
+            "MTL_expression": "PROP2 =\u21d2 X_PROP3"
+        },
+        {
+            "id": "EXP3",
+            "description": "The employees begin to pick the fruits at 8am, when the quinces have almost no dew.",
+            "propositions": [
+                {
+                    "id": "PROP4",
+                    "description": "Employees start picking fruits at 8am.",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "hours"
+                }
+            ],
+            "MTL_expression": "G_[0, 24h] (8am \u2192 PROP4)"
+        },
+        {
+            "id": "EXP4",
+            "description": "If the workers have not taken a break before 1pm, the manager reminds them that they should take a break soon.",
+            "propositions": [
+                {
+                    "id": "PROP5",
+                    "description": "Workers have not taken a break before 1pm.",
+                    "assumptions": [
+                        "Workers normally take a break."
+                    ],
+                    "ambiguities": [],
+                    "granularity": "hours"
+                },
+                {
+                    "id": "PROP6",
+                    "description": "Manager reminds workers to take a break soon.",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "hours"
+                }
+            ],
+            "MTL_expression": "PROP5 =\u21d2 X_PROP6"
+        },
+        {
+            "id": "EXP5",
+            "description": "7 hours after the employees started picking the fruits, the trucks come and the employees load them at most until 5pm.",
+            "propositions": [
+                {
+                    "id": "PROP7",
+                    "description": "The trucks come and the employees load them 7 hours after starting to pick fruits.",
+                    "assumptions": [
+                        "Fruits are loaded immediately when trucks arrive.",
+                        "Truck loading doesn't go beyond 5pm."
+                    ],
+                    "ambiguities": [],
+                    "granularity": "hours"
+                }
+            ],
+            "MTL_expression": "PROP4 \u2192 F_[7h,7h] PROP7 \u2227 \u00acF_[7h,9h] PROP7"
+        },
+        {
+            "id": "EXP6",
+            "description": "The supervisor notes down the spoiled fruit not later than 30 minutes after the trucks have been loaded.",
+            "propositions": [
+                {
+                    "id": "PROP8",
+                    "description": "Supervisor notes down the spoiled fruit within 30 minutes after the trucks have been loaded.",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "minutes"
+                }
+            ],
+            "MTL_expression": "PROP7 \u2192 F_[0min,30min] PROP8"
+        },
+        {
+            "id": "EXP7",
+            "description": "In the evening, the supervisor reports the total number of kilos collected and the hours the employees have worked.",
+            "propositions": [
+                {
+                    "id": "PROP9",
+                    "description": "In the evening, the supervisor provides the report.",
+                    "assumptions": [],
+                    "ambiguities": [
+                        "Exact time of the evening is not specified."
+                    ],
+                    "granularity": "hours"
+                }
+            ],
+            "MTL_expression": "O_[0, 24h] (evening \u2192 PROP9)"
+        }
+    ],
+    "dependency_sequence": [
+        {
+            "preceding_id": "EXP1",
+            "following_id": "EXP2",
+            "dependency_description": "The occurrence of the check for codling moth (EXP1) influences whether production is interrupted (EXP2)."
+        },
+        {
+            "preceding_id": "EXP2",
+            "following_id": "EXP3",
+            "dependency_description": "The interruption of production (EXP2) affects the commencement of fruit picking (EXP3)."
+        },
+        {
+            "preceding_id": "EXP3",
+            "following_id": "EXP4",
+            "dependency_description": "The start time of fruit picking (EXP3) influences when the manager might need to remind workers to take a break (EXP4)."
+        },
+        {
+            "preceding_id": "EXP4",
+            "following_id": "EXP5",
+            "dependency_description": "The break time of workers (EXP4) affects the timing of truck arrival for fruit loading (EXP5)."
+        },
+        {
+            "preceding_id": "EXP5",
+            "following_id": "EXP6",
+            "dependency_description": "The completion of fruit loading onto trucks (EXP5) affects when the supervisor can note down the spoiled fruit (EXP6)."
+        },
+        {
+            "preceding_id": "EXP6",
+            "following_id": "EXP7",
+            "dependency_description": "Completion of noting down spoiled fruit (EXP6) initiates the time frame for the supervisor's reporting process."
+        }
+    ],
+    "non_formalized_parts": [
+        {
+            "id": "NP1",
+            "description": "The quince harvesting process takes place in October and November.",
+            "reason_for_non_formalization": "This part is a context setting statement, it doesn't involve specific events or processes that could be formalized using MTL."
+        }
+    ]
+}

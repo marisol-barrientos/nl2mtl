@@ -1,0 +1,89 @@
+
+        <html>
+        <head>
+            <title>NL2MTL</title>
+            <style>
+                body {
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                    margin: 0;
+                    padding: 0;
+                    background-color: #f4f4f4;
+                    color: #333;
+                }
+                .container {
+                    width: 80%;
+                    margin: auto;
+                    overflow: hidden;
+                }
+                header {
+                    background: #0077B6;  /* Deep Blue */
+                    color: #fff;
+                    padding-top: 30px;
+                    min-height: 70px;
+                    border-bottom: #023E8A 3px solid;  /* Darker Blue */
+                }
+                header a {
+                    color: #ffffff;
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    font-size: 16px;
+                }
+                header ul {
+                    padding: 0;
+                    margin: 0;
+                    list-style: none;
+                    overflow: hidden;
+                }
+                header li {
+                    float: left;
+                    display: inline;
+                    padding: 0 20px 0 20px;
+                }
+                header #branding {
+                    float: left;
+                }
+                header #branding h1 {
+                    margin: 0;
+                }
+                header nav {
+                    float: right;
+                    margin-top: 10px;
+                }
+                header .highlight, header .current a {
+                    color: #023E8A; /* Darker Blue */
+                    font-weight: bold;
+                }
+                header a:hover {
+                    color: #48CAE4; /* Light Blue */
+                    font-weight: bold;
+                }
+                .mtl-expression, .proposition, .dependency, .non-formalized {
+                    background: #fff;
+                    padding: 15px;
+                    margin-bottom: 15px;
+                    border-radius: 10px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                }
+                h2 {
+                    color: #0077B6; /* Deep Blue */
+                }
+                .proposition {
+                    background-color: #CAF0F8; /* Very Light Blue */
+                    margin-left: 20px;
+                }
+                .assumption, .ambiguity, .granularity {
+                    font-style: italic;
+                    color: #555;
+                }
+            </style>
+        </head>
+        <body>
+            <header>
+                <div class="container">
+                    <div id="branding">
+                        <h1>NL2MTL</h1>
+                    </div>
+                </div>
+            </header>
+            <div class="container">
+        <h2>MTL Expressions</h2><div class="mtl-expression"><strong>ID 1</strong>: Maximum and minimum speed limits.<ul><li class="proposition"><strong>Proposition ID p1</strong>: Maximum speed is 120 kilometers per hour.<ul><li class="granularity"><strong>Granularity:</strong> hours</li></ul></li><li class="proposition"><strong>Proposition ID p2</strong>: Minimum speed is 60 kilometers per hour.<ul><li class="granularity"><strong>Granularity:</strong> hours</li></ul></li><li><strong>MTL Expression</strong>: G(['0', '+inf']) (max_speed &and; min_speed)</li></ul></div><div class="mtl-expression"><strong>ID 2</strong>: Rules based on lane numbers for speeds.<ul><li class="proposition"><strong>Proposition ID p3</strong>: For two lanes, minimum speed of left lane is 100 kilometers per hour.<ul><li class="assumption"><strong>Assumption:</strong> Assuming only one vehicle is in the left lane at a time.</li><li class="granularity"><strong>Granularity:</strong> hours</li></ul></li><li class="proposition"><strong>Proposition ID p4</strong>: For three or more lanes, minimum speed of farthest left lane is 110 kilometers per hour and 90 kilometers per hour for the middle lane.<ul><li class="assumption"><strong>Assumption:</strong> Assuming only one vehicle is in each lane at a time.</li><li class="ambiguity"><strong>Ambiguity:</strong> Assuming that when three or more lanes, 'middle lane' means the lane to the right of the leftmost lane, not the geometric center.</li><li class="granularity"><strong>Granularity:</strong> hours</li></ul></li><li><strong>MTL Expression</strong>: G(['0', '+inf']) ((two_lanes &and; min_speed_left_lane) ∨ (three_or_more_lanes &and; left_lane_and_middle_lane_speed))</li></ul></div><div class="mtl-expression"><strong>ID 3</strong>: Case of a speed limit sign with a different speed.<ul><li class="proposition"><strong>Proposition ID p5</strong>: Where there is any discrepancy between the speed indicated by a speed limit sign put up on a road and the driving speeds mentioned above, a motor vehicle shall be driven at the speed indicated by the speed limit sign.<ul><li class="assumption"><strong>Assumption:</strong> Assuming that vehicles can detect speed limit signs and they are always accurate.</li><li class="granularity"><strong>Granularity:</strong> seconds</li></ul></li><li><strong>MTL Expression</strong>: G(['0', '+inf']) (speed_limit_sign_affects ∨ &not;speed_limit_sign_affects)</li></ul></div><h2>Dependency Sequence</h2><div class="dependency">From ID 1 to ID 2: The rules based on lane numbers for speeds operate within the universal maximum and minimum speed limits.</div><div class="dependency">From ID 2 to ID 3: The presence of a speed limit sign with a different speed can override the pre-existing speed rules.</div><h2>Non Formalized Parts</h2></div></body></html>

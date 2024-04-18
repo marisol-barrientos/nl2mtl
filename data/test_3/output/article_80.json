@@ -1,0 +1,88 @@
+{
+    "context": "motor vehicle driving conditions on an expressway",
+    "MTL_expressions": [
+        {
+            "id": "mtl_1",
+            "description": "Motor vehicle running at a speed exceeding 100 kilometers per hour",
+            "propositions": [
+                {
+                    "id": "p_1",
+                    "description": "Motor vehicle is running at a speed exceeding 100 kilometers per hour",
+                    "assumptions": [
+                        "Speed is constantly monitored"
+                    ],
+                    "ambiguities": [],
+                    "granularity": "seconds"
+                }
+            ],
+            "MTL_expression": "G(speed>100)"
+        },
+        {
+            "id": "mtl_2",
+            "description": "Maintaining a distance of 100 meters or more from the vehicle in front when speed exceeds 100 kilometers per hour",
+            "propositions": [
+                {
+                    "id": "p_2",
+                    "description": "Maintains a distance of 100 meters or more from the vehicle in front",
+                    "assumptions": [
+                        "Distance is constantly monitored"
+                    ],
+                    "ambiguities": [],
+                    "granularity": "seconds"
+                }
+            ],
+            "MTL_expression": "G(speed>100 \u21d2 distance_front>=100)"
+        },
+        {
+            "id": "mtl_3",
+            "description": "Motor vehicle running at a speed lower than 100 kilometers per hour",
+            "propositions": [
+                {
+                    "id": "p_3",
+                    "description": "Motor vehicle is running at a speed lower than 100 kilometers per hour",
+                    "assumptions": [
+                        "Speed is constantly monitored"
+                    ],
+                    "ambiguities": [],
+                    "granularity": "seconds"
+                }
+            ],
+            "MTL_expression": "G(speed<100)"
+        },
+        {
+            "id": "mtl_4",
+            "description": "Maintaining a distance not less than 50 meters from the vehicle in front when speed is below 100 kilometers per hour",
+            "propositions": [
+                {
+                    "id": "p_4",
+                    "description": "Maintains a distance not less than 50 meters from the vehicle in front",
+                    "assumptions": [
+                        "Distance is constantly monitored"
+                    ],
+                    "ambiguities": [],
+                    "granularity": "seconds"
+                }
+            ],
+            "MTL_expression": "G(speed<100 \u21d2 distance_front>=50)"
+        }
+    ],
+    "dependency_sequence": [
+        {
+            "preceding_id": "mtl_1",
+            "following_id": "mtl_2",
+            "dependency_description": "Maintaining distance is dependent on the speed of the vehicle."
+        },
+        {
+            "preceding_id": "mtl_3",
+            "following_id": "mtl_4",
+            "dependency_description": "Maintaining distance is dependent on the speed of the vehicle."
+        }
+    ],
+    "non_formalized_parts": [
+        {
+            "id": "nfp_1",
+            "description": "the distance from the vehicle in front may be narrowed appropriately, but the minimum",
+            "reason_for_non_formalization": "The term 'narrowed appropriately' is too vague to define in terms of logic."
+        }
+    ]
+}

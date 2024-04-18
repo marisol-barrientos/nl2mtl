@@ -1,0 +1,89 @@
+
+        <html>
+        <head>
+            <title>NL2MTL</title>
+            <style>
+                body {
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                    margin: 0;
+                    padding: 0;
+                    background-color: #f4f4f4;
+                    color: #333;
+                }
+                .container {
+                    width: 80%;
+                    margin: auto;
+                    overflow: hidden;
+                }
+                header {
+                    background: #0077B6;  /* Deep Blue */
+                    color: #fff;
+                    padding-top: 30px;
+                    min-height: 70px;
+                    border-bottom: #023E8A 3px solid;  /* Darker Blue */
+                }
+                header a {
+                    color: #ffffff;
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    font-size: 16px;
+                }
+                header ul {
+                    padding: 0;
+                    margin: 0;
+                    list-style: none;
+                    overflow: hidden;
+                }
+                header li {
+                    float: left;
+                    display: inline;
+                    padding: 0 20px 0 20px;
+                }
+                header #branding {
+                    float: left;
+                }
+                header #branding h1 {
+                    margin: 0;
+                }
+                header nav {
+                    float: right;
+                    margin-top: 10px;
+                }
+                header .highlight, header .current a {
+                    color: #023E8A; /* Darker Blue */
+                    font-weight: bold;
+                }
+                header a:hover {
+                    color: #48CAE4; /* Light Blue */
+                    font-weight: bold;
+                }
+                .mtl-expression, .proposition, .dependency, .non-formalized {
+                    background: #fff;
+                    padding: 15px;
+                    margin-bottom: 15px;
+                    border-radius: 10px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                }
+                h2 {
+                    color: #0077B6; /* Deep Blue */
+                }
+                .proposition {
+                    background-color: #CAF0F8; /* Very Light Blue */
+                    margin-left: 20px;
+                }
+                .assumption, .ambiguity, .granularity {
+                    font-style: italic;
+                    color: #555;
+                }
+            </style>
+        </head>
+        <body>
+            <header>
+                <div class="container">
+                    <div id="branding">
+                        <h1>NL2MTL</h1>
+                    </div>
+                </div>
+            </header>
+            <div class="container">
+        <h2>MTL Expressions</h2><div class="mtl-expression"><strong>ID exp1</strong>: Driving speeds for different vehicle lanes of an expressway shall be indicated<ul><li class="proposition"><strong>Proposition ID p1</strong>: The driving speeds for different vehicle lanes of an expressway are indicated<ul><li class="granularity"><strong>Granularity:</strong> continuous</li></ul></li><li><strong>MTL Expression</strong>: G[indicated_speed]</li></ul></div><div class="mtl-expression"><strong>ID exp2</strong>: The maximum speed shall not exceed 120 kilometers per hour<ul><li class="proposition"><strong>Proposition ID p2</strong>: The maximum speed of a vehicle doesn't exceed 120 kilometers per hour<ul><li class="assumption"><strong>Assumption:</strong> The driving speed can be continuously monitored</li><li class="granularity"><strong>Granularity:</strong> continuous</li></ul></li><li><strong>MTL Expression</strong>: G[&le;120km/h]</li></ul></div><div class="mtl-expression"><strong>ID exp3</strong>: The minimum speed shall not be lower than 60 kilometers per hour<ul><li class="proposition"><strong>Proposition ID p3</strong>: The minimum speed of a vehicle is not lower than 60 kilometers per hour<ul><li class="assumption"><strong>Assumption:</strong> The driving speed can be continuously monitored</li><li class="granularity"><strong>Granularity:</strong> continuous</li></ul></li><li><strong>MTL Expression</strong>: G[&ge;60km/h]</li></ul></div><div class="mtl-expression"><strong>ID exp4</strong>: If there are two lanes, the left lane speed shall not be lower than 100 kmph<ul><li class="proposition"><strong>Proposition ID p4</strong>: If there are two lanes, the left lane speed is not lower than 100km per hour<ul><li class="assumption"><strong>Assumption:</strong> The number of lanes can be continuously monitored</li><li class="granularity"><strong>Granularity:</strong> discrete</li></ul></li><li><strong>MTL Expression</strong>: (number_of_lanes = 2) =&rArr; G[&ge;100km/h]</li></ul></div><div class="mtl-expression"><strong>ID exp5</strong>: If there are three or more lanes, the farthest left lane speed shall not be lower than 110 kmph and the middle lane speed not lower than 90kmph<ul><li class="proposition"><strong>Proposition ID p5</strong>: If there are three or more lanes, the left most lane speed is not lower than 110kmph and the middle lane speed is not lower than 90kmph<ul><li class="assumption"><strong>Assumption:</strong> The number of lanes can be continuously monitored</li><li class="granularity"><strong>Granularity:</strong> discrete</li></ul></li><li><strong>MTL Expression</strong>: (number_of_lanes &ge; 3) =&rArr; (G[far_left_lane &ge;110km/h] &and; G[middle_lane &ge;90km/h])</li></ul></div><div class="mtl-expression"><strong>ID exp6</strong>: The vehicle must follow the speed indicated by the speed limit sign on the road<ul><li class="proposition"><strong>Proposition ID p6</strong>: The vehicle travels at the speed indicated by the speed limit sign on the road<ul><li class="assumption"><strong>Assumption:</strong> The speed limit sign can be continuously monitored</li><li class="granularity"><strong>Granularity:</strong> continuous</li></ul></li><li><strong>MTL Expression</strong>: G[vehicle_speed = indicated_speed_limit]</li></ul></div><h2>Dependency Sequence</h2><h2>Non Formalized Parts</h2></div></body></html>

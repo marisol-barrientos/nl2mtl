@@ -1,0 +1,89 @@
+
+        <html>
+        <head>
+            <title>NL2MTL</title>
+            <style>
+                body {
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                    margin: 0;
+                    padding: 0;
+                    background-color: #f4f4f4;
+                    color: #333;
+                }
+                .container {
+                    width: 80%;
+                    margin: auto;
+                    overflow: hidden;
+                }
+                header {
+                    background: #0077B6;  /* Deep Blue */
+                    color: #fff;
+                    padding-top: 30px;
+                    min-height: 70px;
+                    border-bottom: #023E8A 3px solid;  /* Darker Blue */
+                }
+                header a {
+                    color: #ffffff;
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    font-size: 16px;
+                }
+                header ul {
+                    padding: 0;
+                    margin: 0;
+                    list-style: none;
+                    overflow: hidden;
+                }
+                header li {
+                    float: left;
+                    display: inline;
+                    padding: 0 20px 0 20px;
+                }
+                header #branding {
+                    float: left;
+                }
+                header #branding h1 {
+                    margin: 0;
+                }
+                header nav {
+                    float: right;
+                    margin-top: 10px;
+                }
+                header .highlight, header .current a {
+                    color: #023E8A; /* Darker Blue */
+                    font-weight: bold;
+                }
+                header a:hover {
+                    color: #48CAE4; /* Light Blue */
+                    font-weight: bold;
+                }
+                .mtl-expression, .proposition, .dependency, .non-formalized {
+                    background: #fff;
+                    padding: 15px;
+                    margin-bottom: 15px;
+                    border-radius: 10px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                }
+                h2 {
+                    color: #0077B6; /* Deep Blue */
+                }
+                .proposition {
+                    background-color: #CAF0F8; /* Very Light Blue */
+                    margin-left: 20px;
+                }
+                .assumption, .ambiguity, .granularity {
+                    font-style: italic;
+                    color: #555;
+                }
+            </style>
+        </head>
+        <body>
+            <header>
+                <div class="container">
+                    <div id="branding">
+                        <h1>NL2MTL</h1>
+                    </div>
+                </div>
+            </header>
+            <div class="container">
+        <h2>MTL Expressions</h2><div class="mtl-expression"><strong>ID 1</strong>: Manager checks plantation for codling moth infection daily from 7am.<ul><li class="proposition"><strong>Proposition ID 1.1</strong>: Checking for codling moth infection<ul><li class="granularity"><strong>Granularity:</strong> hours</li></ul></li><li><strong>MTL Expression</strong>: G_[07:00,&infin;) (check_codling_moth_infection)</li></ul></div><div class="mtl-expression"><strong>ID 2</strong>: If the plantation is affected by moth, production is interrupted for the day.<ul><li class="proposition"><strong>Proposition ID 2.1</strong>: Interrupting production if infection found<ul><li class="assumption"><strong>Assumption:</strong> Only the presence of codling moth infection will interrupt production.</li><li class="granularity"><strong>Granularity:</strong> days</li></ul></li><li><strong>MTL Expression</strong>: G (∀ day) (check_codling_moth_infection &rArr; X !(fruit_picking))</li></ul></div><div class="mtl-expression"><strong>ID 3</strong>: Workers start picking fruits from 8am.<ul><li class="proposition"><strong>Proposition ID 3.1</strong>: Starting to pick fruits<ul><li class="granularity"><strong>Granularity:</strong> hours</li></ul></li><li><strong>MTL Expression</strong>: G_[08:00,&infin;) (fruit_picking)</li></ul></div><div class="mtl-expression"><strong>ID 4</strong>: The manager reminds the workers to take break if not done before 1pm.<ul><li class="proposition"><strong>Proposition ID 4.1</strong>: Initiating break reminder<ul><li class="assumption"><strong>Assumption:</strong> A 'break reminder' means workers have not taken a break.</li><li class="granularity"><strong>Granularity:</strong> hours</li></ul></li><li><strong>MTL Expression</strong>: G_[13:00,&infin;) (&not;break_taken &rArr; announce_break)</li></ul></div><div class="mtl-expression"><strong>ID 5</strong>: Trucks come 7 hours after the start of fruit picking.<ul><li class="proposition"><strong>Proposition ID 5.1</strong>: Arrival of trucks<ul><li class="granularity"><strong>Granularity:</strong> hours</li></ul></li><li><strong>MTL Expression</strong>: G (fruit_picking =&rArr; F_[7,7] (trucks_arrive))</li></ul></div><div class="mtl-expression"><strong>ID 6</strong>: Loading of trucks should be completed by 5pm.<ul><li class="proposition"><strong>Proposition ID 6.1</strong>: Completion of truck loading<ul><li class="assumption"><strong>Assumption:</strong> Truck loading starts soon after the trucks arrive.</li><li class="granularity"><strong>Granularity:</strong> hours</li></ul></li><li><strong>MTL Expression</strong>: G (trucks_arrive =&rArr; F_[0,9] (trucks_load_completion))</li></ul></div><div class="mtl-expression"><strong>ID 7</strong>: The supervisor notes down spoiled fruit within 30 minutes of truck loading completion.<ul><li class="proposition"><strong>Proposition ID 7.1</strong>: Noting spoiled fruits<ul><li class="granularity"><strong>Granularity:</strong> minutes</li></ul></li><li><strong>MTL Expression</strong>: G (trucks_load_completion =&rArr; F_[0,30] (note_spoiled_fruit))</li></ul></div><h2>Dependency Sequence</h2><div class="dependency">From ID 1 to ID 2: Checking for infection precedes decision to suspend production.</div><div class="dependency">From ID 3 to ID 5: The arrival of trucks depends on the fruit picking starting time.</div><div class="dependency">From ID 5 to ID 6: The truck arrival precedes their loading.</div><div class="dependency">From ID 6 to ID 7: Noting down of spoiled fruit depends on the truck loading completion time.</div><h2>Non Formalized Parts</h2><div class="non-formalized">ID 1: In the evening, the supervisor reports the total number of kilos collected and the hours the employees have worked. (Reason: Lack of explicit times and temporal relationships for the indicated activities.)</div></div></body></html>

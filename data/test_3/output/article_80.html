@@ -1,0 +1,89 @@
+
+        <html>
+        <head>
+            <title>NL2MTL</title>
+            <style>
+                body {
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                    margin: 0;
+                    padding: 0;
+                    background-color: #f4f4f4;
+                    color: #333;
+                }
+                .container {
+                    width: 80%;
+                    margin: auto;
+                    overflow: hidden;
+                }
+                header {
+                    background: #0077B6;  /* Deep Blue */
+                    color: #fff;
+                    padding-top: 30px;
+                    min-height: 70px;
+                    border-bottom: #023E8A 3px solid;  /* Darker Blue */
+                }
+                header a {
+                    color: #ffffff;
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    font-size: 16px;
+                }
+                header ul {
+                    padding: 0;
+                    margin: 0;
+                    list-style: none;
+                    overflow: hidden;
+                }
+                header li {
+                    float: left;
+                    display: inline;
+                    padding: 0 20px 0 20px;
+                }
+                header #branding {
+                    float: left;
+                }
+                header #branding h1 {
+                    margin: 0;
+                }
+                header nav {
+                    float: right;
+                    margin-top: 10px;
+                }
+                header .highlight, header .current a {
+                    color: #023E8A; /* Darker Blue */
+                    font-weight: bold;
+                }
+                header a:hover {
+                    color: #48CAE4; /* Light Blue */
+                    font-weight: bold;
+                }
+                .mtl-expression, .proposition, .dependency, .non-formalized {
+                    background: #fff;
+                    padding: 15px;
+                    margin-bottom: 15px;
+                    border-radius: 10px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                }
+                h2 {
+                    color: #0077B6; /* Deep Blue */
+                }
+                .proposition {
+                    background-color: #CAF0F8; /* Very Light Blue */
+                    margin-left: 20px;
+                }
+                .assumption, .ambiguity, .granularity {
+                    font-style: italic;
+                    color: #555;
+                }
+            </style>
+        </head>
+        <body>
+            <header>
+                <div class="container">
+                    <div id="branding">
+                        <h1>NL2MTL</h1>
+                    </div>
+                </div>
+            </header>
+            <div class="container">
+        <h2>MTL Expressions</h2><div class="mtl-expression"><strong>ID mtl_1</strong>: Motor vehicle running at a speed exceeding 100 kilometers per hour<ul><li class="proposition"><strong>Proposition ID p_1</strong>: Motor vehicle is running at a speed exceeding 100 kilometers per hour<ul><li class="assumption"><strong>Assumption:</strong> Speed is constantly monitored</li><li class="granularity"><strong>Granularity:</strong> seconds</li></ul></li><li><strong>MTL Expression</strong>: G(speed>100)</li></ul></div><div class="mtl-expression"><strong>ID mtl_2</strong>: Maintaining a distance of 100 meters or more from the vehicle in front when speed exceeds 100 kilometers per hour<ul><li class="proposition"><strong>Proposition ID p_2</strong>: Maintains a distance of 100 meters or more from the vehicle in front<ul><li class="assumption"><strong>Assumption:</strong> Distance is constantly monitored</li><li class="granularity"><strong>Granularity:</strong> seconds</li></ul></li><li><strong>MTL Expression</strong>: G(speed>100 &rArr; distance_front>=100)</li></ul></div><div class="mtl-expression"><strong>ID mtl_3</strong>: Motor vehicle running at a speed lower than 100 kilometers per hour<ul><li class="proposition"><strong>Proposition ID p_3</strong>: Motor vehicle is running at a speed lower than 100 kilometers per hour<ul><li class="assumption"><strong>Assumption:</strong> Speed is constantly monitored</li><li class="granularity"><strong>Granularity:</strong> seconds</li></ul></li><li><strong>MTL Expression</strong>: G(speed<100)</li></ul></div><div class="mtl-expression"><strong>ID mtl_4</strong>: Maintaining a distance not less than 50 meters from the vehicle in front when speed is below 100 kilometers per hour<ul><li class="proposition"><strong>Proposition ID p_4</strong>: Maintains a distance not less than 50 meters from the vehicle in front<ul><li class="assumption"><strong>Assumption:</strong> Distance is constantly monitored</li><li class="granularity"><strong>Granularity:</strong> seconds</li></ul></li><li><strong>MTL Expression</strong>: G(speed<100 &rArr; distance_front>=50)</li></ul></div><h2>Dependency Sequence</h2><div class="dependency">From ID mtl_1 to ID mtl_2: Maintaining distance is dependent on the speed of the vehicle.</div><div class="dependency">From ID mtl_3 to ID mtl_4: Maintaining distance is dependent on the speed of the vehicle.</div><h2>Non Formalized Parts</h2><div class="non-formalized">ID nfp_1: the distance from the vehicle in front may be narrowed appropriately, but the minimum (Reason: The term 'narrowed appropriately' is too vague to define in terms of logic.)</div></div></body></html>

@@ -1,0 +1,89 @@
+
+        <html>
+        <head>
+            <title>NL2MTL</title>
+            <style>
+                body {
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                    margin: 0;
+                    padding: 0;
+                    background-color: #f4f4f4;
+                    color: #333;
+                }
+                .container {
+                    width: 80%;
+                    margin: auto;
+                    overflow: hidden;
+                }
+                header {
+                    background: #0077B6;  /* Deep Blue */
+                    color: #fff;
+                    padding-top: 30px;
+                    min-height: 70px;
+                    border-bottom: #023E8A 3px solid;  /* Darker Blue */
+                }
+                header a {
+                    color: #ffffff;
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    font-size: 16px;
+                }
+                header ul {
+                    padding: 0;
+                    margin: 0;
+                    list-style: none;
+                    overflow: hidden;
+                }
+                header li {
+                    float: left;
+                    display: inline;
+                    padding: 0 20px 0 20px;
+                }
+                header #branding {
+                    float: left;
+                }
+                header #branding h1 {
+                    margin: 0;
+                }
+                header nav {
+                    float: right;
+                    margin-top: 10px;
+                }
+                header .highlight, header .current a {
+                    color: #023E8A; /* Darker Blue */
+                    font-weight: bold;
+                }
+                header a:hover {
+                    color: #48CAE4; /* Light Blue */
+                    font-weight: bold;
+                }
+                .mtl-expression, .proposition, .dependency, .non-formalized {
+                    background: #fff;
+                    padding: 15px;
+                    margin-bottom: 15px;
+                    border-radius: 10px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                }
+                h2 {
+                    color: #0077B6; /* Deep Blue */
+                }
+                .proposition {
+                    background-color: #CAF0F8; /* Very Light Blue */
+                    margin-left: 20px;
+                }
+                .assumption, .ambiguity, .granularity {
+                    font-style: italic;
+                    color: #555;
+                }
+            </style>
+        </head>
+        <body>
+            <header>
+                <div class="container">
+                    <div id="branding">
+                        <h1>NL2MTL</h1>
+                    </div>
+                </div>
+            </header>
+            <div class="container">
+        <h2>MTL Expressions</h2><div class="mtl-expression"><strong>ID exp1</strong>: A motor vehicle running on expressway exceeding 100 kilometers per hour should maintain a distance of 100 meters or more from the vehicle in front in the same lane.<ul><li class="proposition"><strong>Proposition ID prop1</strong>: The vehicle is running on the expressway.<ul><li class="granularity"><strong>Granularity:</strong> Infinitely within the scenario</li></ul></li><li class="proposition"><strong>Proposition ID prop2</strong>: The vehicle's speed exceeds 100 kilometers per hour.<ul><li class="assumption"><strong>Assumption:</strong> Assumed that measuring unit for speed is set in kilometers per hour(KPH).</li><li class="granularity"><strong>Granularity:</strong> Seconds</li></ul></li><li class="proposition"><strong>Proposition ID prop3</strong>: The vehicle is maintaining a distance of 100 meters or more from the vehicle ahead in the same vehicle lane.<ul><li class="assumption"><strong>Assumption:</strong> Assumed that measuring unit for distance is set in meters (M).</li><li class="granularity"><strong>Granularity:</strong> Seconds</li></ul></li><li><strong>MTL Expression</strong>: G_exp1: G(prop1 &and; (prop2 =&rArr; prop3))</li></ul></div><div class="mtl-expression"><strong>ID exp2</strong>: If the motor vehicle's speed on the expressway is lower than 100 kilometers per hour, it can narrow the distance from the vehicle in front, but it may not be less than 50 meters.<ul><li class="proposition"><strong>Proposition ID prop4</strong>: The vehicle's speed is lower than 100 kilometers per hour.<ul><li class="assumption"><strong>Assumption:</strong> Assumed that measuring unit for speed is set in kilometers per hour(KPH).</li><li class="granularity"><strong>Granularity:</strong> Seconds</li></ul></li><li class="proposition"><strong>Proposition ID prop5</strong>: The distance between the vehicle and the vehicle in front may be less but never less than 50 meters.<ul><li class="assumption"><strong>Assumption:</strong> Assumed that measuring unit for distance is set in meters (M).</li><li class="granularity"><strong>Granularity:</strong> Seconds</li></ul></li><li><strong>MTL Expression</strong>: G_exp2: G(prop1 &and; (prop4 =&rArr; prop5))</li></ul></div><h2>Dependency Sequence</h2><div class="dependency">From ID exp1 to ID exp2: The decision on following distance depends on the context of vehicle's speed. Expressions 'exp1' and 'exp2' are mutually exclusive scenarios based on vehicle's speed.</div><h2>Non Formalized Parts</h2></div></body></html>

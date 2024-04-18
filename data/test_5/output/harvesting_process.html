@@ -1,0 +1,89 @@
+
+        <html>
+        <head>
+            <title>NL2MTL</title>
+            <style>
+                body {
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                    margin: 0;
+                    padding: 0;
+                    background-color: #f4f4f4;
+                    color: #333;
+                }
+                .container {
+                    width: 80%;
+                    margin: auto;
+                    overflow: hidden;
+                }
+                header {
+                    background: #0077B6;  /* Deep Blue */
+                    color: #fff;
+                    padding-top: 30px;
+                    min-height: 70px;
+                    border-bottom: #023E8A 3px solid;  /* Darker Blue */
+                }
+                header a {
+                    color: #ffffff;
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    font-size: 16px;
+                }
+                header ul {
+                    padding: 0;
+                    margin: 0;
+                    list-style: none;
+                    overflow: hidden;
+                }
+                header li {
+                    float: left;
+                    display: inline;
+                    padding: 0 20px 0 20px;
+                }
+                header #branding {
+                    float: left;
+                }
+                header #branding h1 {
+                    margin: 0;
+                }
+                header nav {
+                    float: right;
+                    margin-top: 10px;
+                }
+                header .highlight, header .current a {
+                    color: #023E8A; /* Darker Blue */
+                    font-weight: bold;
+                }
+                header a:hover {
+                    color: #48CAE4; /* Light Blue */
+                    font-weight: bold;
+                }
+                .mtl-expression, .proposition, .dependency, .non-formalized {
+                    background: #fff;
+                    padding: 15px;
+                    margin-bottom: 15px;
+                    border-radius: 10px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                }
+                h2 {
+                    color: #0077B6; /* Deep Blue */
+                }
+                .proposition {
+                    background-color: #CAF0F8; /* Very Light Blue */
+                    margin-left: 20px;
+                }
+                .assumption, .ambiguity, .granularity {
+                    font-style: italic;
+                    color: #555;
+                }
+            </style>
+        </head>
+        <body>
+            <header>
+                <div class="container">
+                    <div id="branding">
+                        <h1>NL2MTL</h1>
+                    </div>
+                </div>
+            </header>
+            <div class="container">
+        <h2>MTL Expressions</h2><div class="mtl-expression"><strong>ID 1</strong>: The manager checks the plantation for codling moth at 7am<ul><li class="proposition"><strong>Proposition ID P1</strong>: The manager checks the plantation at 7am<ul><li class="granularity"><strong>Granularity:</strong> hours</li></ul></li><li class="proposition"><strong>Proposition ID P2</strong>: The plantation is not affected by codling moth<ul><li class="granularity"><strong>Granularity:</strong> days</li></ul></li><li><strong>MTL Expression</strong>: F[0,0] (P1 &and; P2)</li></ul></div><div class="mtl-expression"><strong>ID 2</strong>: The employees begin picking fruits at 8am and take break before 1pm<ul><li class="proposition"><strong>Proposition ID P3</strong>: The employees start picking fruits at 8am<ul><li class="granularity"><strong>Granularity:</strong> hours</li></ul></li><li class="proposition"><strong>Proposition ID P4</strong>: The workers take a break before 1pm<ul><li class="granularity"><strong>Granularity:</strong> hours</li></ul></li><li><strong>MTL Expression</strong>: G[0,5] (P3 &rArr; F[0,5] P4)</li></ul></div><div class="mtl-expression"><strong>ID 3</strong>: The trucks arrive 7 hours after employees start piking, they are loaded at most until 5pm<ul><li class="proposition"><strong>Proposition ID P5</strong>: The trucks are loaded for at most 7 hours<ul><li class="granularity"><strong>Granularity:</strong> hours</li></ul></li><li><strong>MTL Expression</strong>: G[0,7] P5</li></ul></div><div class="mtl-expression"><strong>ID 4</strong>: The supervisor notes down the spoiled fruit within 30 minutes after the trucks have been loaded<ul><li class="proposition"><strong>Proposition ID P6</strong>: The supervisor notes down the spoiled fruit within 30 minutes after the trucks have been loaded<ul><li class="granularity"><strong>Granularity:</strong> minutes</li></ul></li><li><strong>MTL Expression</strong>: G[0,0.5] (P5 &rArr; F[0,0.5] P6)</li></ul></div><h2>Dependency Sequence</h2><div class="dependency">From ID 1 to ID 2: Plantation check precedes fruit picking</div><div class="dependency">From ID 2 to ID 3: Fruit picking precedes truck loading</div><div class="dependency">From ID 3 to ID 4: Truck loading precedes spoilage check</div><h2>Non Formalized Parts</h2><div class="non-formalized">ID NF1: In the evening, the supervisor reports the total number of kilos collected and the hours the employees have worked. (Reason: Lack of quantifiable measures and temporal parameters)</div></div></body></html>

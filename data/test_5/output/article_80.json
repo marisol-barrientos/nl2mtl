@@ -1,0 +1,70 @@
+{
+    "context": "Motor vehicle operation on an expressway with reference to the speed and the distance maintained from the vehicle in front.",
+    "MTL_expressions": [
+        {
+            "id": "exp1",
+            "description": "A motor vehicle running on expressway exceeding 100 kilometers per hour should maintain a distance of 100 meters or more from the vehicle in front in the same lane.",
+            "propositions": [
+                {
+                    "id": "prop1",
+                    "description": "The vehicle is running on the expressway.",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "Infinitely within the scenario"
+                },
+                {
+                    "id": "prop2",
+                    "description": "The vehicle's speed exceeds 100 kilometers per hour.",
+                    "assumptions": [
+                        "Assumed that measuring unit for speed is set in kilometers per hour(KPH)."
+                    ],
+                    "ambiguities": [],
+                    "granularity": "Seconds"
+                },
+                {
+                    "id": "prop3",
+                    "description": "The vehicle is maintaining a distance of 100 meters or more from the vehicle ahead in the same vehicle lane.",
+                    "assumptions": [
+                        "Assumed that measuring unit for distance is set in meters (M)."
+                    ],
+                    "ambiguities": [],
+                    "granularity": "Seconds"
+                }
+            ],
+            "MTL_expression": "G_exp1: G(prop1 \u2227 (prop2 =\u21d2 prop3))"
+        },
+        {
+            "id": "exp2",
+            "description": "If the motor vehicle's speed on the expressway is lower than 100 kilometers per hour, it can narrow the distance from the vehicle in front, but it may not be less than 50 meters.",
+            "propositions": [
+                {
+                    "id": "prop4",
+                    "description": "The vehicle's speed is lower than 100 kilometers per hour.",
+                    "assumptions": [
+                        "Assumed that measuring unit for speed is set in kilometers per hour(KPH)."
+                    ],
+                    "ambiguities": [],
+                    "granularity": "Seconds"
+                },
+                {
+                    "id": "prop5",
+                    "description": "The distance between the vehicle and the vehicle in front may be less but never less than 50 meters.",
+                    "assumptions": [
+                        "Assumed that measuring unit for distance is set in meters (M)."
+                    ],
+                    "ambiguities": [],
+                    "granularity": "Seconds"
+                }
+            ],
+            "MTL_expression": "G_exp2: G(prop1 \u2227 (prop4 =\u21d2 prop5))"
+        }
+    ],
+    "dependency_sequence": [
+        {
+            "preceding_id": "exp1",
+            "following_id": "exp2",
+            "dependency_description": "The decision on following distance depends on the context of vehicle's speed. Expressions 'exp1' and 'exp2' are mutually exclusive scenarios based on vehicle's speed."
+        }
+    ],
+    "non_formalized_parts": []
+}

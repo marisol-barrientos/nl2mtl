@@ -1,0 +1,89 @@
+
+        <html>
+        <head>
+            <title>NL2MTL</title>
+            <style>
+                body {
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                    margin: 0;
+                    padding: 0;
+                    background-color: #f4f4f4;
+                    color: #333;
+                }
+                .container {
+                    width: 80%;
+                    margin: auto;
+                    overflow: hidden;
+                }
+                header {
+                    background: #0077B6;  /* Deep Blue */
+                    color: #fff;
+                    padding-top: 30px;
+                    min-height: 70px;
+                    border-bottom: #023E8A 3px solid;  /* Darker Blue */
+                }
+                header a {
+                    color: #ffffff;
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    font-size: 16px;
+                }
+                header ul {
+                    padding: 0;
+                    margin: 0;
+                    list-style: none;
+                    overflow: hidden;
+                }
+                header li {
+                    float: left;
+                    display: inline;
+                    padding: 0 20px 0 20px;
+                }
+                header #branding {
+                    float: left;
+                }
+                header #branding h1 {
+                    margin: 0;
+                }
+                header nav {
+                    float: right;
+                    margin-top: 10px;
+                }
+                header .highlight, header .current a {
+                    color: #023E8A; /* Darker Blue */
+                    font-weight: bold;
+                }
+                header a:hover {
+                    color: #48CAE4; /* Light Blue */
+                    font-weight: bold;
+                }
+                .mtl-expression, .proposition, .dependency, .non-formalized {
+                    background: #fff;
+                    padding: 15px;
+                    margin-bottom: 15px;
+                    border-radius: 10px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                }
+                h2 {
+                    color: #0077B6; /* Deep Blue */
+                }
+                .proposition {
+                    background-color: #CAF0F8; /* Very Light Blue */
+                    margin-left: 20px;
+                }
+                .assumption, .ambiguity, .granularity {
+                    font-style: italic;
+                    color: #555;
+                }
+            </style>
+        </head>
+        <body>
+            <header>
+                <div class="container">
+                    <div id="branding">
+                        <h1>NL2MTL</h1>
+                    </div>
+                </div>
+            </header>
+            <div class="container">
+        <h2>MTL Expressions</h2><div class="mtl-expression"><strong>ID EXP1</strong>: Every day, from 7am the manager checks that the plantation has not been affected by codling moth.<ul><li class="proposition"><strong>Proposition ID PROP1</strong>: Manager checks the plantation for codling moth at 7am.<ul><li class="granularity"><strong>Granularity:</strong> hours</li></ul></li><li><strong>MTL Expression</strong>: G_[0, 24h](7am &rArr; PROP1)</li></ul></div><div class="mtl-expression"><strong>ID EXP2</strong>: If the plantation is affected that day's production is interrupted.<ul><li class="proposition"><strong>Proposition ID PROP2</strong>: The plantation is affected by codling moth.<ul><li class="granularity"><strong>Granularity:</strong> days</li></ul></li><li class="proposition"><strong>Proposition ID PROP3</strong>: The day's production is interrupted.<ul><li class="granularity"><strong>Granularity:</strong> days</li></ul></li><li><strong>MTL Expression</strong>: PROP2 =&rArr; X_PROP3</li></ul></div><div class="mtl-expression"><strong>ID EXP3</strong>: The employees begin to pick the fruits at 8am, when the quinces have almost no dew.<ul><li class="proposition"><strong>Proposition ID PROP4</strong>: Employees start picking fruits at 8am.<ul><li class="granularity"><strong>Granularity:</strong> hours</li></ul></li><li><strong>MTL Expression</strong>: G_[0, 24h] (8am &rArr; PROP4)</li></ul></div><div class="mtl-expression"><strong>ID EXP4</strong>: If the workers have not taken a break before 1pm, the manager reminds them that they should take a break soon.<ul><li class="proposition"><strong>Proposition ID PROP5</strong>: Workers have not taken a break before 1pm.<ul><li class="assumption"><strong>Assumption:</strong> Workers normally take a break.</li><li class="granularity"><strong>Granularity:</strong> hours</li></ul></li><li class="proposition"><strong>Proposition ID PROP6</strong>: Manager reminds workers to take a break soon.<ul><li class="granularity"><strong>Granularity:</strong> hours</li></ul></li><li><strong>MTL Expression</strong>: PROP5 =&rArr; X_PROP6</li></ul></div><div class="mtl-expression"><strong>ID EXP5</strong>: 7 hours after the employees started picking the fruits, the trucks come and the employees load them at most until 5pm.<ul><li class="proposition"><strong>Proposition ID PROP7</strong>: The trucks come and the employees load them 7 hours after starting to pick fruits.<ul><li class="assumption"><strong>Assumption:</strong> Fruits are loaded immediately when trucks arrive.</li><li class="assumption"><strong>Assumption:</strong> Truck loading doesn't go beyond 5pm.</li><li class="granularity"><strong>Granularity:</strong> hours</li></ul></li><li><strong>MTL Expression</strong>: PROP4 &rArr; F_[7h,7h] PROP7 &and; &not;F_[7h,9h] PROP7</li></ul></div><div class="mtl-expression"><strong>ID EXP6</strong>: The supervisor notes down the spoiled fruit not later than 30 minutes after the trucks have been loaded.<ul><li class="proposition"><strong>Proposition ID PROP8</strong>: Supervisor notes down the spoiled fruit within 30 minutes after the trucks have been loaded.<ul><li class="granularity"><strong>Granularity:</strong> minutes</li></ul></li><li><strong>MTL Expression</strong>: PROP7 &rArr; F_[0min,30min] PROP8</li></ul></div><div class="mtl-expression"><strong>ID EXP7</strong>: In the evening, the supervisor reports the total number of kilos collected and the hours the employees have worked.<ul><li class="proposition"><strong>Proposition ID PROP9</strong>: In the evening, the supervisor provides the report.<ul><li class="ambiguity"><strong>Ambiguity:</strong> Exact time of the evening is not specified.</li><li class="granularity"><strong>Granularity:</strong> hours</li></ul></li><li><strong>MTL Expression</strong>: O_[0, 24h] (evening &rArr; PROP9)</li></ul></div><h2>Dependency Sequence</h2><div class="dependency">From ID EXP1 to ID EXP2: The occurrence of the check for codling moth (EXP1) influences whether production is interrupted (EXP2).</div><div class="dependency">From ID EXP2 to ID EXP3: The interruption of production (EXP2) affects the commencement of fruit picking (EXP3).</div><div class="dependency">From ID EXP3 to ID EXP4: The start time of fruit picking (EXP3) influences when the manager might need to remind workers to take a break (EXP4).</div><div class="dependency">From ID EXP4 to ID EXP5: The break time of workers (EXP4) affects the timing of truck arrival for fruit loading (EXP5).</div><div class="dependency">From ID EXP5 to ID EXP6: The completion of fruit loading onto trucks (EXP5) affects when the supervisor can note down the spoiled fruit (EXP6).</div><div class="dependency">From ID EXP6 to ID EXP7: Completion of noting down spoiled fruit (EXP6) initiates the time frame for the supervisor's reporting process.</div><h2>Non Formalized Parts</h2><div class="non-formalized">ID NP1: The quince harvesting process takes place in October and November. (Reason: This part is a context setting statement, it doesn't involve specific events or processes that could be formalized using MTL.)</div></div></body></html>

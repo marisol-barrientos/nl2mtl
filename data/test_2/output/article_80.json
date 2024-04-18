@@ -1,0 +1,54 @@
+{
+    "context": "A motor vehicle navigating an expressway and following distance rules depending on speed.",
+    "MTL_expressions": [
+        {
+            "id": "EXP1",
+            "description": "The respective distances to maintain if a vehicle is more than or less than 100 kilometers per hour.",
+            "propositions": [
+                {
+                    "id": "PROP1",
+                    "description": "The vehicle is moving at a speed greater than 100 kilometers per hour.",
+                    "assumptions": [
+                        "There are functional speed indicators.",
+                        "No sudden speed change."
+                    ],
+                    "ambiguities": [],
+                    "granularity": "Seconds"
+                },
+                {
+                    "id": "PROP2",
+                    "description": "A distance of 100 meters or more is maintained from the vehicle in front.",
+                    "assumptions": [
+                        "There are functional distance indicators.",
+                        "Steady velocity of both vehicles."
+                    ],
+                    "ambiguities": [],
+                    "granularity": "Seconds"
+                },
+                {
+                    "id": "PROP3",
+                    "description": "The vehicle is moving at a speed less than 100 kilometers per hour.",
+                    "assumptions": [
+                        "There are functional speed indicators.",
+                        "No sudden speed change."
+                    ],
+                    "ambiguities": [],
+                    "granularity": "Seconds"
+                },
+                {
+                    "id": "PROP4",
+                    "description": "The distance from the vehicle in front is less than 100m but, not less than 50 meters.",
+                    "assumptions": [
+                        "There are functional distance indicators.",
+                        "Steady velocity of both vehicles."
+                    ],
+                    "ambiguities": [],
+                    "granularity": "Seconds"
+                }
+            ],
+            "MTL_expression": "G (PROP1 =\u21d2 PROP2) \u2227 G (PROP3 =\u21d2 PROP4)"
+        }
+    ],
+    "dependency_sequence": [],
+    "non_formalized_parts": []
+}

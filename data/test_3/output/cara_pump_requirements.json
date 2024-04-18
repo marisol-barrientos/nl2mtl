@@ -1,0 +1,112 @@
+{
+    "context": "A medical device control system",
+    "MTL_expressions": [
+        {
+            "id": "g1",
+            "description": "<LSTAT> is [poweredOn], the CARA is operational",
+            "propositions": [
+                {
+                    "id": "p1",
+                    "description": "<LSTAT> is [poweredOn]",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "system operation"
+                },
+                {
+                    "id": "p2",
+                    "description": "CARA is operational",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "system operation"
+                }
+            ],
+            "MTL_expression": "p1 =\u21d2 G(p2)"
+        },
+        {
+            "id": "g2",
+            "description": "If Air_Ok signal is Low, auto_control_mode is terminated within 3 sec",
+            "propositions": [
+                {
+                    "id": "p3",
+                    "description": "Air_Ok signal is Low",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "system operation"
+                },
+                {
+                    "id": "p4",
+                    "description": "auto_control_mode is terminated",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "system operation"
+                }
+            ],
+            "MTL_expression": "p3 =\u21d2 F[0,3](p4)"
+        },
+        {
+            "id": "g3",
+            "description": "When auto_control_mode is running, the cuff will be inflated",
+            "propositions": [
+                {
+                    "id": "p5",
+                    "description": "auto_control_mode is running",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "system operation"
+                },
+                {
+                    "id": "p6",
+                    "description": "the cuff is inflated",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "system operation"
+                }
+            ],
+            "MTL_expression": "p5 =\u21d2 G(p6)"
+        },
+        {
+            "id": "g4",
+            "description": "If alarm_reset_button is pressed, the alarm is disabled",
+            "propositions": [
+                {
+                    "id": "p7",
+                    "description": "alarm_reset_button is pressed",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "system operation"
+                },
+                {
+                    "id": "p8",
+                    "description": "the alarm is disabled",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "system operation"
+                }
+            ],
+            "MTL_expression": "p7 =\u21d2 G(p8)"
+        },
+        {
+            "id": "g5",
+            "description": "If a valid blood_pressure is unavailable after at least 180 sec, manual_mode should be triggered",
+            "propositions": [
+                {
+                    "id": "p9",
+                    "description": "a valid blood_pressure is unavailable",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "system operation"
+                },
+                {
+                    "id": "p10",
+                    "description": "manual_mode is triggered",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "system operation"
+                }
+            ],
+            "MTL_expression": "G[180,\u221e)(p9) =\u21d2 F(p10)"
+        }
+    ],
+    "dependency_sequence": [],
+    "non_formalized_parts": []
+}

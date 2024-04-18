@@ -1,0 +1,125 @@
+{
+    "context": "Quince harvesting process in October and November",
+    "MTL_expressions": [
+        {
+            "id": "1",
+            "description": "The manager checks the plantation every day from 7am for codling moth infestation and if infested, it's production is interrupted",
+            "propositions": [
+                {
+                    "id": "a",
+                    "description": "The plantation is checked for codling moth infestation every day from 7am",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "days"
+                },
+                {
+                    "id": "b",
+                    "description": "If the plantation is infested, the day's production is interrupted",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "days"
+                }
+            ],
+            "MTL_expression": "(G_[7] ((a) =\u21d2 (X_[24] \u00acb)))"
+        },
+        {
+            "id": "2",
+            "description": "The employees begin to pick the fruits at 8am",
+            "propositions": [
+                {
+                    "id": "c",
+                    "description": "The employees begin picking fruits at 8am",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "days"
+                }
+            ],
+            "MTL_expression": "(G_[8] c)"
+        },
+        {
+            "id": "3",
+            "description": "If the workers have not taken a break before 1pm, the manager reminds them to take a break",
+            "propositions": [
+                {
+                    "id": "d",
+                    "description": "The workers take a break",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "days"
+                },
+                {
+                    "id": "e",
+                    "description": "The manager reminds the workers to take a break",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "days"
+                }
+            ],
+            "MTL_expression": "(G_[13] ((\u00acd) =\u21d2 (X e)))"
+        },
+        {
+            "id": "4",
+            "description": "7 hours after the employees started picking the fruits, the trucks come and the employees load them at most until 5pm",
+            "propositions": [
+                {
+                    "id": "f",
+                    "description": "The trucks come 7 hours after the employees start picking fruits",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "hours"
+                },
+                {
+                    "id": "g",
+                    "description": "The employees load the trucks until 5pm",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "hours"
+                }
+            ],
+            "MTL_expression": "(O_[7] f) \u2227 (F_[17] g)"
+        },
+        {
+            "id": "5",
+            "description": "The supervisor notes down the spoiled fruit not later than 30 minutes after the trucks have been loaded",
+            "propositions": [
+                {
+                    "id": "h",
+                    "description": "The supervisor notes down the spoiled fruits within 30 minutes after the trucks are loaded",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "minutes"
+                }
+            ],
+            "MTL_expression": "(O_[30min] h)"
+        }
+    ],
+    "dependency_sequence": [
+        {
+            "preceding_id": "1",
+            "following_id": "2",
+            "dependency_description": "After the plantation is checked, the process of picking fruits starts at 8am"
+        },
+        {
+            "preceding_id": "2",
+            "following_id": "3",
+            "dependency_description": "Breaks for employees are considered during the fruit picking process"
+        },
+        {
+            "preceding_id": "3",
+            "following_id": "4",
+            "dependency_description": "After the fruit picking process, loading into the trucks is considered"
+        },
+        {
+            "preceding_id": "4",
+            "following_id": "5",
+            "dependency_description": "After loading the trucks, the process of noting down the spoiled fruits takes place"
+        }
+    ],
+    "non_formalized_parts": [
+        {
+            "id": "nf_1",
+            "description": "In the evening, the supervisor reports the total number of kilos collected and the hours the employees have worked",
+            "reason_for_non_formalization": "Lack of explicit time-bound requirement or condition"
+        }
+    ]
+}

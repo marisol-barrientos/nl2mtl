@@ -1,0 +1,66 @@
+{
+    "context": "Traffic rules for maintaining distance based on speed in an expressway scenario",
+    "MTL_expressions": [
+        {
+            "id": "p1",
+            "description": "If a motor vehicle is running on the expressway at a speed which exceeds 100 kilometers per hour, a distance of 100 meters or more shall be maintained from the vehicle in front in the same vehicle lane",
+            "propositions": [
+                {
+                    "id": "a1",
+                    "description": "Motor vehicle is on the expressway",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "seconds"
+                },
+                {
+                    "id": "a2",
+                    "description": "Speed of the motor vehicle exceeds 100 kilometers per hour",
+                    "assumptions": [],
+                    "ambiguities": [
+                        "Exceeds by how much is not mentioned"
+                    ],
+                    "granularity": "seconds"
+                },
+                {
+                    "id": "a3",
+                    "description": "Distance maintained from the vehicle in front is 100 meters or more",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "seconds"
+                }
+            ],
+            "MTL_expression": "(a1 \u2227 X(F[0, \u221e] (a2 \u21d2 G[0, \u221e] a3)))"
+        },
+        {
+            "id": "p2",
+            "description": "When the speed is lower than 100 kilometers per hour, the distance from the vehicle in front may be narrowed appropriately, but the minimum distance may not be less than 50 meters.",
+            "propositions": [
+                {
+                    "id": "b1",
+                    "description": "Speed of the motor vehicle is lower than 100 kilometers per hour",
+                    "assumptions": [],
+                    "ambiguities": [
+                        "Lower by how much is not mentioned"
+                    ],
+                    "granularity": "seconds"
+                },
+                {
+                    "id": "b2",
+                    "description": "The minimum distance from the vehicle in front is not less than 50 meters",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "seconds"
+                }
+            ],
+            "MTL_expression": "(a1 \u2227 X(F[0, \u221e] (b1 \u21d2 G[0, \u221e] b2)))"
+        }
+    ],
+    "dependency_sequence": [
+        {
+            "preceding_id": "p1",
+            "following_id": "p2",
+            "dependency_description": "The execution of the first rule impacts the realization of the second rule"
+        }
+    ],
+    "non_formalized_parts": []
+}

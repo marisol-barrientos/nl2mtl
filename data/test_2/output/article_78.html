@@ -1,0 +1,89 @@
+
+        <html>
+        <head>
+            <title>NL2MTL</title>
+            <style>
+                body {
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                    margin: 0;
+                    padding: 0;
+                    background-color: #f4f4f4;
+                    color: #333;
+                }
+                .container {
+                    width: 80%;
+                    margin: auto;
+                    overflow: hidden;
+                }
+                header {
+                    background: #0077B6;  /* Deep Blue */
+                    color: #fff;
+                    padding-top: 30px;
+                    min-height: 70px;
+                    border-bottom: #023E8A 3px solid;  /* Darker Blue */
+                }
+                header a {
+                    color: #ffffff;
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    font-size: 16px;
+                }
+                header ul {
+                    padding: 0;
+                    margin: 0;
+                    list-style: none;
+                    overflow: hidden;
+                }
+                header li {
+                    float: left;
+                    display: inline;
+                    padding: 0 20px 0 20px;
+                }
+                header #branding {
+                    float: left;
+                }
+                header #branding h1 {
+                    margin: 0;
+                }
+                header nav {
+                    float: right;
+                    margin-top: 10px;
+                }
+                header .highlight, header .current a {
+                    color: #023E8A; /* Darker Blue */
+                    font-weight: bold;
+                }
+                header a:hover {
+                    color: #48CAE4; /* Light Blue */
+                    font-weight: bold;
+                }
+                .mtl-expression, .proposition, .dependency, .non-formalized {
+                    background: #fff;
+                    padding: 15px;
+                    margin-bottom: 15px;
+                    border-radius: 10px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                }
+                h2 {
+                    color: #0077B6; /* Deep Blue */
+                }
+                .proposition {
+                    background-color: #CAF0F8; /* Very Light Blue */
+                    margin-left: 20px;
+                }
+                .assumption, .ambiguity, .granularity {
+                    font-style: italic;
+                    color: #555;
+                }
+            </style>
+        </head>
+        <body>
+            <header>
+                <div class="container">
+                    <div id="branding">
+                        <h1>NL2MTL</h1>
+                    </div>
+                </div>
+            </header>
+            <div class="container">
+        <h2>MTL Expressions</h2><div class="mtl-expression"><strong>ID 1</strong>: Driving speeds for different vehicle lanes of an expressway are indicated<ul><li class="proposition"><strong>Proposition ID p1</strong>: Speeds for different lanes are indicated<ul><li class="assumption"><strong>Assumption:</strong> Speed indications are explicit and easily noticeable</li><li class="granularity"><strong>Granularity:</strong> Kilometers per hour</li></ul></li><li><strong>MTL Expression</strong>: G(p1)</li></ul></div><div class="mtl-expression"><strong>ID 2</strong>: The maximum speed does not exceed 120 kilometers per hour<ul><li class="proposition"><strong>Proposition ID p2</strong>: Maximum speed is not more than 120km/h<ul><li class="assumption"><strong>Assumption:</strong> Expressway has clear speed limit indications</li><li class="granularity"><strong>Granularity:</strong> Kilometers per hour</li></ul></li><li><strong>MTL Expression</strong>: G(p2)</li></ul></div><div class="mtl-expression"><strong>ID 3</strong>: The minimum speed is not lower than 60 kilometers per hour<ul><li class="proposition"><strong>Proposition ID p3</strong>: Minimum speed is not less than 60km/h<ul><li class="assumption"><strong>Assumption:</strong> Expressway has clear speed limit indications</li><li class="granularity"><strong>Granularity:</strong> Kilometers per hour</li></ul></li><li><strong>MTL Expression</strong>: G(p3)</li></ul></div><div class="mtl-expression"><strong>ID 4</strong>: The minimum speed for the left lane is 100 kilometers per hour, when there are two vehicle lanes<ul><li class="proposition"><strong>Proposition ID p4</strong>: Minimum speed for left lane is 100km/h if two lanes<ul><li class="assumption"><strong>Assumption:</strong> Expressway has clear lane markings and indications</li><li class="granularity"><strong>Granularity:</strong> Kilometers per hour</li></ul></li><li><strong>MTL Expression</strong>: G(p4)</li></ul></div><div class="mtl-expression"><strong>ID 5</strong>: The minimum speed for the farthest left lane is 110 kilometers per hour and 90 kilometers per hour for the middle lane, when there are three or more lanes<ul><li class="proposition"><strong>Proposition ID p5</strong>: Minimum speed for farthest left lane is 110km/h and for the middle lane is 90km/h, if three or more lanes<ul><li class="assumption"><strong>Assumption:</strong> Expressway has clear lane markings and indications</li><li class="granularity"><strong>Granularity:</strong> Kilometers per hour</li></ul></li><li><strong>MTL Expression</strong>: G(p5)</li></ul></div><div class="mtl-expression"><strong>ID 6</strong>: Motor vehicles should comply with the speed limit signs, even if they contradict speed limits stated above<ul><li class="proposition"><strong>Proposition ID p6</strong>: Vehicles should comply with actual speed limit signs<ul><li class="assumption"><strong>Assumption:</strong> Speed limit signs are clear and easily readable</li><li class="assumption"><strong>Assumption:</strong> Motor vehicles are capable of adjusting speed to comply with different speed limits</li><li class="granularity"><strong>Granularity:</strong> Kilometers per hour</li></ul></li><li><strong>MTL Expression</strong>: G(p6)</li></ul></div><h2>Dependency Sequence</h2><h2>Non Formalized Parts</h2></div></body></html>

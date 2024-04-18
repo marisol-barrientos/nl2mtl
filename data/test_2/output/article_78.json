@@ -1,0 +1,104 @@
+{
+    "context": "Expressway speed control and regulation",
+    "MTL_expressions": [
+        {
+            "id": 1,
+            "description": "Driving speeds for different vehicle lanes of an expressway are indicated",
+            "propositions": [
+                {
+                    "id": "p1",
+                    "description": "Speeds for different lanes are indicated",
+                    "assumptions": [
+                        "Speed indications are explicit and easily noticeable"
+                    ],
+                    "ambiguities": [],
+                    "granularity": "Kilometers per hour"
+                }
+            ],
+            "MTL_expression": "G(p1)"
+        },
+        {
+            "id": 2,
+            "description": "The maximum speed does not exceed 120 kilometers per hour",
+            "propositions": [
+                {
+                    "id": "p2",
+                    "description": "Maximum speed is not more than 120km/h",
+                    "assumptions": [
+                        "Expressway has clear speed limit indications"
+                    ],
+                    "ambiguities": [],
+                    "granularity": "Kilometers per hour"
+                }
+            ],
+            "MTL_expression": "G(p2)"
+        },
+        {
+            "id": 3,
+            "description": "The minimum speed is not lower than 60 kilometers per hour",
+            "propositions": [
+                {
+                    "id": "p3",
+                    "description": "Minimum speed is not less than 60km/h",
+                    "assumptions": [
+                        "Expressway has clear speed limit indications"
+                    ],
+                    "ambiguities": [],
+                    "granularity": "Kilometers per hour"
+                }
+            ],
+            "MTL_expression": "G(p3)"
+        },
+        {
+            "id": 4,
+            "description": "The minimum speed for the left lane is 100 kilometers per hour, when there are two vehicle lanes",
+            "propositions": [
+                {
+                    "id": "p4",
+                    "description": "Minimum speed for left lane is 100km/h if two lanes",
+                    "assumptions": [
+                        "Expressway has clear lane markings and indications"
+                    ],
+                    "ambiguities": [],
+                    "granularity": "Kilometers per hour"
+                }
+            ],
+            "MTL_expression": "G(p4)"
+        },
+        {
+            "id": 5,
+            "description": "The minimum speed for the farthest left lane is 110 kilometers per hour and 90 kilometers per hour for the middle lane, when there are three or more lanes",
+            "propositions": [
+                {
+                    "id": "p5",
+                    "description": "Minimum speed for farthest left lane is 110km/h and for the middle lane is 90km/h, if three or more lanes",
+                    "assumptions": [
+                        "Expressway has clear lane markings and indications"
+                    ],
+                    "ambiguities": [],
+                    "granularity": "Kilometers per hour"
+                }
+            ],
+            "MTL_expression": "G(p5)"
+        },
+        {
+            "id": 6,
+            "description": "Motor vehicles should comply with the speed limit signs, even if they contradict speed limits stated above",
+            "propositions": [
+                {
+                    "id": "p6",
+                    "description": "Vehicles should comply with actual speed limit signs",
+                    "assumptions": [
+                        "Speed limit signs are clear and easily readable",
+                        "Motor vehicles are capable of adjusting speed to comply with different speed limits"
+                    ],
+                    "ambiguities": [],
+                    "granularity": "Kilometers per hour"
+                }
+            ],
+            "MTL_expression": "G(p6)"
+        }
+    ],
+    "dependency_sequence": [],
+    "non_formalized_parts": []
+}

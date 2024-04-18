@@ -1,0 +1,99 @@
+{
+    "context": "Quince harvesting process that takes place in October and November",
+    "MTL_expressions": [
+        {
+            "id": "1",
+            "description": "The manager checks the plantation for codling moth at 7am",
+            "propositions": [
+                {
+                    "id": "P1",
+                    "description": "The manager checks the plantation at 7am",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "hours"
+                },
+                {
+                    "id": "P2",
+                    "description": "The plantation is not affected by codling moth",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "days"
+                }
+            ],
+            "MTL_expression": "F[0,0] (P1 \u2227 P2)"
+        },
+        {
+            "id": "2",
+            "description": "The employees begin picking fruits at 8am and take break before 1pm",
+            "propositions": [
+                {
+                    "id": "P3",
+                    "description": "The employees start picking fruits at 8am",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "hours"
+                },
+                {
+                    "id": "P4",
+                    "description": "The workers take a break before 1pm",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "hours"
+                }
+            ],
+            "MTL_expression": "G[0,5] (P3 \u21d2 F[0,5] P4)"
+        },
+        {
+            "id": "3",
+            "description": "The trucks arrive 7 hours after employees start piking, they are loaded at most until 5pm",
+            "propositions": [
+                {
+                    "id": "P5",
+                    "description": "The trucks are loaded for at most 7 hours",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "hours"
+                }
+            ],
+            "MTL_expression": "G[0,7] P5"
+        },
+        {
+            "id": "4",
+            "description": "The supervisor notes down the spoiled fruit within 30 minutes after the trucks have been loaded",
+            "propositions": [
+                {
+                    "id": "P6",
+                    "description": "The supervisor notes down the spoiled fruit within 30 minutes after the trucks have been loaded",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "minutes"
+                }
+            ],
+            "MTL_expression": "G[0,0.5] (P5 \u21d2 F[0,0.5] P6)"
+        }
+    ],
+    "dependency_sequence": [
+        {
+            "preceding_id": "1",
+            "following_id": "2",
+            "dependency_description": "Plantation check precedes fruit picking"
+        },
+        {
+            "preceding_id": "2",
+            "following_id": "3",
+            "dependency_description": "Fruit picking precedes truck loading"
+        },
+        {
+            "preceding_id": "3",
+            "following_id": "4",
+            "dependency_description": "Truck loading precedes spoilage check"
+        }
+    ],
+    "non_formalized_parts": [
+        {
+            "id": "NF1",
+            "description": "In the evening, the supervisor reports the total number of kilos collected and the hours the employees have worked.",
+            "reason_for_non_formalization": "Lack of quantifiable measures and temporal parameters"
+        }
+    ]
+}

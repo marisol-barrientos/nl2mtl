@@ -1,0 +1,106 @@
+{
+    "context": "Establishing metric temporal logic expressions for guiding and setting driving speeds on different lanes of an expressway",
+    "MTL_expressions": [
+        {
+            "id": "expr_01",
+            "description": "Driving speeds for all lanes are indicated",
+            "propositions": [
+                {
+                    "id": "prop_01",
+                    "description": "Driving speeds for the lanes are indicated",
+                    "assumptions": [
+                        "Assuming there are explicit indications of speed boundaries in each lane"
+                    ],
+                    "ambiguities": [],
+                    "granularity": "kilometers_per_hour"
+                }
+            ],
+            "MTL_expression": "G [0, \u221e) (indicated_speed)"
+        },
+        {
+            "id": "expr_02",
+            "description": "The maximum speed does not exceed 120km/hr, minimum speed is not lower than 60km/hr",
+            "propositions": [
+                {
+                    "id": "prop_02",
+                    "description": "Maximum driving speed is 120km/hr",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "kilometers_per_hour"
+                },
+                {
+                    "id": "prop_03",
+                    "description": "Minimum driving speed is 60km/hr",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "kilometers_per_hour"
+                }
+            ],
+            "MTL_expression": "G [0, \u221e) (max_speed \u2264 120 \u2227 min_speed \u2265 60)"
+        },
+        {
+            "id": "expr_03",
+            "description": "For two lanes, minimum speed for the left lane is 100km/hr",
+            "propositions": [
+                {
+                    "id": "prop_04",
+                    "description": "For two lanes in the same direction, the minimum speed for the left lane is 100km/hr",
+                    "assumptions": [
+                        "Assuming the driving is happening in countries where people drive on the right side of the road"
+                    ],
+                    "ambiguities": [],
+                    "granularity": "kilometers_per_hour"
+                }
+            ],
+            "MTL_expression": "G [(two_lanes_same_direction), \u221e) (min_speed_left_lane \u2265 100)"
+        },
+        {
+            "id": "expr_04",
+            "description": "For three or more lanes, minimum speed for the farthest left lane is 110km/hr, and 90km/hr for the middle lane",
+            "propositions": [
+                {
+                    "id": "prop_05",
+                    "description": "When there are three lanes or more, minimum speed for the farthest left lane is 110km/hr and for the middle lane is 90km/hr",
+                    "assumptions": [
+                        "Assuming the specified speed values are valid for all driving situations and conditions"
+                    ],
+                    "ambiguities": [
+                        "The term 'farthest left lane' is relative and may cause confusion"
+                    ],
+                    "granularity": "kilometers_per_hour"
+                }
+            ],
+            "MTL_expression": "G [(three_lanes_same_direction), \u221e) (min_speed_leftmost_lane \u2265 110 \u2227 min_speed_middle_lane \u2265 90)"
+        },
+        {
+            "id": "expr_05",
+            "description": "Compliance with the road's speed limit signs is mandatory",
+            "propositions": [
+                {
+                    "id": "prop_06",
+                    "description": "In case of a discrepancy with the stated speeds, drive according to the road's speed limit sign",
+                    "assumptions": [
+                        "Assuming speed limit signs are correctly placed and visible"
+                    ],
+                    "ambiguities": [],
+                    "granularity": "kilometers_per_hour"
+                }
+            ],
+            "MTL_expression": "G [0, \u221e) (speed_discrepancy =\u21d2 follow_road_sign_limit)"
+        }
+    ],
+    "dependency_sequence": [
+        {
+            "preceding_id": "expr_01",
+            "following_id": "expr_02",
+            "dependency_description": "The maximum and minimum speeds depend on the precondition that speeds are indicated"
+        }
+    ],
+    "non_formalized_parts": [
+        {
+            "id": "part_01",
+            "description": "The name of the expressway and the specificities of the road signage are missing",
+            "reason_for_non_formalization": "Lack of detailed and clear context to create metric temporal logic expressions that would add relevant value"
+        }
+    ]
+}

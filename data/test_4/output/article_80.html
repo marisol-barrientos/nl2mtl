@@ -1,0 +1,89 @@
+
+        <html>
+        <head>
+            <title>NL2MTL</title>
+            <style>
+                body {
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                    margin: 0;
+                    padding: 0;
+                    background-color: #f4f4f4;
+                    color: #333;
+                }
+                .container {
+                    width: 80%;
+                    margin: auto;
+                    overflow: hidden;
+                }
+                header {
+                    background: #0077B6;  /* Deep Blue */
+                    color: #fff;
+                    padding-top: 30px;
+                    min-height: 70px;
+                    border-bottom: #023E8A 3px solid;  /* Darker Blue */
+                }
+                header a {
+                    color: #ffffff;
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    font-size: 16px;
+                }
+                header ul {
+                    padding: 0;
+                    margin: 0;
+                    list-style: none;
+                    overflow: hidden;
+                }
+                header li {
+                    float: left;
+                    display: inline;
+                    padding: 0 20px 0 20px;
+                }
+                header #branding {
+                    float: left;
+                }
+                header #branding h1 {
+                    margin: 0;
+                }
+                header nav {
+                    float: right;
+                    margin-top: 10px;
+                }
+                header .highlight, header .current a {
+                    color: #023E8A; /* Darker Blue */
+                    font-weight: bold;
+                }
+                header a:hover {
+                    color: #48CAE4; /* Light Blue */
+                    font-weight: bold;
+                }
+                .mtl-expression, .proposition, .dependency, .non-formalized {
+                    background: #fff;
+                    padding: 15px;
+                    margin-bottom: 15px;
+                    border-radius: 10px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                }
+                h2 {
+                    color: #0077B6; /* Deep Blue */
+                }
+                .proposition {
+                    background-color: #CAF0F8; /* Very Light Blue */
+                    margin-left: 20px;
+                }
+                .assumption, .ambiguity, .granularity {
+                    font-style: italic;
+                    color: #555;
+                }
+            </style>
+        </head>
+        <body>
+            <header>
+                <div class="container">
+                    <div id="branding">
+                        <h1>NL2MTL</h1>
+                    </div>
+                </div>
+            </header>
+            <div class="container">
+        <h2>MTL Expressions</h2><div class="mtl-expression"><strong>ID p1</strong>: If a motor vehicle is running on the expressway at a speed which exceeds 100 kilometers per hour, a distance of 100 meters or more shall be maintained from the vehicle in front in the same vehicle lane<ul><li class="proposition"><strong>Proposition ID a1</strong>: Motor vehicle is on the expressway<ul><li class="granularity"><strong>Granularity:</strong> seconds</li></ul></li><li class="proposition"><strong>Proposition ID a2</strong>: Speed of the motor vehicle exceeds 100 kilometers per hour<ul><li class="ambiguity"><strong>Ambiguity:</strong> Exceeds by how much is not mentioned</li><li class="granularity"><strong>Granularity:</strong> seconds</li></ul></li><li class="proposition"><strong>Proposition ID a3</strong>: Distance maintained from the vehicle in front is 100 meters or more<ul><li class="granularity"><strong>Granularity:</strong> seconds</li></ul></li><li><strong>MTL Expression</strong>: (a1 &and; X(F[0, &infin;] (a2 &rArr; G[0, &infin;] a3)))</li></ul></div><div class="mtl-expression"><strong>ID p2</strong>: When the speed is lower than 100 kilometers per hour, the distance from the vehicle in front may be narrowed appropriately, but the minimum distance may not be less than 50 meters.<ul><li class="proposition"><strong>Proposition ID b1</strong>: Speed of the motor vehicle is lower than 100 kilometers per hour<ul><li class="ambiguity"><strong>Ambiguity:</strong> Lower by how much is not mentioned</li><li class="granularity"><strong>Granularity:</strong> seconds</li></ul></li><li class="proposition"><strong>Proposition ID b2</strong>: The minimum distance from the vehicle in front is not less than 50 meters<ul><li class="granularity"><strong>Granularity:</strong> seconds</li></ul></li><li><strong>MTL Expression</strong>: (a1 &and; X(F[0, &infin;] (b1 &rArr; G[0, &infin;] b2)))</li></ul></div><h2>Dependency Sequence</h2><div class="dependency">From ID p1 to ID p2: The execution of the first rule impacts the realization of the second rule</div><h2>Non Formalized Parts</h2></div></body></html>

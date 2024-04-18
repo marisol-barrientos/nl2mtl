@@ -1,0 +1,82 @@
+{
+    "context": "Vehicle speed limits on an expressway with varying number of lanes and possible discrepancy with a speed limit sign.",
+    "MTL_expressions": [
+        {
+            "id": 1,
+            "description": "Maximum and minimum speed limits.",
+            "propositions": [
+                {
+                    "id": "p1",
+                    "description": "Maximum speed is 120 kilometers per hour.",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "hours"
+                },
+                {
+                    "id": "p2",
+                    "description": "Minimum speed is 60 kilometers per hour.",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "hours"
+                }
+            ],
+            "MTL_expression": "G(['0', '+inf']) (max_speed \u2227 min_speed)"
+        },
+        {
+            "id": 2,
+            "description": "Rules based on lane numbers for speeds.",
+            "propositions": [
+                {
+                    "id": "p3",
+                    "description": "For two lanes, minimum speed of left lane is 100 kilometers per hour.",
+                    "assumptions": [
+                        "Assuming only one vehicle is in the left lane at a time."
+                    ],
+                    "ambiguities": [],
+                    "granularity": "hours"
+                },
+                {
+                    "id": "p4",
+                    "description": "For three or more lanes, minimum speed of farthest left lane is 110 kilometers per hour and 90 kilometers per hour for the middle lane.",
+                    "assumptions": [
+                        "Assuming only one vehicle is in each lane at a time."
+                    ],
+                    "ambiguities": [
+                        "Assuming that when three or more lanes, 'middle lane' means the lane to the right of the leftmost lane, not the geometric center."
+                    ],
+                    "granularity": "hours"
+                }
+            ],
+            "MTL_expression": "G(['0', '+inf']) ((two_lanes \u2227 min_speed_left_lane) \u2228 (three_or_more_lanes \u2227 left_lane_and_middle_lane_speed))"
+        },
+        {
+            "id": 3,
+            "description": "Case of a speed limit sign with a different speed.",
+            "propositions": [
+                {
+                    "id": "p5",
+                    "description": "Where there is any discrepancy between the speed indicated by a speed limit sign put up on a road and the driving speeds mentioned above, a motor vehicle shall be driven at the speed indicated by the speed limit sign.",
+                    "assumptions": [
+                        "Assuming that vehicles can detect speed limit signs and they are always accurate."
+                    ],
+                    "ambiguities": [],
+                    "granularity": "seconds"
+                }
+            ],
+            "MTL_expression": "G(['0', '+inf']) (speed_limit_sign_affects \u2228 \u00acspeed_limit_sign_affects)"
+        }
+    ],
+    "dependency_sequence": [
+        {
+            "preceding_id": 1,
+            "following_id": 2,
+            "dependency_description": "The rules based on lane numbers for speeds operate within the universal maximum and minimum speed limits."
+        },
+        {
+            "preceding_id": 2,
+            "following_id": 3,
+            "dependency_description": "The presence of a speed limit sign with a different speed can override the pre-existing speed rules."
+        }
+    ],
+    "non_formalized_parts": []
+}

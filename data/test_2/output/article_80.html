@@ -1,0 +1,89 @@
+
+        <html>
+        <head>
+            <title>NL2MTL</title>
+            <style>
+                body {
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                    margin: 0;
+                    padding: 0;
+                    background-color: #f4f4f4;
+                    color: #333;
+                }
+                .container {
+                    width: 80%;
+                    margin: auto;
+                    overflow: hidden;
+                }
+                header {
+                    background: #0077B6;  /* Deep Blue */
+                    color: #fff;
+                    padding-top: 30px;
+                    min-height: 70px;
+                    border-bottom: #023E8A 3px solid;  /* Darker Blue */
+                }
+                header a {
+                    color: #ffffff;
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    font-size: 16px;
+                }
+                header ul {
+                    padding: 0;
+                    margin: 0;
+                    list-style: none;
+                    overflow: hidden;
+                }
+                header li {
+                    float: left;
+                    display: inline;
+                    padding: 0 20px 0 20px;
+                }
+                header #branding {
+                    float: left;
+                }
+                header #branding h1 {
+                    margin: 0;
+                }
+                header nav {
+                    float: right;
+                    margin-top: 10px;
+                }
+                header .highlight, header .current a {
+                    color: #023E8A; /* Darker Blue */
+                    font-weight: bold;
+                }
+                header a:hover {
+                    color: #48CAE4; /* Light Blue */
+                    font-weight: bold;
+                }
+                .mtl-expression, .proposition, .dependency, .non-formalized {
+                    background: #fff;
+                    padding: 15px;
+                    margin-bottom: 15px;
+                    border-radius: 10px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                }
+                h2 {
+                    color: #0077B6; /* Deep Blue */
+                }
+                .proposition {
+                    background-color: #CAF0F8; /* Very Light Blue */
+                    margin-left: 20px;
+                }
+                .assumption, .ambiguity, .granularity {
+                    font-style: italic;
+                    color: #555;
+                }
+            </style>
+        </head>
+        <body>
+            <header>
+                <div class="container">
+                    <div id="branding">
+                        <h1>NL2MTL</h1>
+                    </div>
+                </div>
+            </header>
+            <div class="container">
+        <h2>MTL Expressions</h2><div class="mtl-expression"><strong>ID EXP1</strong>: The respective distances to maintain if a vehicle is more than or less than 100 kilometers per hour.<ul><li class="proposition"><strong>Proposition ID PROP1</strong>: The vehicle is moving at a speed greater than 100 kilometers per hour.<ul><li class="assumption"><strong>Assumption:</strong> There are functional speed indicators.</li><li class="assumption"><strong>Assumption:</strong> No sudden speed change.</li><li class="granularity"><strong>Granularity:</strong> Seconds</li></ul></li><li class="proposition"><strong>Proposition ID PROP2</strong>: A distance of 100 meters or more is maintained from the vehicle in front.<ul><li class="assumption"><strong>Assumption:</strong> There are functional distance indicators.</li><li class="assumption"><strong>Assumption:</strong> Steady velocity of both vehicles.</li><li class="granularity"><strong>Granularity:</strong> Seconds</li></ul></li><li class="proposition"><strong>Proposition ID PROP3</strong>: The vehicle is moving at a speed less than 100 kilometers per hour.<ul><li class="assumption"><strong>Assumption:</strong> There are functional speed indicators.</li><li class="assumption"><strong>Assumption:</strong> No sudden speed change.</li><li class="granularity"><strong>Granularity:</strong> Seconds</li></ul></li><li class="proposition"><strong>Proposition ID PROP4</strong>: The distance from the vehicle in front is less than 100m but, not less than 50 meters.<ul><li class="assumption"><strong>Assumption:</strong> There are functional distance indicators.</li><li class="assumption"><strong>Assumption:</strong> Steady velocity of both vehicles.</li><li class="granularity"><strong>Granularity:</strong> Seconds</li></ul></li><li><strong>MTL Expression</strong>: G (PROP1 =&rArr; PROP2) &and; G (PROP3 =&rArr; PROP4)</li></ul></div><h2>Dependency Sequence</h2><h2>Non Formalized Parts</h2></div></body></html>

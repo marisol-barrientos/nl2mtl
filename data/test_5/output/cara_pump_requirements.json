@@ -1,0 +1,181 @@
+{
+    "context": "Automated Control of CARA Machine",
+    "MTL_expressions": [
+        {
+            "id": "REQ-01",
+            "description": "The CARA will be operational whenever the <LSTAT> is [poweredOn].",
+            "propositions": [
+                {
+                    "id": "PROP-01",
+                    "description": "<LSTAT> is powered on",
+                    "assumptions": [
+                        "<LSTAT> can only be poweredOn or poweredOff"
+                    ],
+                    "ambiguities": [],
+                    "granularity": "Momentary event"
+                },
+                {
+                    "id": "PROP-02",
+                    "description": "CARA is operational",
+                    "assumptions": [
+                        "CARA is either operational or not"
+                    ],
+                    "ambiguities": [],
+                    "granularity": "Momentary event"
+                }
+            ],
+            "MTL_expression": "G (prop_01 => prop_02)"
+        },
+        {
+            "id": "REQ-08",
+            "description": "If Air_Ok signal is Low, auto_control_mode is terminated within 3 sec.",
+            "propositions": [
+                {
+                    "id": "PROP-03",
+                    "description": "Air_Ok signal is Low",
+                    "assumptions": [
+                        "Air_Ok signal can only be Low or High"
+                    ],
+                    "ambiguities": [],
+                    "granularity": "Momentary event"
+                },
+                {
+                    "id": "PROP-04",
+                    "description": "auto_control_mode is terminated",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "Momentary event"
+                }
+            ],
+            "MTL_expression": "G (prop_03 => F[0,3] prop_04)"
+        },
+        {
+            "id": "REQ-17C1",
+            "description": "When auto_control_mode is running, the cuff  will be inflated.",
+            "propositions": [
+                {
+                    "id": "PROP-05",
+                    "description": "auto_control_mode is running",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "Ongoing event"
+                },
+                {
+                    "id": "PROP-06",
+                    "description": "cuff is inflated",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "Momentary event"
+                }
+            ],
+            "MTL_expression": "G (prop_05 => X prop_06)"
+        },
+        {
+            "id": "REQ-17C3",
+            "description": "If alarm_reset_button is pressed, the alarm is disabled.",
+            "propositions": [
+                {
+                    "id": "PROP-07",
+                    "description": "alarm_reset_button is pressed",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "Momentary event"
+                },
+                {
+                    "id": "PROP-08",
+                    "description": "alarm is disabled",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "Momentary event"
+                }
+            ],
+            "MTL_expression": "G (prop_07 => X prop_08)"
+        },
+        {
+            "id": "REQ-28",
+            "description": "If a valid blood_pressure is unavailable  after at least 180  sec, manual_mode should be triggered.",
+            "propositions": [
+                {
+                    "id": "PROP-09",
+                    "description": "valid blood_pressure is unavailable",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "Ongoing event"
+                },
+                {
+                    "id": "PROP-10",
+                    "description": "manual_mode is triggered",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "Momentary event"
+                }
+            ],
+            "MTL_expression": "G (prop_09 => F[180,\u221e) prop_10)"
+        },
+        {
+            "id": "REQ-34",
+            "description": "When auto_control_mode is running, terminate_auto_control_button should be available.",
+            "propositions": [
+                {
+                    "id": "PROP-11",
+                    "description": "auto_control_mode is running",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "Ongoing event"
+                },
+                {
+                    "id": "PROP-12",
+                    "description": "terminate_auto_control_button is available",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "State"
+                }
+            ],
+            "MTL_expression": "G (prop_11 => X prop_12)"
+        },
+        {
+            "id": "REQ-48C1",
+            "description": "whenever terminate_auto_control_button is selected, a confirmation button is available.",
+            "propositions": [
+                {
+                    "id": "PROP-13",
+                    "description": "terminate_auto_control_button is selected",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "Momentary event"
+                },
+                {
+                    "id": "PROP-14",
+                    "description": "confirmation button is available",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "State"
+                }
+            ],
+            "MTL_expression": "G (prop_13 => X prop_14)"
+        },
+        {
+            "id": "REQ-49",
+            "description": "When a start_auto_control_button is enabled, the start_auto_control_button is enabled until it is pressed.",
+            "propositions": [
+                {
+                    "id": "PROP-15",
+                    "description": "start_auto_control_button is enabled",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "State"
+                },
+                {
+                    "id": "PROP-16",
+                    "description": "start_auto_control_button is pressed",
+                    "assumptions": [],
+                    "ambiguities": [],
+                    "granularity": "Momentary event"
+                }
+            ],
+            "MTL_expression": "G (prop_15 => (\u00acprop_16 S prop_15))"
+        }
+    ],
+    "dependency_sequence": [],
+    "non_formalized_parts": []
+}

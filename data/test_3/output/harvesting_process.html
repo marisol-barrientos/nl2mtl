@@ -1,0 +1,89 @@
+
+        <html>
+        <head>
+            <title>NL2MTL</title>
+            <style>
+                body {
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                    margin: 0;
+                    padding: 0;
+                    background-color: #f4f4f4;
+                    color: #333;
+                }
+                .container {
+                    width: 80%;
+                    margin: auto;
+                    overflow: hidden;
+                }
+                header {
+                    background: #0077B6;  /* Deep Blue */
+                    color: #fff;
+                    padding-top: 30px;
+                    min-height: 70px;
+                    border-bottom: #023E8A 3px solid;  /* Darker Blue */
+                }
+                header a {
+                    color: #ffffff;
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    font-size: 16px;
+                }
+                header ul {
+                    padding: 0;
+                    margin: 0;
+                    list-style: none;
+                    overflow: hidden;
+                }
+                header li {
+                    float: left;
+                    display: inline;
+                    padding: 0 20px 0 20px;
+                }
+                header #branding {
+                    float: left;
+                }
+                header #branding h1 {
+                    margin: 0;
+                }
+                header nav {
+                    float: right;
+                    margin-top: 10px;
+                }
+                header .highlight, header .current a {
+                    color: #023E8A; /* Darker Blue */
+                    font-weight: bold;
+                }
+                header a:hover {
+                    color: #48CAE4; /* Light Blue */
+                    font-weight: bold;
+                }
+                .mtl-expression, .proposition, .dependency, .non-formalized {
+                    background: #fff;
+                    padding: 15px;
+                    margin-bottom: 15px;
+                    border-radius: 10px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                }
+                h2 {
+                    color: #0077B6; /* Deep Blue */
+                }
+                .proposition {
+                    background-color: #CAF0F8; /* Very Light Blue */
+                    margin-left: 20px;
+                }
+                .assumption, .ambiguity, .granularity {
+                    font-style: italic;
+                    color: #555;
+                }
+            </style>
+        </head>
+        <body>
+            <header>
+                <div class="container">
+                    <div id="branding">
+                        <h1>NL2MTL</h1>
+                    </div>
+                </div>
+            </header>
+            <div class="container">
+        <h2>MTL Expressions</h2><div class="mtl-expression"><strong>ID 1</strong>: The manager checks the plantation every day from 7am for codling moth infestation and if infested, it's production is interrupted<ul><li class="proposition"><strong>Proposition ID a</strong>: The plantation is checked for codling moth infestation every day from 7am<ul><li class="granularity"><strong>Granularity:</strong> days</li></ul></li><li class="proposition"><strong>Proposition ID b</strong>: If the plantation is infested, the day's production is interrupted<ul><li class="granularity"><strong>Granularity:</strong> days</li></ul></li><li><strong>MTL Expression</strong>: (G_[7] ((a) =&rArr; (X_[24] &not;b)))</li></ul></div><div class="mtl-expression"><strong>ID 2</strong>: The employees begin to pick the fruits at 8am<ul><li class="proposition"><strong>Proposition ID c</strong>: The employees begin picking fruits at 8am<ul><li class="granularity"><strong>Granularity:</strong> days</li></ul></li><li><strong>MTL Expression</strong>: (G_[8] c)</li></ul></div><div class="mtl-expression"><strong>ID 3</strong>: If the workers have not taken a break before 1pm, the manager reminds them to take a break<ul><li class="proposition"><strong>Proposition ID d</strong>: The workers take a break<ul><li class="granularity"><strong>Granularity:</strong> days</li></ul></li><li class="proposition"><strong>Proposition ID e</strong>: The manager reminds the workers to take a break<ul><li class="granularity"><strong>Granularity:</strong> days</li></ul></li><li><strong>MTL Expression</strong>: (G_[13] ((&not;d) =&rArr; (X e)))</li></ul></div><div class="mtl-expression"><strong>ID 4</strong>: 7 hours after the employees started picking the fruits, the trucks come and the employees load them at most until 5pm<ul><li class="proposition"><strong>Proposition ID f</strong>: The trucks come 7 hours after the employees start picking fruits<ul><li class="granularity"><strong>Granularity:</strong> hours</li></ul></li><li class="proposition"><strong>Proposition ID g</strong>: The employees load the trucks until 5pm<ul><li class="granularity"><strong>Granularity:</strong> hours</li></ul></li><li><strong>MTL Expression</strong>: (O_[7] f) &and; (F_[17] g)</li></ul></div><div class="mtl-expression"><strong>ID 5</strong>: The supervisor notes down the spoiled fruit not later than 30 minutes after the trucks have been loaded<ul><li class="proposition"><strong>Proposition ID h</strong>: The supervisor notes down the spoiled fruits within 30 minutes after the trucks are loaded<ul><li class="granularity"><strong>Granularity:</strong> minutes</li></ul></li><li><strong>MTL Expression</strong>: (O_[30min] h)</li></ul></div><h2>Dependency Sequence</h2><div class="dependency">From ID 1 to ID 2: After the plantation is checked, the process of picking fruits starts at 8am</div><div class="dependency">From ID 2 to ID 3: Breaks for employees are considered during the fruit picking process</div><div class="dependency">From ID 3 to ID 4: After the fruit picking process, loading into the trucks is considered</div><div class="dependency">From ID 4 to ID 5: After loading the trucks, the process of noting down the spoiled fruits takes place</div><h2>Non Formalized Parts</h2><div class="non-formalized">ID nf_1: In the evening, the supervisor reports the total number of kilos collected and the hours the employees have worked (Reason: Lack of explicit time-bound requirement or condition)</div></div></body></html>

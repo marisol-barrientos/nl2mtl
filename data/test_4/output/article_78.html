@@ -1,0 +1,89 @@
+
+        <html>
+        <head>
+            <title>NL2MTL</title>
+            <style>
+                body {
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                    margin: 0;
+                    padding: 0;
+                    background-color: #f4f4f4;
+                    color: #333;
+                }
+                .container {
+                    width: 80%;
+                    margin: auto;
+                    overflow: hidden;
+                }
+                header {
+                    background: #0077B6;  /* Deep Blue */
+                    color: #fff;
+                    padding-top: 30px;
+                    min-height: 70px;
+                    border-bottom: #023E8A 3px solid;  /* Darker Blue */
+                }
+                header a {
+                    color: #ffffff;
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    font-size: 16px;
+                }
+                header ul {
+                    padding: 0;
+                    margin: 0;
+                    list-style: none;
+                    overflow: hidden;
+                }
+                header li {
+                    float: left;
+                    display: inline;
+                    padding: 0 20px 0 20px;
+                }
+                header #branding {
+                    float: left;
+                }
+                header #branding h1 {
+                    margin: 0;
+                }
+                header nav {
+                    float: right;
+                    margin-top: 10px;
+                }
+                header .highlight, header .current a {
+                    color: #023E8A; /* Darker Blue */
+                    font-weight: bold;
+                }
+                header a:hover {
+                    color: #48CAE4; /* Light Blue */
+                    font-weight: bold;
+                }
+                .mtl-expression, .proposition, .dependency, .non-formalized {
+                    background: #fff;
+                    padding: 15px;
+                    margin-bottom: 15px;
+                    border-radius: 10px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                }
+                h2 {
+                    color: #0077B6; /* Deep Blue */
+                }
+                .proposition {
+                    background-color: #CAF0F8; /* Very Light Blue */
+                    margin-left: 20px;
+                }
+                .assumption, .ambiguity, .granularity {
+                    font-style: italic;
+                    color: #555;
+                }
+            </style>
+        </head>
+        <body>
+            <header>
+                <div class="container">
+                    <div id="branding">
+                        <h1>NL2MTL</h1>
+                    </div>
+                </div>
+            </header>
+            <div class="container">
+        <h2>MTL Expressions</h2><div class="mtl-expression"><strong>ID expr_01</strong>: Driving speeds for all lanes are indicated<ul><li class="proposition"><strong>Proposition ID prop_01</strong>: Driving speeds for the lanes are indicated<ul><li class="assumption"><strong>Assumption:</strong> Assuming there are explicit indications of speed boundaries in each lane</li><li class="granularity"><strong>Granularity:</strong> kilometers_per_hour</li></ul></li><li><strong>MTL Expression</strong>: G [0, &infin;) (indicated_speed)</li></ul></div><div class="mtl-expression"><strong>ID expr_02</strong>: The maximum speed does not exceed 120km/hr, minimum speed is not lower than 60km/hr<ul><li class="proposition"><strong>Proposition ID prop_02</strong>: Maximum driving speed is 120km/hr<ul><li class="granularity"><strong>Granularity:</strong> kilometers_per_hour</li></ul></li><li class="proposition"><strong>Proposition ID prop_03</strong>: Minimum driving speed is 60km/hr<ul><li class="granularity"><strong>Granularity:</strong> kilometers_per_hour</li></ul></li><li><strong>MTL Expression</strong>: G [0, &infin;) (max_speed &le; 120 &and; min_speed &ge; 60)</li></ul></div><div class="mtl-expression"><strong>ID expr_03</strong>: For two lanes, minimum speed for the left lane is 100km/hr<ul><li class="proposition"><strong>Proposition ID prop_04</strong>: For two lanes in the same direction, the minimum speed for the left lane is 100km/hr<ul><li class="assumption"><strong>Assumption:</strong> Assuming the driving is happening in countries where people drive on the right side of the road</li><li class="granularity"><strong>Granularity:</strong> kilometers_per_hour</li></ul></li><li><strong>MTL Expression</strong>: G [(two_lanes_same_direction), &infin;) (min_speed_left_lane &ge; 100)</li></ul></div><div class="mtl-expression"><strong>ID expr_04</strong>: For three or more lanes, minimum speed for the farthest left lane is 110km/hr, and 90km/hr for the middle lane<ul><li class="proposition"><strong>Proposition ID prop_05</strong>: When there are three lanes or more, minimum speed for the farthest left lane is 110km/hr and for the middle lane is 90km/hr<ul><li class="assumption"><strong>Assumption:</strong> Assuming the specified speed values are valid for all driving situations and conditions</li><li class="ambiguity"><strong>Ambiguity:</strong> The term 'farthest left lane' is relative and may cause confusion</li><li class="granularity"><strong>Granularity:</strong> kilometers_per_hour</li></ul></li><li><strong>MTL Expression</strong>: G [(three_lanes_same_direction), &infin;) (min_speed_leftmost_lane &ge; 110 &and; min_speed_middle_lane &ge; 90)</li></ul></div><div class="mtl-expression"><strong>ID expr_05</strong>: Compliance with the road's speed limit signs is mandatory<ul><li class="proposition"><strong>Proposition ID prop_06</strong>: In case of a discrepancy with the stated speeds, drive according to the road's speed limit sign<ul><li class="assumption"><strong>Assumption:</strong> Assuming speed limit signs are correctly placed and visible</li><li class="granularity"><strong>Granularity:</strong> kilometers_per_hour</li></ul></li><li><strong>MTL Expression</strong>: G [0, &infin;) (speed_discrepancy =&rArr; follow_road_sign_limit)</li></ul></div><h2>Dependency Sequence</h2><div class="dependency">From ID expr_01 to ID expr_02: The maximum and minimum speeds depend on the precondition that speeds are indicated</div><h2>Non Formalized Parts</h2><div class="non-formalized">ID part_01: The name of the expressway and the specificities of the road signage are missing (Reason: Lack of detailed and clear context to create metric temporal logic expressions that would add relevant value)</div></div></body></html>
