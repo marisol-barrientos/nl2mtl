@@ -1,8 +1,0 @@
-For every moment within the first 4 time units, the value of H ought to keep greater than or equal to 24 all the time.
-
-
-OUTPUT
-"For every moment within the first 4 time units" from the input translates to the temporal operator "G[0,4]"
-"the value of H ought to keep greater than or equal to 24 all the time" translates to the predicate "H[t] >= 24".
-
-G[0,4] (H[t] >= 24).

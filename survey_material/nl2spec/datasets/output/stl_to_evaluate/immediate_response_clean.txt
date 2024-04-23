@@ -1,8 +1,0 @@
-Whenever the event that the value of w e K 4 gets shifted to 5.3 happens then all of the following conditions hold: the value of f V k F x 6 o B I shall be at most 94 instantly.
-
-OUTPUT
-"Whenever the event that the value of w e K 4 gets shifted to 5.3 happens" from the input translates to the predicate "w[t] = 5.3"
-"then all of the following conditions hold" translates to the implication operator "->",
-"the value of f V k F x 6 o B I shall be at most 94 instantly" translates to the predicate "fV[kFx6oBI][t] <= 94".
-
-FINAL: (w[t] = 5.3) -> (fV[kFx6oBI][t] <= 94).
