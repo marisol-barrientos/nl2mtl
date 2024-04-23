@@ -13,7 +13,7 @@ Inside [data folder](data/), the input files used in the evaluation are together
 ## 3. Survey Material:
 
 ### Bib files retrieved per phase:
-We provide with the bib files corresponding to each SLR phase. Please, find them [here](survey_material/datasets/survey_material/bib_files_per_phase)
+We provide with the bib files corresponding to each SLR phase. Please, find them [here](survey_material/datasets/survey_material/bib_files_per_phase).
 
 
 ### Open Source Data:
