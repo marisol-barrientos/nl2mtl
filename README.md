@@ -3,19 +3,21 @@
 ## 1. Implementation:
 All the scripts allowing MTL formula extraction are inside [src folder](src/). To enable their execution, one should add local configuration to this [file](config.json).
 
+Please execute [the main script](src/main.py) to reproduce evaluation results. The tool can process one input file at a time.
+
 The final prompt used for the evaluation is also provided [here](prompts/nl2mtl.txt)
 
 ## 2. Results:
-Inside [data folder](data/), the input files used in the evaluation are together with their corresponding outputs. The qualitative evaluation sheet is [inside this file](survey_material/eval/eval_re_2024.ods).
+Inside [data folder](data/), the input files used in the evaluation are together with their corresponding outputs.
 
 ## 3. Survey Material:
 
-### Bibliography Sheet:
-Information about all included studies can be found [in this sheet](survey_material/re_2024_automatic_extraction_and_formalization_of_temporal_requirements_fromt_text_a_survey.xlsx).
+### Bib files retrieved per phase:
+We provide with the bib files corresponding to each SLR phase. Please, find them [here](survey_material/datasets/survey_material/bib_files_per_phase)
 
 
 ### Open Source Data:
-The open-source data from selected papers from the Automatic Generation of Formal Specifications category is available [here](survey_material/datasets). The following table shows from which studies were coming, which dataset, together with an input and output example.
+The open-source data from selected papers from the Automatic Generation of Formal Specifications category is available [here](survey_material/datasets). The following table shows which studies were coming, which dataset, and an input and output example.
 
 | Paper title                                                                                                                                                                                                                                                                                                               | Example                                                                                                                                                                                                                                                                                                                                        | Output (Formal Language)                                     | Example                                                                                                               |
 |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|
