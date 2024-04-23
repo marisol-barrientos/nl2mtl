@@ -5,7 +5,7 @@ All the scripts allowing MTL formula extraction are inside [src folder](src/). T
 
 Please execute [the main script](src/main.py) to reproduce evaluation results. The tool can process one input file at a time.
 
-The final prompt used for the evaluation is also provided [here](prompts/nl2mtl.txt)
+The final prompt used for the evaluation is also provided [here](prompts/nl2mtl.txt).
 
 ## 2. Results:
 Inside [data folder](data/), the input files used in the evaluation are together with their corresponding outputs.
